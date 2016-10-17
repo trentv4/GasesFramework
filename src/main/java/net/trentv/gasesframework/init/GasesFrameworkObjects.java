@@ -1,8 +1,8 @@
 package net.trentv.gasesframework.init;
 
 import net.trentv.gasesframework.GasesFramework;
+import net.trentv.gasesframework.api.Combustability;
 import net.trentv.gasesframework.api.GasType;
-import net.trentv.gasesframework.common.Combustability;
 
 public class GasesFrameworkObjects
 {
