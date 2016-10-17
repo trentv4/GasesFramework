@@ -1,4 +1,4 @@
-package net.trentv.gasesframework.common;
+package net.trentv.gasesframework.common.block;
 
 import static net.trentv.gasesframework.GasesFramework.implementation;
 
@@ -25,6 +25,8 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.trentv.gasesframework.api.GasType;
+import net.trentv.gasesframework.api.MaterialGas;
 import net.trentv.profiler.Profiler;
 
 public class BlockGas extends Block

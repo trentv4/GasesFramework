@@ -8,6 +8,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.trentv.gasesframework.GasesFramework;
 import net.trentv.gasesframework.api.IGasesFrameworkImplementation;
+import net.trentv.gasesframework.common.block.BlockGas;
 
 public class GasesFrameworkImplementation implements IGasesFrameworkImplementation
 {

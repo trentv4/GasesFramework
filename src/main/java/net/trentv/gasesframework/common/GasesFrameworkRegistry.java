@@ -7,8 +7,10 @@ import javax.annotation.Nullable;
 import net.minecraft.item.ItemBlock;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.trentv.gasesframework.GasesFramework;
+import net.trentv.gasesframework.api.GasType;
 import net.trentv.gasesframework.api.IGasesFrameworkRegistry;
 import net.trentv.gasesframework.client.ClientProxy;
+import net.trentv.gasesframework.common.block.BlockGas;
 
 public class GasesFrameworkRegistry implements IGasesFrameworkRegistry
 {

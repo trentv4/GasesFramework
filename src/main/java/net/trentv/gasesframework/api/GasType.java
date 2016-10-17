@@ -1,10 +1,12 @@
-package net.trentv.gasesframework.common;
+package net.trentv.gasesframework.api;
 
+import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemBlock;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.trentv.gasesframework.client.GasColor;
+import net.trentv.gasesframework.common.Combustability;
 
 public class GasType
 {
@@ -19,7 +21,7 @@ public class GasType
 	public final Combustability combustability;
 	public int density = 0;
 
-	public BlockGas block;
+	public Block block;
 	public ItemBlock itemBlock;
 	@SideOnly(Side.CLIENT)
 	private GasColor gasColor;

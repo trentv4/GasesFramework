@@ -1,5 +1,6 @@
 package net.trentv.gasesframework.client;
 
+import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.color.BlockColors;
@@ -8,8 +9,7 @@ import net.minecraft.item.ItemBlock;
 import net.minecraftforge.client.model.ModelLoader;
 import net.trentv.gasesframework.CommonProxy;
 import net.trentv.gasesframework.GasesFramework;
-import net.trentv.gasesframework.common.BlockGas;
-import net.trentv.gasesframework.common.GasType;
+import net.trentv.gasesframework.api.GasType;
 
 public class ClientProxy extends CommonProxy
 {
@@ -34,7 +34,7 @@ public class ClientProxy extends CommonProxy
 		for (int i = 0; i < types.length; i++)
 		{
 			ItemBlock item = types[i].itemBlock;
-			BlockGas block = types[i].block;
+			Block block = types[i].block;
 			// Register the gastype for both the item and the block so they can
 			// be tinted at runtime
 			blockColors.registerBlockColorHandler(types[i].getGasColor(), block);

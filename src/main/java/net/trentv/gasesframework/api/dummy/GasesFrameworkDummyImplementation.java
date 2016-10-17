@@ -4,7 +4,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.trentv.gasesframework.api.IGasesFrameworkImplementation;
-import net.trentv.gasesframework.common.BlockGas;
+import net.trentv.gasesframework.common.block.BlockGas;
 
 public class GasesFrameworkDummyImplementation implements IGasesFrameworkImplementation
 {
