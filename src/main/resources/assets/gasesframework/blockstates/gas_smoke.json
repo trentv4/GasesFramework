@@ -1,0 +1,24 @@
+{
+	"forge_marker":1,
+    "variants": {
+    	"capacity": {
+    		"1": {  "model": "gasesframework:gasblock/0" },
+    		"2": {  "model": "gasesframework:gasblock/1" },
+    		"3": {  "model": "gasesframework:gasblock/2" },
+    		"4": {  "model": "gasesframework:gasblock/3" },
+    		"5": {  "model": "gasesframework:gasblock/4" },
+    		"6": {  "model": "gasesframework:gasblock/5" },
+    		"7": {  "model": "gasesframework:gasblock/6" },
+    		"8": {  "model": "gasesframework:gasblock/7" },
+    		"9": {  "model": "gasesframework:gasblock/8" },
+    		"10": { "model": "gasesframework:gasblock/9" },
+    		"11": { "model": "gasesframework:gasblock/10" },
+    		"12": { "model": "gasesframework:gasblock/11" },
+    		"13": { "model": "gasesframework:gasblock/12" },
+    		"14": { "model": "gasesframework:gasblock/13" },
+    		"15": { "model": "gasesframework:gasblock/14" },
+    		"16": { "model": "gasesframework:gasblock/15" }
+    	},
+        "normal": { "model": "gasesframework:gasblock/15" }
+    }
+}
