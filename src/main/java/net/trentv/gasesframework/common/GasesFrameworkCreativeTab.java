@@ -3,6 +3,7 @@ package net.trentv.gasesframework.common;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.trentv.gasesframework.init.GasesFrameworkObjects;
 
 public class GasesFrameworkCreativeTab extends CreativeTabs
 {
@@ -14,6 +15,6 @@ public class GasesFrameworkCreativeTab extends CreativeTabs
 	@Override
 	public Item getTabIconItem()
 	{
-		return Items.ARROW;
+		return GasesFrameworkObjects.SMOKE.itemBlock;
 	}
 }

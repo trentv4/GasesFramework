@@ -23,7 +23,7 @@ public class GasesFramework
 
 	public static final String MODID = "gasesframework";
 	public static final String VERSION = "2.0.0";
-	public static final GasesFrameworkCreativeTab CREATIVE_TAB = new GasesFrameworkCreativeTab("Gases Framework");
+	public static final GasesFrameworkCreativeTab CREATIVE_TAB = new GasesFrameworkCreativeTab("gasesframework");
 
 	@SidedProxy(clientSide = "net.trentv.gasesframework.client.ClientProxy", serverSide = "net.trentv.gasesframework.server.ServerProxy")
 	public static CommonProxy proxy;
