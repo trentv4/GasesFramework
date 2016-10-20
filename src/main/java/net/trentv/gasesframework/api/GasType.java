@@ -86,6 +86,24 @@ public class GasType
 		if(gasColor == null) gasColor = new GasColor(this);
 		return gasColor;
 	}
+	
+	public GasType registerEntityReaction(EntityReaction reaction)
+	{
+		entityReactions.add(reaction);
+		return this;
+	}
+
+	public GasType registerBlockReaction(BlockReaction reaction)
+	{
+		blockReactions.add(reaction);
+		return this;
+	}
+
+	public GasType registerGasReaction(GasReaction reaction)
+	{
+		gasReactions.add(reaction);
+		return this;
+	}
 
 	public EntityReaction[] getEntityReactions()
 	{

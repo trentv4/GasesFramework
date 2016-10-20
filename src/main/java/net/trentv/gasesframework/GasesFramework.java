@@ -32,6 +32,8 @@ public class GasesFramework
 
 	public static GasesFrameworkRegistry registry = new GasesFrameworkRegistry();
 	public static GasesFrameworkImplementation implementation = new GasesFrameworkImplementation();
+	
+	public static DamageSourceAsphyxiation damageSourceAsphyxiation = new DamageSourceAsphyxiation("asphyxiation");
 
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event)
