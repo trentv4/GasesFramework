@@ -1,10 +1,15 @@
 package net.trentv.gasesframework.api;
 
+import java.util.ArrayList;
+
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemBlock;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.trentv.gasesframework.reaction.BlockReaction;
+import net.trentv.gasesframework.reaction.EntityReaction;
+import net.trentv.gasesframework.reaction.GasReaction;
 
 public class GasType
 {
@@ -30,6 +35,9 @@ public class GasType
 	public float lightLevel = 0.0F;
 	public CreativeTabs creativeTab;
 	
+	private ArrayList<EntityReaction> entityReactions = new ArrayList<EntityReaction>();
+	private ArrayList<BlockReaction> blockReactions = new ArrayList<BlockReaction>();
+	private ArrayList<GasReaction> gasReactions = new ArrayList<GasReaction>();
 
 	public GasType(boolean isIndustrial, String name, int color, int opacity, int density, Combustability combustability)
 	{
@@ -77,5 +85,20 @@ public class GasType
 	{
 		if(gasColor == null) gasColor = new GasColor(this);
 		return gasColor;
+	}
+
+	public EntityReaction[] getEntityReactions()
+	{
+		return entityReactions.toArray(new EntityReaction[entityReactions.size()]);
+	}
+
+	public BlockReaction[] getBlockReactions()
+	{
+		return blockReactions.toArray(new BlockReaction[blockReactions.size()]);
+	}
+
+	public GasReaction[] getGasReactions()
+	{
+		return gasReactions.toArray(new GasReaction[gasReactions.size()]);
 	}
 }

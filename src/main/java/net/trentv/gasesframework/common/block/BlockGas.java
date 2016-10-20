@@ -12,11 +12,8 @@ import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
-import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
-import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -27,9 +24,10 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.trentv.gasesframework.api.GasType;
 import net.trentv.gasesframework.api.MaterialGas;
-import net.trentv.profiler.Profiler;
+import net.trentv.gasesframework.reaction.EntityReaction;
+import net.trentv.gasesframework.sample.ISample;
 
-public class BlockGas extends Block
+public class BlockGas extends Block implements ISample
 {
 	public GasType gasType;
 
@@ -86,7 +84,7 @@ public class BlockGas extends Block
 			if(gasType.density > 0) direction = EnumFacing.UP;
 			BlockPos pos = scan(worldIn, this, position, direction);
 			int thisValue = state.getValue(CAPACITY);
-			if(!pos.equals(position))
+			if(!pos.equals(position)) //In this case, we'll be flowing somewhere above or below.
 			{
 				int remaining = implementation.addGasLevel(pos, worldIn, this, thisValue);
 				if (state.getValue(CAPACITY) != remaining)
@@ -94,7 +92,7 @@ public class BlockGas extends Block
 					implementation.setGasLevel(position, worldIn, this, remaining);
 				}
 			}
-			else
+			else //Can't flow above or below, so time to spill out on the ground
 			{
 				if(thisValue > 1)
 				{
@@ -174,7 +172,7 @@ public class BlockGas extends Block
 	}
 
 	@Override
-	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
+	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
 	{
 		return false;
 	}
@@ -185,9 +183,13 @@ public class BlockGas extends Block
         return NULL_AABB;
     }
     
-    public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn)
+    public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity)
     {
-
+    	EntityReaction[] reactions = gasType.getEntityReactions();
+    	for(EntityReaction reaction : reactions)
+    	{
+    		reaction.react(entity);
+    	}
     }
 
 	@Override
@@ -204,5 +206,11 @@ public class BlockGas extends Block
 			return true;
 		}
 		return true;
+	}
+
+	@Override
+	public GasType onSample(IBlockAccess access, BlockPos pos, GasType in, EnumFacing side)
+	{
+		return this.gasType;
 	}
 }
