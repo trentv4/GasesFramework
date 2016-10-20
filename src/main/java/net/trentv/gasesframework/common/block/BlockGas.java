@@ -46,7 +46,9 @@ public class BlockGas extends Block implements ISample
 		setUnlocalizedName("gas_" + type.name);
 		this.setDefaultState(blockState.getBaseState().withProperty(CAPACITY, 16));
 	}
-
+	
+	// Block & block state 
+	
 	public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state)
 	{
 		worldIn.scheduleBlockUpdate(pos, this, tickRate, 1);
@@ -159,38 +161,25 @@ public class BlockGas extends Block implements ISample
 	}
 
 	@Override
-	@SideOnly(Side.CLIENT)
-	public BlockRenderLayer getBlockLayer()
-	{
-		return BlockRenderLayer.TRANSLUCENT;
-	}
-
-	@Override
 	public boolean isOpaqueCube(IBlockState state)
 	{
 		return false;
 	}
 
-	@Override
-	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
-	{
-		return false;
-	}
-    
     @Nullable
     public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, World worldIn, BlockPos pos)
     {
         return NULL_AABB;
     }
     
-    public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity)
-    {
-    	EntityReaction[] reactions = gasType.getEntityReactions();
-    	for(EntityReaction reaction : reactions)
-    	{
-    		reaction.react(entity);
-    	}
-    }
+	// Client Side
+	
+	@Override
+	@SideOnly(Side.CLIENT)
+	public BlockRenderLayer getBlockLayer()
+	{
+		return BlockRenderLayer.TRANSLUCENT;
+	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
@@ -207,6 +196,17 @@ public class BlockGas extends Block implements ISample
 		}
 		return true;
 	}
+	
+    // Gases relevant
+    
+    public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity)
+    {
+    	EntityReaction[] reactions = gasType.getEntityReactions();
+    	for(EntityReaction reaction : reactions)
+    	{
+    		reaction.react(entity);
+    	}
+    }
 
 	@Override
 	public GasType onSample(IBlockAccess access, BlockPos pos, GasType in, EnumFacing side)

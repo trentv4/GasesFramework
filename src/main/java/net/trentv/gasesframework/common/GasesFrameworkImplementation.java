@@ -1,5 +1,7 @@
 package net.trentv.gasesframework.common;
 
+import javax.annotation.Nullable;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
@@ -56,24 +58,24 @@ public class GasesFrameworkImplementation implements IGasesFrameworkImplementati
 				int newLevel = oldLevel + level;
 				if (newLevel >= 16)
 				{
-					access.setBlockState(pos, gas.getDefaultState().withProperty(BlockGas.CAPACITY, 16));
+					setGasLevel(pos, access, gas, 16);
 					return newLevel - 16;
 				}
 				else
 				{
-					access.setBlockState(pos, gas.getDefaultState().withProperty(BlockGas.CAPACITY, newLevel));
+					setGasLevel(pos, access, gas, newLevel);
 					return 0;
 				}
 			}
 			else
 			{
-				access.setBlockState(pos, gas.getDefaultState().withProperty(BlockGas.CAPACITY, level));
+				setGasLevel(pos, access, gas, level);
 				return 0;
 			}
 		}
 		else if (level == 0)
 		{
-			access.setBlockToAir(pos);
+			setGasLevel(pos, access, gas, 0);
 		}
 		else
 		{
@@ -90,20 +92,27 @@ public class GasesFrameworkImplementation implements IGasesFrameworkImplementati
 			int newLevel = access.getBlockState(pos).getValue(BlockGas.CAPACITY) - 1;
 			if(newLevel > 0)
 			{
-				access.setBlockState(pos, a.getDefaultState().withProperty(BlockGas.CAPACITY, newLevel));
+				setGasLevel(pos, access, (BlockGas) a, newLevel);
 			}
 			else
 			{
-				access.setBlockToAir(pos);
+				setGasLevel(pos, access, (BlockGas) a, 0);
 			}
 		}
 	}
 
-	public void setGasLevel(BlockPos pos, World access, BlockGas gas, int level)
+	public void setGasLevel(BlockPos pos, World access, @Nullable BlockGas gas, int level)
 	{
 		if (level <= 16 & level > 0)
 		{
-			access.setBlockState(pos, gas.getDefaultState().withProperty(BlockGas.CAPACITY, level));
+			if(gas != null)
+			{
+				access.setBlockState(pos, gas.getDefaultState().withProperty(BlockGas.CAPACITY, level));
+			}
+			else
+			{
+				GasesFramework.logger.error("Attempting to place gas with null type");
+			}
 		}
 		else if (level == 0)
 		{
