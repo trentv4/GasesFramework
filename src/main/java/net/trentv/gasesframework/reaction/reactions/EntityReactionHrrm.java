@@ -1,6 +1,7 @@
 package net.trentv.gasesframework.reaction.reactions;
 
 import java.util.Random;
+import java.util.UUID;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -39,5 +40,17 @@ public class EntityReactionHrrm extends EntityReaction
 				}
 			}
 		}
+	}
+
+	@Override
+	public int getCurrentDelay()
+	{
+		return 0;
+	}
+
+	@Override
+	public int getMaximumDelay()
+	{
+		return 0;
 	}
 }

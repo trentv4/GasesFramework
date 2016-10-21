@@ -10,7 +10,8 @@ public class EntityReactionDamage extends EntityReaction
 	public final DamageSource source;
 	public final float damage;
 	
-	public EntityReactionDamage(DamageSource source, float damage)
+	
+	public EntityReactionDamage(int maxDelay, DamageSource source, float damage)
 	{
 		this.source = source;
 		this.damage = damage;
@@ -23,5 +24,19 @@ public class EntityReactionDamage extends EntityReaction
 		{
 			e.attackEntityFrom(source, damage);
 		}
+	}
+
+	@Override
+	public int getCurrentDelay()
+	{
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getMaximumDelay()
+	{
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }

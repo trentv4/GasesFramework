@@ -10,4 +10,16 @@ public class GasesFrameworkDummyRegistry implements IGasesFrameworkRegistry
 	{
 
 	}
+
+	@Override
+	public GasType[] getGastypes()
+	{
+		return null;
+	}
+
+	@Override
+	public GasType getGasTypeByName(String name)
+	{
+		return null;
+	}
 }
