@@ -1,4 +1,4 @@
-package net.trentv.gases;
+package net.trentv.gases.init;
 
 public class GasesObjects
 {

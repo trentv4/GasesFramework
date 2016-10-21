@@ -10,6 +10,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.trentv.gases.common.GasesCreativeTab;
+import net.trentv.gases.init.GasesObjects;
 import net.trentv.gasesframework.api.GFAPI;
 import net.trentv.gasesframework.api.IGasesFrameworkImplementation;
 import net.trentv.gasesframework.api.IGasesFrameworkRegistry;
@@ -27,7 +28,7 @@ public class Gases
 	public static final String VERSION = "2.0.0";
 	public static final GasesCreativeTab CREATIVE_TAB = new GasesCreativeTab("gases");
 
-	@SidedProxy(clientSide = "net.trentv.gasesframework.client.ClientProxy", serverSide = "net.trentv.gasesframework.server.ServerProxy")
+	@SidedProxy(clientSide = "net.trentv.gases.client.ClientProxy", serverSide = "net.trentv.gases.server.ServerProxy")
 	public static CommonProxy proxy;
 
 	public static Logger logger;
