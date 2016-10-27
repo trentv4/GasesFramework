@@ -48,7 +48,7 @@ public class BlockGas extends Block implements ISample
 	}
 	
 	// Block & block state 
-	
+
 	public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state)
 	{
 		worldIn.scheduleBlockUpdate(pos, this, tickRate, 1);

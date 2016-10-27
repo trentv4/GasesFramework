@@ -18,13 +18,12 @@ import net.trentv.gasesframework.common.GasesFrameworkImplementation;
 import net.trentv.gasesframework.common.GasesFrameworkRegistry;
 import net.trentv.gasesframework.init.GasesFrameworkObjects;
 
-@Mod(modid = Gases.MODID, version = Gases.VERSION, dependencies = "required-after:gasesFramework;", acceptedMinecraftVersions = "1.10.2")
 public class Gases
 {
 	@Instance(Gases.MODID)
 	public static Gases instance;
 
-	public static final String MODID = "gasesframework";
+	public static final String MODID = "gases";
 	public static final String VERSION = "2.0.0";
 	public static final GasesCreativeTab CREATIVE_TAB = new GasesCreativeTab("gases");
 

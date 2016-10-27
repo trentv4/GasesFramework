@@ -1,4 +1,4 @@
-package net.trentv.gasesframework.reaction.reactions;
+package net.trentv.gasesframework.reaction.entityreactions;
 
 import java.util.Random;
 import java.util.UUID;
@@ -40,17 +40,5 @@ public class EntityReactionHrrm extends EntityReaction
 				}
 			}
 		}
-	}
-
-	@Override
-	public int getCurrentDelay()
-	{
-		return 0;
-	}
-
-	@Override
-	public int getMaximumDelay()
-	{
-		return 0;
 	}
 }
