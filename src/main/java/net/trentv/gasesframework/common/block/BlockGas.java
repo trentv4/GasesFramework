@@ -61,14 +61,18 @@ public class BlockGas extends Block implements ISample
 		//
 		//    Optimize to only run when the block next to it updates (after coming to rest)
 		//    Look into MutableBlockPos to reduce GC overhead
+		
+		// If density is 0, we're going to be spreading out in a cloud
 		if (gasType.density == 0)
 		{
 			EnumFacing newDir = EnumFacing.SOUTH;
+			// Iterate through all directions (up/down/left/right/front/back)
 			for(int i = 0; i < EnumFacing.VALUES.length; i++)
 			{
 				newDir = EnumFacing.VALUES[i];
 				BlockPos flowToBlock = position.offset(newDir);
 				int thisValue = state.getValue(CAPACITY);
+				// Checks if it can flow into the block AND the current gas capacity is over the cohesion level
 				if(implementation.canPlaceGas(flowToBlock, worldIn, this) & thisValue > gasType.cohesion)
 				{
 					int flowValue = implementation.getGasLevel(flowToBlock, worldIn);
@@ -80,11 +84,14 @@ public class BlockGas extends Block implements ISample
 				}
 			}
 		}
+		//We're going to be flowing either up or down here because density != 0
 		else
 		{
+			// Decide which direction we're going
 			EnumFacing direction = EnumFacing.DOWN;
 			if(gasType.density > 0) direction = EnumFacing.UP;
-			BlockPos pos = scan(worldIn, this, position, direction);
+			
+			BlockPos pos = scanForOpenBlock(worldIn, this, position, direction);
 			int thisValue = state.getValue(CAPACITY);
 			if(!pos.equals(position)) //In this case, we'll be flowing somewhere above or below.
 			{
@@ -120,7 +127,7 @@ public class BlockGas extends Block implements ISample
 		worldIn.scheduleBlockUpdate(position, this, tickRate, 1);
 	}
 
-	public BlockPos scan(World world, BlockGas gas, BlockPos pos, EnumFacing direction)
+	public BlockPos scanForOpenBlock(World world, BlockGas gas, BlockPos pos, EnumFacing direction)
 	{
 		if (implementation.canPlaceGas(pos.offset(direction), world, gas))
 		{

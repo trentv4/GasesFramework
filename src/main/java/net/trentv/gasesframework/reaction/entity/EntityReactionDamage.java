@@ -1,4 +1,4 @@
-package net.trentv.gasesframework.reaction.entityreactions;
+package net.trentv.gasesframework.reaction.entity;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;

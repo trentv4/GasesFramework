@@ -1,4 +1,4 @@
-package net.trentv.gasesframework.reaction.entityreactions;
+package net.trentv.gasesframework.reaction.entity;
 
 import java.util.Random;
 import java.util.UUID;
