@@ -2,6 +2,7 @@ package net.trentv.gasesframework;
 
 import org.apache.logging.log4j.Logger;
 
+import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
@@ -44,6 +45,7 @@ public class GasesFramework
 		// Register all items, blocks, and gases
 		GasesFrameworkObjects.init();
 		proxy.registerRenderers();
+		proxy.registerEventHandlers();
 	}
 
 	@EventHandler

@@ -41,4 +41,10 @@ public class ClientProxy extends CommonProxy
 			itemColors.registerItemColorHandler(types[i].getGasColor(), item);
 		}
 	}
+
+	@Override
+	public void registerEventHandlers()
+	{
+		super.registerEventHandlers();
+	}
 }
