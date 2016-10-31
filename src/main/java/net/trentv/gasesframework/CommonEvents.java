@@ -12,6 +12,5 @@ public class CommonEvents
 		NBTTagCompound a = event.getEntityLiving().getEntityData();
 		int level = a.getInteger("gases-suffocation");
 		if(level > 0) a.setInteger("gases-suffocation", level - 1);
-		System.out.println(level);
 	}
 }
