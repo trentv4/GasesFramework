@@ -41,6 +41,6 @@ public class GasesFrameworkDummyImplementation implements IGasesFrameworkImpleme
 	@Override
 	public void removeGasLevel(BlockPos pos, World access, int level)
 	{
-		
+
 	}
 }

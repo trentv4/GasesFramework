@@ -83,14 +83,14 @@ public class GasesFrameworkImplementation implements IGasesFrameworkImplementati
 		}
 		return level;
 	}
-	
+
 	public void removeGasLevel(BlockPos pos, World access, int level)
 	{
 		Block a = access.getBlockState(pos).getBlock();
-		if(a instanceof BlockGas)
+		if (a instanceof BlockGas)
 		{
 			int newLevel = access.getBlockState(pos).getValue(BlockGas.CAPACITY) - 1;
-			if(newLevel > 0)
+			if (newLevel > 0)
 			{
 				setGasLevel(pos, access, (BlockGas) a, newLevel);
 			}
@@ -105,7 +105,7 @@ public class GasesFrameworkImplementation implements IGasesFrameworkImplementati
 	{
 		if (level <= 16 & level > 0)
 		{
-			if(gas != null)
+			if (gas != null)
 			{
 				access.setBlockState(pos, gas.getDefaultState().withProperty(BlockGas.CAPACITY, level));
 			}

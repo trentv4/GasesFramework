@@ -13,7 +13,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class GasColor implements IBlockColor, IItemColor
 {
 	public GasType master;
-	
+
 	public GasColor(GasType master)
 	{
 		this.master = master;

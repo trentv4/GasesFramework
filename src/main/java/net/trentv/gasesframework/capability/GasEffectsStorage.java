@@ -5,13 +5,14 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.Capability.IStorage;
+import net.minecraftforge.common.capabilities.CapabilityInject;
+import net.minecraftforge.common.capabilities.ICapabilityProvider;
+import net.minecraftforge.common.capabilities.ICapabilitySerializable;
 
-public class GasEffectsStorage implements IStorage<IGasEffectsCapability>
+public class GasEffectsStorage<T extends IGasEffects> implements IStorage<IGasEffects>
 {
-	public static final GasEffectsStorage storage = new GasEffectsStorage();
-	
 	@Override
-	public NBTBase writeNBT(Capability<IGasEffectsCapability> capability, IGasEffectsCapability instance, EnumFacing side)
+	public NBTBase writeNBT(Capability<IGasEffects> capability, IGasEffects instance, EnumFacing side)
 	{
 		NBTTagCompound nbt = new NBTTagCompound();
 		nbt.setInteger("gases-suffocation", instance.getSuffocation());
@@ -21,7 +22,7 @@ public class GasEffectsStorage implements IStorage<IGasEffectsCapability>
 	}
 
 	@Override
-	public void readNBT(Capability<IGasEffectsCapability> capability, IGasEffectsCapability instance, EnumFacing side, NBTBase nbt)
+	public void readNBT(Capability<IGasEffects> capability, IGasEffects instance, EnumFacing side, NBTBase nbt)
 	{
 		NBTTagCompound a = (NBTTagCompound) nbt;
 		instance.setSuffocation((int) a.getInteger("gases-suffocation"));

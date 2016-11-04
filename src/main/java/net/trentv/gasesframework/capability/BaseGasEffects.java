@@ -1,11 +1,11 @@
 package net.trentv.gasesframework.capability;
 
-public class DefaultGasEffectsCapability implements IGasEffectsCapability
+public class BaseGasEffects implements IGasEffects
 {
 	public int suffocation = 0;
 	public int blindness = 0;
 	public int slowness = 0;
-	
+
 	@Override
 	public int getSuffocation()
 	{

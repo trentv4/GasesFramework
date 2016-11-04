@@ -5,7 +5,7 @@ import javax.annotation.Nullable;
 public interface IGasesFrameworkRegistry
 {
 	public void registerGasType(GasType type);
-	
+
 	public GasType[] getGastypes();
 
 	@Nullable

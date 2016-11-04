@@ -2,7 +2,7 @@ package net.trentv.gasesframework;
 
 import org.apache.logging.log4j.Logger;
 
-import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
@@ -11,6 +11,9 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.trentv.gasesframework.api.GFAPI;
+import net.trentv.gasesframework.capability.BaseGasEffects;
+import net.trentv.gasesframework.capability.GasEffectsStorage;
+import net.trentv.gasesframework.capability.IGasEffects;
 import net.trentv.gasesframework.common.GasesFrameworkCreativeTab;
 import net.trentv.gasesframework.common.GasesFrameworkImplementation;
 import net.trentv.gasesframework.common.GasesFrameworkRegistry;
@@ -33,7 +36,7 @@ public class GasesFramework
 
 	public static GasesFrameworkRegistry registry = new GasesFrameworkRegistry();
 	public static GasesFrameworkImplementation implementation = new GasesFrameworkImplementation();
-	
+
 	public static DamageSourceAsphyxiation damageSourceAsphyxiation = new DamageSourceAsphyxiation("asphyxiation");
 
 	@EventHandler
@@ -44,6 +47,7 @@ public class GasesFramework
 
 		// Register all items, blocks, and gases
 		GasesFrameworkObjects.init();
+		CapabilityManager.INSTANCE.register(IGasEffects.class, new GasEffectsStorage(), BaseGasEffects.class);
 		proxy.registerRenderers();
 		proxy.registerEventHandlers();
 	}

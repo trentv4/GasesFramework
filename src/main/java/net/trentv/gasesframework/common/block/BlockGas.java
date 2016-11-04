@@ -21,6 +21,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.trentv.gasesframework.api.GasType;
 import net.trentv.gasesframework.api.MaterialGas;
+import net.trentv.gasesframework.reaction.EntityReaction;
 import net.trentv.gasesframework.sample.ISample;
 
 public class BlockGas extends Block implements ISample
@@ -42,8 +43,8 @@ public class BlockGas extends Block implements ISample
 		setUnlocalizedName("gas_" + type.name);
 		this.setDefaultState(blockState.getBaseState().withProperty(CAPACITY, 16));
 	}
-	
-	// Block & block state 
+
+	// Block & block state
 
 	public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state)
 	{
@@ -52,27 +53,29 @@ public class BlockGas extends Block implements ISample
 
 	@Override
 	public void updateTick(World worldIn, BlockPos currentPosition, IBlockState state, Random rand)
-	{ 
-		//Considerations:
+	{
+		// Considerations:
 		//
-		//    Optimize to only run when the block next to it updates (after coming to rest)
-		//    Look into MutableBlockPos to reduce GC overhead
-		
+		// Optimize to only run when the block next to it updates (after coming
+		// to rest)
+		// Look into MutableBlockPos to reduce GC overhead
+
 		// If density is 0, we're going to be spreading out in a cloud
 		if (gasType.density == 0)
 		{
 			EnumFacing newDir = EnumFacing.SOUTH;
 			// Iterate through all directions (up/down/left/right/front/back)
-			for(int i = 0; i < EnumFacing.VALUES.length; i++)
+			for (int i = 0; i < EnumFacing.VALUES.length; i++)
 			{
 				newDir = EnumFacing.VALUES[i];
 				BlockPos flowToBlock = currentPosition.offset(newDir);
 				int thisValue = state.getValue(CAPACITY);
-				// Checks if it can flow into the block AND the current gas capacity is over the cohesion level
-				if(implementation.canPlaceGas(flowToBlock, worldIn, this) & thisValue > gasType.cohesion)
+				// Checks if it can flow into the block AND the current gas
+				// capacity is over the cohesion level
+				if (implementation.canPlaceGas(flowToBlock, worldIn, this) & thisValue > gasType.cohesion)
 				{
 					int flowValue = implementation.getGasLevel(flowToBlock, worldIn);
-					if(flowValue + 1 < thisValue)
+					if (flowValue + 1 < thisValue)
 					{
 						implementation.addGasLevel(flowToBlock, worldIn, this, 1);
 						implementation.setGasLevel(currentPosition, worldIn, this, implementation.getGasLevel(currentPosition, worldIn) - 1);
@@ -80,16 +83,19 @@ public class BlockGas extends Block implements ISample
 				}
 			}
 		}
-		//We're going to be flowing either up or down here because density != 0
+		// We're going to be flowing either up or down here because density != 0
 		else
 		{
 			// Decide which direction we're going
 			EnumFacing direction = EnumFacing.DOWN;
-			if(gasType.density > 0) direction = EnumFacing.UP;
-			
-			BlockPos  nextPosition = scanForOpenBlock(worldIn, this, currentPosition, direction);
+			if (gasType.density > 0)
+				direction = EnumFacing.UP;
+
+			BlockPos nextPosition = scanForOpenBlock(worldIn, this, currentPosition, direction);
 			int thisValue = state.getValue(CAPACITY);
-			if(!nextPosition.equals(currentPosition)) //In this case, we'll be flowing somewhere above or below.
+			if (!nextPosition.equals(currentPosition)) // In this case, we'll be
+														// flowing somewhere
+														// above or below.
 			{
 				int remaining = implementation.addGasLevel(nextPosition, worldIn, this, thisValue);
 				if (state.getValue(CAPACITY) != remaining)
@@ -97,19 +103,20 @@ public class BlockGas extends Block implements ISample
 					implementation.setGasLevel(currentPosition, worldIn, this, remaining);
 				}
 			}
-			else //Can't flow above or below, so time to spill out on the ground
+			else // Can't flow above or below, so time to spill out on the
+					// ground
 			{
-				if(thisValue > 1)
+				if (thisValue > 1)
 				{
 					EnumFacing newDir = EnumFacing.SOUTH;
-					for(int i = 0; i < 4; i++)
+					for (int i = 0; i < 4; i++)
 					{
 						newDir = newDir.rotateY();
 						BlockPos flowToBlock = nextPosition.offset(newDir);
-						if(implementation.canPlaceGas(flowToBlock, worldIn, this))
+						if (implementation.canPlaceGas(flowToBlock, worldIn, this))
 						{
 							int flowValue = implementation.getGasLevel(flowToBlock, worldIn);
-							if(flowValue + 1 < thisValue)
+							if (flowValue + 1 < thisValue)
 							{
 								implementation.addGasLevel(flowToBlock, worldIn, this, 1);
 								implementation.setGasLevel(nextPosition, worldIn, this, implementation.getGasLevel(nextPosition, worldIn) - 1);
@@ -130,18 +137,17 @@ public class BlockGas extends Block implements ISample
 			BlockPos p = pos.offset(direction);
 			return pos.offset(direction);
 		}
-		
+
 		EnumFacing newDir = EnumFacing.NORTH;
-		for(int i = 0; i < 4; i++)
+		for (int i = 0; i < 4; i++)
 		{
 			newDir = newDir.rotateY();
-			if(implementation.canPlaceGas(pos.offset(newDir), world, gas) & 
-			   implementation.canPlaceGas(pos.offset(newDir).offset(direction), world, gas))
+			if (implementation.canPlaceGas(pos.offset(newDir), world, gas) & implementation.canPlaceGas(pos.offset(newDir).offset(direction), world, gas))
 			{
 				return pos.offset(newDir);
 			}
 		}
-		
+
 		return pos;
 	}
 
@@ -169,14 +175,14 @@ public class BlockGas extends Block implements ISample
 		return false;
 	}
 
-    @Nullable
-    public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, World worldIn, BlockPos pos)
-    {
-        return NULL_AABB;
-    }
-    
+	@Nullable
+	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, World worldIn, BlockPos pos)
+	{
+		return NULL_AABB;
+	}
+
 	// Client Side
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public BlockRenderLayer getBlockLayer()
@@ -199,13 +205,17 @@ public class BlockGas extends Block implements ISample
 		}
 		return true;
 	}
-	
-    // Gases relevant
-    
-    public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity)
-    {
-    	System.out.println("ASF");
-    }
+
+	// Gases relevant
+
+	public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity)
+	{
+		EntityReaction[] s = gasType.getEntityReactions();
+		for (EntityReaction a : s)
+		{
+			a.react(entity, world, this);
+		}
+	}
 
 	@Override
 	public GasType onSample(IBlockAccess access, BlockPos pos, GasType in, EnumFacing side)

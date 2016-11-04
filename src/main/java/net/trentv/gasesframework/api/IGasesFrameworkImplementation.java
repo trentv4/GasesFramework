@@ -16,6 +16,6 @@ public interface IGasesFrameworkImplementation
 	public void setGasLevel(BlockPos pos, World access, BlockGas gas, int level);
 
 	public int addGasLevel(BlockPos pos, World access, BlockGas gas, int level);
-	
+
 	public void removeGasLevel(BlockPos pos, World access, int level);
 }
