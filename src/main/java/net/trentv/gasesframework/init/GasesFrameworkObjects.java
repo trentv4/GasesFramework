@@ -5,6 +5,7 @@ import net.trentv.gasesframework.api.Combustability;
 import net.trentv.gasesframework.api.GasType;
 import net.trentv.gasesframework.reaction.EntityReactionBlindness;
 import net.trentv.gasesframework.reaction.EntityReactionHrrm;
+import net.trentv.gasesframework.reaction.EntityReactionSlowness;
 import net.trentv.gasesframework.reaction.EntityReactionSuffocation;
 
 public class GasesFrameworkObjects
@@ -13,7 +14,8 @@ public class GasesFrameworkObjects
 	                                    .setCreativeTab(GasesFramework.CREATIVE_TAB)
 	                                    .setCohesion(10)
 	                                    .registerEntityReaction(new EntityReactionSuffocation(4, 3))
-	                                    .registerEntityReaction(new EntityReactionBlindness(4));
+	                                    .registerEntityReaction(new EntityReactionBlindness(2))
+	                                    .registerEntityReaction(new EntityReactionSlowness(2));
 
 	public static void init()
 	{

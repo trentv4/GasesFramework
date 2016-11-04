@@ -25,9 +25,9 @@ public class EntityReactionBlindness implements EntityReaction
 			IGasEffects q = e.getCapability(GasEffectsProvider.GAS_EFFECTS, null);
 			if(gas.isEntityHeadWithinBlock(e, access))
 			{
-				if(q.getBlindness() < 250)
+				if(q.getBlindness() < 250 - blindnessRate)
 				{
-					q.setBlindness(q.getBlindness() + 2);
+					q.setBlindness(q.getBlindness() + blindnessRate);
 				}
 			}
 		}

@@ -1,22 +1,20 @@
 package net.trentv.gasesframework.reaction;
 
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
-import net.trentv.gasesframework.GasesFramework;
 import net.trentv.gasesframework.capability.GasEffectsProvider;
 import net.trentv.gasesframework.capability.IGasEffects;
 import net.trentv.gasesframework.common.block.BlockGas;
 
-public class EntityReactionSuffocation implements EntityReaction
+public class EntityReactionSlowness implements EntityReaction
 {
-	public int damage;
-	public int suffocationRate;
+	public float slownessRate;
 
-	public EntityReactionSuffocation(int suffocationRate, int damage)
+	public EntityReactionSlowness(float slownessRate)
 	{
-		this.suffocationRate = suffocationRate;
-		this.damage = damage;
+		this.slownessRate = slownessRate;
 	}
 
 	@Override
@@ -27,13 +25,9 @@ public class EntityReactionSuffocation implements EntityReaction
 			IGasEffects q = e.getCapability(GasEffectsProvider.GAS_EFFECTS, null);
 			if(gas.isEntityHeadWithinBlock(e, access))
 			{
-				if(q.getSuffocation() > 0 + suffocationRate)
+				if(q.getSlowness() < 100 - slownessRate)
 				{
-					q.setSuffocation(q.getSuffocation() - suffocationRate);
-				}
-				else
-				{
-					e.attackEntityFrom(GasesFramework.damageSourceAsphyxiation, damage);
+					q.setSlowness(q.getSlowness() + slownessRate);
 				}
 			}
 		}
