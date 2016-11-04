@@ -8,8 +8,8 @@ import net.minecraftforge.client.event.EntityViewRenderEvent.FogDensity;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.trentv.gasesframework.capability.GasEffectsProvider;
-import net.trentv.gasesframework.capability.IGasEffects;
+import net.trentv.gasesframework.api.capability.GasEffectsProvider;
+import net.trentv.gasesframework.api.capability.IGasEffects;
 
 public class ClientEvents
 {

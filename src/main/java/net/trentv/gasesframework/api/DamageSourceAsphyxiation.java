@@ -1,4 +1,4 @@
-package net.trentv.gasesframework;
+package net.trentv.gasesframework.api;
 
 import net.minecraft.util.DamageSource;
 

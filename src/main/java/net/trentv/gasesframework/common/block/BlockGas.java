@@ -21,7 +21,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.trentv.gasesframework.api.GasType;
 import net.trentv.gasesframework.api.MaterialGas;
-import net.trentv.gasesframework.reaction.EntityReaction;
+import net.trentv.gasesframework.api.reaction.EntityReaction;
 import net.trentv.gasesframework.sample.ISample;
 
 public class BlockGas extends Block implements ISample
@@ -72,13 +72,13 @@ public class BlockGas extends Block implements ISample
 				int thisValue = state.getValue(CAPACITY);
 				// Checks if it can flow into the block AND the current gas
 				// capacity is over the cohesion level
-				if (implementation.canPlaceGas(flowToBlock, worldIn, this) & thisValue > gasType.cohesion)
+				if (implementation.canPlaceGas(flowToBlock, worldIn, this.gasType) & thisValue > gasType.cohesion)
 				{
 					int flowValue = implementation.getGasLevel(flowToBlock, worldIn);
 					if (flowValue + 1 < thisValue)
 					{
-						implementation.addGasLevel(flowToBlock, worldIn, this, 1);
-						implementation.setGasLevel(currentPosition, worldIn, this, implementation.getGasLevel(currentPosition, worldIn) - 1);
+						implementation.addGasLevel(flowToBlock, worldIn, this.gasType, 1);
+						implementation.setGasLevel(currentPosition, worldIn, this.gasType, implementation.getGasLevel(currentPosition, worldIn) - 1);
 					}
 				}
 			}
@@ -97,10 +97,10 @@ public class BlockGas extends Block implements ISample
 														// flowing somewhere
 														// above or below.
 			{
-				int remaining = implementation.addGasLevel(nextPosition, worldIn, this, thisValue);
+				int remaining = implementation.addGasLevel(nextPosition, worldIn, this.gasType, thisValue);
 				if (state.getValue(CAPACITY) != remaining)
 				{
-					implementation.setGasLevel(currentPosition, worldIn, this, remaining);
+					implementation.setGasLevel(currentPosition, worldIn, this.gasType, remaining);
 				}
 			}
 			else // Can't flow above or below, so time to spill out on the
@@ -113,13 +113,13 @@ public class BlockGas extends Block implements ISample
 					{
 						newDir = newDir.rotateY();
 						BlockPos flowToBlock = nextPosition.offset(newDir);
-						if (implementation.canPlaceGas(flowToBlock, worldIn, this))
+						if (implementation.canPlaceGas(flowToBlock, worldIn, this.gasType))
 						{
 							int flowValue = implementation.getGasLevel(flowToBlock, worldIn);
 							if (flowValue + 1 < thisValue)
 							{
-								implementation.addGasLevel(flowToBlock, worldIn, this, 1);
-								implementation.setGasLevel(nextPosition, worldIn, this, implementation.getGasLevel(nextPosition, worldIn) - 1);
+								implementation.addGasLevel(flowToBlock, worldIn, this.gasType, 1);
+								implementation.setGasLevel(nextPosition, worldIn, this.gasType, implementation.getGasLevel(nextPosition, worldIn) - 1);
 							}
 						}
 					}
@@ -132,7 +132,7 @@ public class BlockGas extends Block implements ISample
 
 	public BlockPos scanForOpenBlock(World world, BlockGas gas, BlockPos pos, EnumFacing direction)
 	{
-		if (implementation.canPlaceGas(pos.offset(direction), world, gas))
+		if (implementation.canPlaceGas(pos.offset(direction), world, gas.gasType))
 		{
 			BlockPos p = pos.offset(direction);
 			return pos.offset(direction);
@@ -142,7 +142,7 @@ public class BlockGas extends Block implements ISample
 		for (int i = 0; i < 4; i++)
 		{
 			newDir = newDir.rotateY();
-			if (implementation.canPlaceGas(pos.offset(newDir), world, gas) & implementation.canPlaceGas(pos.offset(newDir).offset(direction), world, gas))
+			if (implementation.canPlaceGas(pos.offset(newDir), world, gas.gasType) & implementation.canPlaceGas(pos.offset(newDir).offset(direction), world, gas.gasType))
 			{
 				return pos.offset(newDir);
 			}
@@ -218,7 +218,7 @@ public class BlockGas extends Block implements ISample
 		EntityReaction[] s = gasType.getEntityReactions();
 		for (EntityReaction a : s)
 		{
-			a.react(entity, world, this);
+			a.react(entity, world, this.gasType, pos);
 		}
 	}
 

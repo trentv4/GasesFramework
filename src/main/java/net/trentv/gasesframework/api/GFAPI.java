@@ -15,6 +15,8 @@ public class GFAPI
 	public static IGasesFrameworkImplementation implementation = new GasesFrameworkDummyImplementation();
 	public static IGasesFrameworkRegistry registry = new GasesFrameworkDummyRegistry();
 
+	public static DamageSourceAsphyxiation damageSourceAsphyxiation = new DamageSourceAsphyxiation("asphyxiation");
+
 	public static void install(IGasesFrameworkImplementation implementation, IGasesFrameworkRegistry registry)
 	{
 		GFAPI.implementation = implementation;

@@ -1,4 +1,4 @@
-package net.trentv.gasesframework.capability;
+package net.trentv.gasesframework.api.capability;
 
 public interface IGasEffects
 {

@@ -7,7 +7,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemBlock;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.trentv.gasesframework.reaction.EntityReaction;
+import net.trentv.gasesframework.api.reaction.EntityReaction;
 
 public class GasType
 {

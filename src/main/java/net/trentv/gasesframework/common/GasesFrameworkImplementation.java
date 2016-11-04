@@ -9,6 +9,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.trentv.gasesframework.GasesFramework;
+import net.trentv.gasesframework.api.GasType;
 import net.trentv.gasesframework.api.IGasesFrameworkImplementation;
 import net.trentv.gasesframework.common.block.BlockGas;
 
@@ -37,22 +38,22 @@ public class GasesFrameworkImplementation implements IGasesFrameworkImplementati
 		return false;
 	}
 
-	public boolean canPlaceGas(BlockPos pos, IBlockAccess access, BlockGas currentBlock)
+	public boolean canPlaceGas(BlockPos pos, IBlockAccess access, GasType currentGasType)
 	{
 		IBlockState a = access.getBlockState(pos);
-		if (a.getBlock() == Blocks.AIR | a.getBlock() == currentBlock)
+		if (a.getBlock() == Blocks.AIR | a.getBlock() == currentGasType.block)
 		{
 			return true;
 		}
 		return false;
 	}
 
-	public int addGasLevel(BlockPos pos, World access, BlockGas gas, int level)
+	public int addGasLevel(BlockPos pos, World access, GasType gas, int level)
 	{
 		if (level <= 16 & level > 0)
 		{
 			Block a = access.getBlockState(pos).getBlock();
-			if (a == gas)
+			if (a instanceof BlockGas && ((BlockGas) a).gasType == gas)
 			{
 				int oldLevel = access.getBlockState(pos).getValue(BlockGas.CAPACITY);
 				int newLevel = oldLevel + level;
@@ -90,24 +91,25 @@ public class GasesFrameworkImplementation implements IGasesFrameworkImplementati
 		if (a instanceof BlockGas)
 		{
 			int newLevel = access.getBlockState(pos).getValue(BlockGas.CAPACITY) - 1;
+			BlockGas b = (BlockGas) a;
 			if (newLevel > 0)
 			{
-				setGasLevel(pos, access, (BlockGas) a, newLevel);
+				setGasLevel(pos, access, b.gasType, newLevel);
 			}
 			else
 			{
-				setGasLevel(pos, access, (BlockGas) a, 0);
+				setGasLevel(pos, access, b.gasType, 0);
 			}
 		}
 	}
 
-	public void setGasLevel(BlockPos pos, World access, @Nullable BlockGas gas, int level)
+	public void setGasLevel(BlockPos pos, World access, @Nullable GasType gas, int level)
 	{
 		if (level <= 16 & level > 0)
 		{
 			if (gas != null)
 			{
-				access.setBlockState(pos, gas.getDefaultState().withProperty(BlockGas.CAPACITY, level));
+				access.setBlockState(pos, gas.block.getDefaultState().withProperty(BlockGas.CAPACITY, level));
 			}
 			else
 			{

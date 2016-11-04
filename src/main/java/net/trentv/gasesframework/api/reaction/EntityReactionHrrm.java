@@ -1,4 +1,4 @@
-package net.trentv.gasesframework.reaction;
+package net.trentv.gasesframework.api.reaction;
 
 import java.util.Random;
 import java.util.UUID;
@@ -6,8 +6,9 @@ import java.util.UUID;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
-import net.trentv.gasesframework.common.block.BlockGas;
+import net.trentv.gasesframework.api.GasType;
 
 public class EntityReactionHrrm implements EntityReaction
 {
@@ -32,7 +33,7 @@ public class EntityReactionHrrm implements EntityReaction
 	};
 
 	@Override
-	public void react(Entity e, IBlockAccess access, BlockGas gas)
+	public void react(Entity e, IBlockAccess access, GasType gas, BlockPos pos)
 	{
 		if (e instanceof EntityPlayer)
 		{
@@ -44,6 +45,6 @@ public class EntityReactionHrrm implements EntityReaction
 					e.playSound(SoundEvents.ENTITY_VILLAGER_AMBIENT, 1.0f, 1.0f);
 				}
 			}
-		}
+		}		
 	}
 }
