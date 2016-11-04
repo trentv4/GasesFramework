@@ -22,11 +22,14 @@ public class EntityReactionBlindness implements EntityReaction
 		if (e.hasCapability(GasEffectsProvider.GAS_EFFECTS, null))
 		{
 			IGasEffects q = e.getCapability(GasEffectsProvider.GAS_EFFECTS, null);
-			if(!access.isAirBlock(new BlockPos(e.getPositionEyes(0))))
+			if(new BlockPos(e.getPositionEyes(0)).toLong() == pos.toLong())
 			{
-				if(q.getBlindness() < 250 - blindnessRate)
+				if(!access.isAirBlock(new BlockPos(e.getPositionEyes(0))))
 				{
-					q.setBlindness(q.getBlindness() + blindnessRate);
+					if(q.getBlindness() < 250 - blindnessRate)
+					{
+						q.setBlindness(q.getBlindness() + blindnessRate);
+					}
 				}
 			}
 		}

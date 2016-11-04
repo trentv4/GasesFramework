@@ -25,15 +25,18 @@ public class EntityReactionSuffocation implements EntityReaction
 		if (e.hasCapability(GasEffectsProvider.GAS_EFFECTS, null))
 		{
 			IGasEffects q = e.getCapability(GasEffectsProvider.GAS_EFFECTS, null);
-			if(!access.isAirBlock(new BlockPos(e.getPositionEyes(0))))
+			if(new BlockPos(e.getPositionEyes(0)).toLong() == pos.toLong())
 			{
-				if(q.getSuffocation() > 0 + suffocationRate)
+				if(!access.isAirBlock(new BlockPos(e.getPositionEyes(0))))
 				{
-					q.setSuffocation(q.getSuffocation() - suffocationRate);
-				}
-				else
-				{
-					e.attackEntityFrom(GFAPI.damageSourceAsphyxiation, damage);
+					if(q.getSuffocation() > 0 + suffocationRate)
+					{
+						q.setSuffocation(q.getSuffocation() - suffocationRate);
+					}
+					else
+					{
+						e.attackEntityFrom(GFAPI.damageSourceAsphyxiation, damage);
+					}
 				}
 			}
 		}		

@@ -22,11 +22,14 @@ public class EntityReactionSlowness implements EntityReaction
 		if (e.hasCapability(GasEffectsProvider.GAS_EFFECTS, null))
 		{
 			IGasEffects q = e.getCapability(GasEffectsProvider.GAS_EFFECTS, null);
-			if(!access.isAirBlock(new BlockPos(e.getPositionEyes(0))))
+			if(new BlockPos(e.getPositionEyes(0)).toLong() == pos.toLong())
 			{
-				if(q.getSlowness() < 100 - slownessRate)
+				if(!access.isAirBlock(new BlockPos(e.getPositionEyes(0))))
 				{
-					q.setSlowness(q.getSlowness() + slownessRate);
+					if(q.getSlowness() < 100 - slownessRate)
+					{
+						q.setSlowness(q.getSlowness() + slownessRate);
+					}
 				}
 			}
 		}		

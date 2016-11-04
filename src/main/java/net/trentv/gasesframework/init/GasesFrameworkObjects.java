@@ -13,8 +13,8 @@ public class GasesFrameworkObjects
 	public static final GasType SMOKE = new GasType(false, "smoke", 0x7F4F4F7F, 2, 0, Combustability.NONE)
 	                                    .setCreativeTab(GasesFramework.CREATIVE_TAB)
 	                                    .setCohesion(10)
-	                                    .registerEntityReaction(new EntityReactionSuffocation(4, 3))
-	                                    .registerEntityReaction(new EntityReactionBlindness(2))
+	                                    .registerEntityReaction(new EntityReactionSuffocation(3, 3))
+	                                    .registerEntityReaction(new EntityReactionBlindness(4))
 	                                    .registerEntityReaction(new EntityReactionSlowness(2));
 
 	public static void init()
