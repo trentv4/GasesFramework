@@ -2,44 +2,44 @@ package net.trentv.gasesframework.capability;
 
 public class BaseGasEffects implements IGasEffects
 {
-	public int suffocation = 0;
-	public int blindness = 0;
-	public int slowness = 0;
+	public float suffocation = 0;
+	public float blindness = 0;
+	public float slowness = 0;
 
 	@Override
-	public int getSuffocation()
+	public float getSuffocation()
 	{
 		return suffocation;
 	}
 
 	@Override
-	public int getBlindness()
+	public float getBlindness()
 	{
 		return blindness;
 	}
 
 	@Override
-	public int getSlowness()
+	public float getSlowness()
 	{
 		return slowness;
 	}
 
 	@Override
-	public int setSuffocation(int value)
+	public float setSuffocation(float value)
 	{
 		suffocation = value;
 		return value;
 	}
 
 	@Override
-	public int setBlindness(int value)
+	public float setBlindness(float value)
 	{
 		blindness = value;
 		return value;
 	}
 
 	@Override
-	public int setSlowness(int value)
+	public float setSlowness(float value)
 	{
 		slowness = value;
 		return value;

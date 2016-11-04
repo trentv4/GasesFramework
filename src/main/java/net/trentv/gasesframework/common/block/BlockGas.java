@@ -208,6 +208,11 @@ public class BlockGas extends Block implements ISample
 
 	// Gases relevant
 
+	public boolean isEntityHeadWithinBlock(Entity e, IBlockAccess access)
+	{
+		return access.getBlockState(new BlockPos(e.getPositionEyes(0))).getBlock() instanceof BlockGas;
+	}
+	
 	public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity)
 	{
 		EntityReaction[] s = gasType.getEntityReactions();

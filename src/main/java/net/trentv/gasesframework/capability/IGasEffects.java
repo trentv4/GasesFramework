@@ -2,15 +2,15 @@ package net.trentv.gasesframework.capability;
 
 public interface IGasEffects
 {
-	public int getSuffocation();
+	public float getSuffocation();
 
-	public int getBlindness();
+	public float getBlindness();
 
-	public int getSlowness();
+	public float getSlowness();
 
-	public int setSuffocation(int value);
+	public float setSuffocation(float value);
 
-	public int setBlindness(int value);
+	public float setBlindness(float value);
 
-	public int setSlowness(int value);
+	public float setSlowness(float value);
 }

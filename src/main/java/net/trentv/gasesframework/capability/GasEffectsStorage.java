@@ -15,9 +15,9 @@ public class GasEffectsStorage<T extends IGasEffects> implements IStorage<IGasEf
 	public NBTBase writeNBT(Capability<IGasEffects> capability, IGasEffects instance, EnumFacing side)
 	{
 		NBTTagCompound nbt = new NBTTagCompound();
-		nbt.setInteger("gases-suffocation", instance.getSuffocation());
-		nbt.setInteger("gases-blindness", instance.getBlindness());
-		nbt.setInteger("gases-slowness", instance.getSlowness());
+		nbt.setFloat("gases-breath", instance.getSuffocation());
+		nbt.setFloat("gases-blindness", instance.getBlindness());
+		nbt.setFloat("gases-slowness", instance.getSlowness());
 		return nbt;
 	}
 
@@ -25,8 +25,8 @@ public class GasEffectsStorage<T extends IGasEffects> implements IStorage<IGasEf
 	public void readNBT(Capability<IGasEffects> capability, IGasEffects instance, EnumFacing side, NBTBase nbt)
 	{
 		NBTTagCompound a = (NBTTagCompound) nbt;
-		instance.setSuffocation((int) a.getInteger("gases-suffocation"));
-		instance.setBlindness((int) a.getInteger("gases-blindness"));
-		instance.setSlowness((int) a.getInteger("gases-slowness"));
+		instance.setSuffocation(a.getInteger("gases-breath"));
+		instance.setBlindness(a.getInteger("gases-blindness"));
+		instance.setSlowness(a.getInteger("gases-slowness"));
 	}
 }

@@ -7,6 +7,7 @@ import net.minecraft.client.renderer.color.BlockColors;
 import net.minecraft.client.renderer.color.ItemColors;
 import net.minecraft.item.ItemBlock;
 import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.common.MinecraftForge;
 import net.trentv.gasesframework.CommonProxy;
 import net.trentv.gasesframework.GasesFramework;
 import net.trentv.gasesframework.api.GasType;
@@ -46,5 +47,6 @@ public class ClientProxy extends CommonProxy
 	public void registerEventHandlers()
 	{
 		super.registerEventHandlers();
+		MinecraftForge.EVENT_BUS.register(new ClientEvents());
 	}
 }
