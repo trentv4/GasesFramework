@@ -1,0 +1,12 @@
+{
+	"effect.duct_tape":
+	{
+		"category":"master",
+		"sounds":
+		[
+			{
+				"name":"effect/duct_tape"
+			}
+		]
+	}
+}
