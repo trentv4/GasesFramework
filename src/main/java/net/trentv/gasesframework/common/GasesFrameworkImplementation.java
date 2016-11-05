@@ -6,16 +6,17 @@ import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.trentv.gasesframework.GasesFramework;
+import net.trentv.gasesframework.api.GFAPI;
 import net.trentv.gasesframework.api.GasType;
 import net.trentv.gasesframework.api.IGasesFrameworkImplementation;
 import net.trentv.gasesframework.common.block.BlockGas;
+import net.trentv.gasesframework.common.entity.EntityDelayedExplosion;
 
 public class GasesFrameworkImplementation implements IGasesFrameworkImplementation
 {
-	public int getGasLevel(BlockPos pos, IBlockAccess access)
+	public int getGasLevel(BlockPos pos, World access)
 	{
 		IBlockState a = access.getBlockState(pos);
 		if (a.getBlock() instanceof BlockGas)
@@ -28,18 +29,12 @@ public class GasesFrameworkImplementation implements IGasesFrameworkImplementati
 		}
 	}
 
-	public boolean canPlaceGas(BlockPos pos, IBlockAccess access)
+	public boolean canPlaceGas(BlockPos pos, World access, GasType currentGasType)
 	{
-		IBlockState a = access.getBlockState(pos);
-		if (a == Blocks.AIR)
+		if(currentGasType == GFAPI.gasTypeAir)
 		{
-			return true;
+			return false;
 		}
-		return false;
-	}
-
-	public boolean canPlaceGas(BlockPos pos, IBlockAccess access, GasType currentGasType)
-	{
 		IBlockState a = access.getBlockState(pos);
 		if (a.getBlock() == Blocks.AIR | a.getBlock() == currentGasType.block)
 		{
@@ -50,6 +45,10 @@ public class GasesFrameworkImplementation implements IGasesFrameworkImplementati
 
 	public int addGasLevel(BlockPos pos, World access, GasType gas, int level)
 	{
+		if(gas == GFAPI.gasTypeAir)
+		{
+			return 0;
+		}
 		if (level <= 16 & level > 0)
 		{
 			Block a = access.getBlockState(pos).getBlock();
@@ -105,6 +104,10 @@ public class GasesFrameworkImplementation implements IGasesFrameworkImplementati
 
 	public void setGasLevel(BlockPos pos, World access, @Nullable GasType gas, int level)
 	{
+		if(gas == GFAPI.gasTypeAir)
+		{
+			access.setBlockToAir(pos);
+		}
 		if (level <= 16 & level > 0)
 		{
 			if (gas != null)
@@ -124,5 +127,37 @@ public class GasesFrameworkImplementation implements IGasesFrameworkImplementati
 		{
 			GasesFramework.logger.error("Attempting to place an incorrect gas level of " + level);
 		}
+	}
+
+	@Override
+	public void tryIgniteGas(BlockPos pos, World access)
+	{
+		if(access.getBlockState(pos).getBlock() instanceof BlockGas)
+		{
+			BlockGas a = (BlockGas) access.getBlockState(pos).getBlock();
+			a.ignite(pos, access);
+		}
+	}
+
+	@Override
+	public GasType getGasType(BlockPos pos, World access)
+	{
+		IBlockState a = access.getBlockState(pos);
+		if (a.getBlock() instanceof BlockGas)
+		{
+			return ((BlockGas) a.getBlock()).gasType;
+		}
+		else
+		{
+			return GFAPI.gasTypeAir;
+		}
+	}
+
+	@Override
+	public void addDelayedExplosion(BlockPos pos, World access, float power, boolean isFlaming, boolean isSmoking)
+	{
+		EntityDelayedExplosion exploder = new EntityDelayedExplosion(access, 5, power, isFlaming, isSmoking);
+		exploder.setPosition(pos.getX(), pos.getY(), pos.getZ());
+		access.spawnEntityInWorld(exploder);
 	}
 }

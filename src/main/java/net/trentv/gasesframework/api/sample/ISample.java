@@ -1,4 +1,4 @@
-package net.trentv.gasesframework.sample;
+package net.trentv.gasesframework.api.sample;
 
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;

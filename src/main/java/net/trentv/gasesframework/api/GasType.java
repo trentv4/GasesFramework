@@ -3,8 +3,15 @@ package net.trentv.gasesframework.api;
 import java.util.ArrayList;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.renderer.color.IBlockColor;
+import net.minecraft.client.renderer.color.IItemColor;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.trentv.gasesframework.api.reaction.EntityReaction;
@@ -83,6 +90,29 @@ public class GasType
 			gasColor = new GasColor(this);
 		return gasColor;
 	}
+	
+	@SideOnly(Side.CLIENT)
+	public class GasColor implements IBlockColor, IItemColor
+	{
+		public GasType master;
+
+		public GasColor(GasType master)
+		{
+			this.master = master;
+		}
+
+		@Override
+		public int getColorFromItemstack(ItemStack stack, int tintIndex)
+		{
+			return master.color;
+		}
+
+		@Override
+		public int colorMultiplier(IBlockState state, IBlockAccess worldIn, BlockPos pos, int tintIndex)
+		{
+			return master.color;
+		}
+	}
 
 	public GasType registerEntityReaction(EntityReaction a)
 	{
@@ -94,4 +124,7 @@ public class GasType
 	{
 		return entityReactions.toArray(new EntityReaction[entityReactions.size()]);
 	}
+	
+	public void preTick(World world, IBlockState state, BlockPos pos){}
+	public void postTick(World world, IBlockState state, BlockPos pos){}
 }

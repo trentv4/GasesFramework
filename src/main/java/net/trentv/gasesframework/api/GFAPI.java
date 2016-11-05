@@ -17,6 +17,8 @@ public class GFAPI
 
 	public static DamageSourceAsphyxiation damageSourceAsphyxiation = new DamageSourceAsphyxiation("asphyxiation");
 
+	public static final GasType gasTypeAir = new GasType(false, "air", 0, 0, 0, Combustability.NONE);
+
 	public static void install(IGasesFrameworkImplementation implementation, IGasesFrameworkRegistry registry)
 	{
 		GFAPI.implementation = implementation;
