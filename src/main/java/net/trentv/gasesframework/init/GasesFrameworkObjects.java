@@ -3,10 +3,10 @@ package net.trentv.gasesframework.init;
 import net.trentv.gasesframework.GasesFramework;
 import net.trentv.gasesframework.api.Combustability;
 import net.trentv.gasesframework.api.GasType;
-import net.trentv.gasesframework.api.reaction.EntityReactionBlindness;
-import net.trentv.gasesframework.api.reaction.EntityReactionHrrm;
-import net.trentv.gasesframework.api.reaction.EntityReactionSlowness;
-import net.trentv.gasesframework.api.reaction.EntityReactionSuffocation;
+import net.trentv.gasesframework.api.reaction.entity.EntityReactionBlindness;
+import net.trentv.gasesframework.api.reaction.entity.EntityReactionHrrm;
+import net.trentv.gasesframework.api.reaction.entity.EntityReactionSlowness;
+import net.trentv.gasesframework.api.reaction.entity.EntityReactionSuffocation;
 
 public class GasesFrameworkObjects
 {

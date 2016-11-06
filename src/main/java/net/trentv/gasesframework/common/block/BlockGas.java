@@ -23,7 +23,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.trentv.gasesframework.GasesFramework;
 import net.trentv.gasesframework.api.GasType;
 import net.trentv.gasesframework.api.MaterialGas;
-import net.trentv.gasesframework.api.reaction.EntityReaction;
+import net.trentv.gasesframework.api.reaction.entity.IEntityReaction;
 import net.trentv.gasesframework.api.sample.ISample;
 import net.trentv.gasesframework.init.GasesFrameworkObjects;
 
@@ -63,7 +63,10 @@ public class BlockGas extends Block implements ISample
 		// to rest)
 		// Look into MutableBlockPos to reduce GC overhead
 		
-		gasType.preTick(world, state, currentPosition);
+		if(!gasType.tick(world, state, currentPosition))
+		{
+			return;
+		}
 		
 		if(gasType.dissipationRate > 0)
 		{
@@ -140,7 +143,6 @@ public class BlockGas extends Block implements ISample
 			}
 		}
 
-		gasType.postTick(world, state, currentPosition);
 		world.scheduleBlockUpdate(currentPosition, this, tickRate, 1);
 	}
 
@@ -230,6 +232,10 @@ public class BlockGas extends Block implements ISample
 
 	public void ignite(BlockPos pos, World access)
 	{
+		if(!gasType.ignite(access, access.getBlockState(pos), pos))
+		{
+			return;
+		}
 		if(gasType.combustability.explosionPower > 0)
 		{
 			GasesFramework.implementation.addDelayedExplosion(pos, access, gasType.combustability.explosionPower, true, true);
@@ -240,15 +246,10 @@ public class BlockGas extends Block implements ISample
 		}
 	}
 	
-	public boolean isEntityHeadWithinBlock(Entity e, IBlockAccess access)
-	{
-		return access.getBlockState(new BlockPos(e.getPositionEyes(0))).getBlock() instanceof BlockGas;
-	}
-	
 	public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity)
 	{
-		EntityReaction[] s = gasType.getEntityReactions();
-		for (EntityReaction a : s)
+		IEntityReaction[] s = gasType.getEntityReactions();
+		for (IEntityReaction a : s)
 		{
 			a.react(entity, world, this.gasType, pos);
 		}

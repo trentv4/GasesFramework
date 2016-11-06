@@ -1,4 +1,4 @@
-package net.trentv.gasesframework.api.reaction;
+package net.trentv.gasesframework.api.reaction.entity;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.BlockPos;
@@ -7,7 +7,7 @@ import net.trentv.gasesframework.api.GasType;
 import net.trentv.gasesframework.api.capability.GasEffectsProvider;
 import net.trentv.gasesframework.api.capability.IGasEffects;
 
-public class EntityReactionSlowness implements EntityReaction
+public class EntityReactionSlowness implements IEntityReaction
 {
 	public float slownessRate;
 

@@ -1,19 +1,22 @@
-package net.trentv.gasesframework.api.reaction;
+package net.trentv.gasesframework.api.reaction.entity;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
+import net.trentv.gasesframework.api.GFAPI;
 import net.trentv.gasesframework.api.GasType;
 import net.trentv.gasesframework.api.capability.GasEffectsProvider;
 import net.trentv.gasesframework.api.capability.IGasEffects;
 
-public class EntityReactionBlindness implements EntityReaction
+public class EntityReactionSuffocation implements IEntityReaction
 {
-	public float blindnessRate;
+	public int damage;
+	public int suffocationRate;
 
-	public EntityReactionBlindness(float blindnessRate)
+	public EntityReactionSuffocation(int suffocationRate, int damage)
 	{
-		this.blindnessRate = blindnessRate;
+		this.suffocationRate = suffocationRate;
+		this.damage = damage;
 	}
 
 	@Override
@@ -26,12 +29,16 @@ public class EntityReactionBlindness implements EntityReaction
 			{
 				if(!access.isAirBlock(new BlockPos(e.getPositionEyes(0))))
 				{
-					if(q.getBlindness() < 250 - blindnessRate)
+					if(q.getSuffocation() > 0 + suffocationRate)
 					{
-						q.setBlindness(q.getBlindness() + blindnessRate);
+						q.setSuffocation(q.getSuffocation() - suffocationRate);
+					}
+					else
+					{
+						e.attackEntityFrom(GFAPI.damageSourceAsphyxiation, damage);
 					}
 				}
 			}
-		}
+		}		
 	}
 }

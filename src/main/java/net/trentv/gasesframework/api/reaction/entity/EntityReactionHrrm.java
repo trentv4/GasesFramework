@@ -1,4 +1,4 @@
-package net.trentv.gasesframework.api.reaction;
+package net.trentv.gasesframework.api.reaction.entity;
 
 import java.util.Random;
 import java.util.UUID;
@@ -10,7 +10,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.trentv.gasesframework.api.GasType;
 
-public class EntityReactionHrrm implements EntityReaction
+public class EntityReactionHrrm implements IEntityReaction
 {
 	private static final Random r = new Random();
 	private static final String[] villagers = new String[] { "b3cea104-fd35-4a5d-bb7b-00668f133e28", // Dethridgecraft

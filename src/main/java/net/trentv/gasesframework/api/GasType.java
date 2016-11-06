@@ -1,6 +1,7 @@
 package net.trentv.gasesframework.api;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -14,7 +15,9 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.trentv.gasesframework.api.reaction.EntityReaction;
+import net.trentv.gasesframework.api.reaction.block.IBlockReaction;
+import net.trentv.gasesframework.api.reaction.entity.IEntityReaction;
+import net.trentv.gasesframework.api.reaction.gas.IGasReaction;
 
 public class GasType
 {
@@ -40,7 +43,9 @@ public class GasType
 	public float lightLevel = 0.0F;
 	public CreativeTabs creativeTab;
 
-	public ArrayList<EntityReaction> entityReactions = new ArrayList<EntityReaction>();
+	public ArrayList<IEntityReaction> entityReactions = new ArrayList<IEntityReaction>();
+	public HashMap<GasType, IGasReaction> gasReactions = new HashMap<GasType, IGasReaction>();
+	public HashMap<Block, IBlockReaction> blockReactions = new HashMap<Block, IBlockReaction>();
 
 	public GasType(boolean isIndustrial, String name, int color, int opacity, int density, Combustability combustability)
 	{
@@ -114,17 +119,34 @@ public class GasType
 		}
 	}
 
-	public GasType registerEntityReaction(EntityReaction a)
+	public GasType registerEntityReaction(IEntityReaction a)
 	{
 		entityReactions.add(a);
 		return this;
 	}
 
-	public EntityReaction[] getEntityReactions()
+	public IEntityReaction[] getEntityReactions()
 	{
-		return entityReactions.toArray(new EntityReaction[entityReactions.size()]);
+		return entityReactions.toArray(new IEntityReaction[entityReactions.size()]);
 	}
 	
-	public void preTick(World world, IBlockState state, BlockPos pos){}
-	public void postTick(World world, IBlockState state, BlockPos pos){}
+	public IGasReaction getGasReaction(GasType in)
+	{
+		return gasReactions.get(in);
+	}
+	
+	public IBlockReaction getBlockReaction(Block in)
+	{
+		return blockReactions.get(in);
+	}
+	
+	public boolean tick(World world, IBlockState state, BlockPos pos)
+	{
+		return true;
+	}
+	
+	public boolean ignite(World world, IBlockState state, BlockPos pos)
+	{
+		return true;
+	}
 }
