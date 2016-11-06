@@ -20,9 +20,9 @@ public class GasesFrameworkObjects
 
 	public static void init()
 	{
-		GasesFramework.registry.registerGasType(SMOKE);
+		GasesFramework.implementation.registerGasType(SMOKE);
 		
-		GasType[] allTypes = GasesFramework.registry.getGastypes();
+		GasType[] allTypes = GasesFramework.implementation.getGastypes();
 		for (GasType type : allTypes)
 		{
 			type.registerEntityReaction(new EntityReactionHrrm());

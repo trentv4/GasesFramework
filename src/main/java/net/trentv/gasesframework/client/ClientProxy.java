@@ -17,7 +17,7 @@ public class ClientProxy extends CommonProxy
 	@Override
 	public void registerRenderers()
 	{
-		GasType[] types = GasesFramework.registry.getGastypes();
+		GasType[] types = GasesFramework.implementation.getGastypes();
 		for (int i = 0; i < types.length; i++)
 		{
 			ItemBlock item = types[i].itemBlock;
@@ -31,7 +31,7 @@ public class ClientProxy extends CommonProxy
 	{
 		ItemColors itemColors = Minecraft.getMinecraft().getItemColors();
 		BlockColors blockColors = Minecraft.getMinecraft().getBlockColors();
-		GasType[] types = GasesFramework.registry.getGastypes();
+		GasType[] types = GasesFramework.implementation.getGastypes();
 		for (int i = 0; i < types.length; i++)
 		{
 			ItemBlock item = types[i].itemBlock;

@@ -1,12 +1,16 @@
 package net.trentv.gasesframework.common;
 
+import java.util.HashMap;
+
 import javax.annotation.Nullable;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.trentv.gasesframework.GasesFramework;
 import net.trentv.gasesframework.api.GFAPI;
 import net.trentv.gasesframework.api.GasType;
@@ -159,5 +163,45 @@ public class GasesFrameworkImplementation implements IGasesFrameworkImplementati
 		EntityDelayedExplosion exploder = new EntityDelayedExplosion(access, 5, power, isFlaming, isSmoking);
 		exploder.setPosition(pos.getX(), pos.getY(), pos.getZ());
 		access.spawnEntityInWorld(exploder);
+	}
+	
+	private HashMap<String, GasType> gasTypes = new HashMap<String, GasType>();
+
+	@Override
+	public void registerGasType(GasType type)
+	{
+		// Register the gas block
+		BlockGas newGasBlock = new BlockGas(type);
+		newGasBlock.setRegistryName(GasesFramework.MODID, "gas_" + type.name);
+		GameRegistry.register(newGasBlock);
+
+		type.block = newGasBlock;
+
+		// Register the gas ItemBlock
+
+		ItemBlock newGasItemBlock = new ItemBlock(newGasBlock);
+		newGasItemBlock.setRegistryName(GasesFramework.MODID, "gas_" + type.name);
+		GameRegistry.register(newGasItemBlock);
+
+		type.itemBlock = newGasItemBlock;
+
+		// Ensure the item gets sent off to the ClientProxy to be registered
+		gasTypes.put(type.name, type);
+
+		if (type.isIndustrial)
+		{
+			// register lanterns and pipes
+		}
+	}
+
+	public GasType[] getGastypes()
+	{
+		return gasTypes.values().toArray(new GasType[gasTypes.values().size()]);
+	}
+
+	@Nullable
+	public GasType getGasTypeByName(String name)
+	{
+		return gasTypes.get(name);
 	}
 }

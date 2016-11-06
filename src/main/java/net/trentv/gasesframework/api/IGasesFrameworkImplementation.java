@@ -23,4 +23,11 @@ public interface IGasesFrameworkImplementation
 	public void tryIgniteGas(BlockPos pos, World access);
 	
 	public void addDelayedExplosion(BlockPos pos, World access, float power, boolean isFlaming, boolean isSmoking);
+	
+	public void registerGasType(GasType type);
+
+	public GasType[] getGastypes();
+
+	@Nullable
+	public GasType getGasTypeByName(String name);
 }

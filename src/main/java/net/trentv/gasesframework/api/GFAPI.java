@@ -1,7 +1,6 @@
 package net.trentv.gasesframework.api;
 
 import net.trentv.gasesframework.api.dummy.GasesFrameworkDummyImplementation;
-import net.trentv.gasesframework.api.dummy.GasesFrameworkDummyRegistry;
 
 public class GFAPI
 {
@@ -13,16 +12,14 @@ public class GFAPI
 	private static boolean isInstalled = false;
 
 	public static IGasesFrameworkImplementation implementation = new GasesFrameworkDummyImplementation();
-	public static IGasesFrameworkRegistry registry = new GasesFrameworkDummyRegistry();
 
 	public static DamageSourceAsphyxiation damageSourceAsphyxiation = new DamageSourceAsphyxiation("asphyxiation");
 
 	public static final GasType gasTypeAir = new GasType(false, "air", 0, 0, 0, Combustability.NONE);
 
-	public static void install(IGasesFrameworkImplementation implementation, IGasesFrameworkRegistry registry)
+	public static void install(IGasesFrameworkImplementation implementation)
 	{
 		GFAPI.implementation = implementation;
-		GFAPI.registry = registry;
 		isInstalled = true;
 	}
 

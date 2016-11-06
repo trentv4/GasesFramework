@@ -10,14 +10,12 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.trentv.gasesframework.api.DamageSourceAsphyxiation;
 import net.trentv.gasesframework.api.GFAPI;
 import net.trentv.gasesframework.api.capability.BaseGasEffects;
 import net.trentv.gasesframework.api.capability.GasEffectsStorage;
 import net.trentv.gasesframework.api.capability.IGasEffects;
 import net.trentv.gasesframework.common.GasesFrameworkCreativeTab;
 import net.trentv.gasesframework.common.GasesFrameworkImplementation;
-import net.trentv.gasesframework.common.GasesFrameworkRegistry;
 import net.trentv.gasesframework.init.GasesFrameworkObjects;
 
 @Mod(modid = GasesFramework.MODID, version = GasesFramework.VERSION, acceptedMinecraftVersions = "1.10.2")
@@ -35,13 +33,12 @@ public class GasesFramework
 
 	public static Logger logger;
 
-	public static GasesFrameworkRegistry registry = new GasesFrameworkRegistry();
 	public static GasesFrameworkImplementation implementation = new GasesFrameworkImplementation();
 
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event)
 	{
-		GFAPI.install(implementation, registry);
+		GFAPI.install(implementation);
 		logger = event.getModLog();
 
 		// Register all items, blocks, and gases

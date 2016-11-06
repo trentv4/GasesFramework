@@ -1,7 +1,9 @@
 package net.trentv.gasesframework.api;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.IdentityHashMap;
+import java.util.Map;
+import java.util.Set;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -44,8 +46,8 @@ public class GasType
 	public CreativeTabs creativeTab;
 
 	public ArrayList<IEntityReaction> entityReactions = new ArrayList<IEntityReaction>();
-	public HashMap<GasType, IGasReaction> gasReactions = new HashMap<GasType, IGasReaction>();
-	public HashMap<Block, IBlockReaction> blockReactions = new HashMap<Block, IBlockReaction>();
+	public Map<GasType, Set<IGasReaction>> gasReactions = new IdentityHashMap<GasType, Set<IGasReaction>>();
+	public Map<Block, Set<IBlockReaction>> blockReactions = new IdentityHashMap<Block, Set<IBlockReaction>>();
 
 	public GasType(boolean isIndustrial, String name, int color, int opacity, int density, Combustability combustability)
 	{
@@ -130,14 +132,16 @@ public class GasType
 		return entityReactions.toArray(new IEntityReaction[entityReactions.size()]);
 	}
 	
-	public IGasReaction getGasReaction(GasType in)
+	public IGasReaction[] getGasReaction(GasType in)
 	{
-		return gasReactions.get(in);
+		Set<IGasReaction> set = gasReactions.get(in);
+		return set.toArray(new IGasReaction[set.size()]);
 	}
 	
-	public IBlockReaction getBlockReaction(Block in)
+	public IBlockReaction[] getBlockReaction(Block in)
 	{
-		return blockReactions.get(in);
+		Set<IBlockReaction> set = blockReactions.get(in);
+		return set.toArray(new IBlockReaction[set.size()]);
 	}
 	
 	public boolean tick(World world, IBlockState state, BlockPos pos)
