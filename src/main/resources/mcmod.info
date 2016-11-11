@@ -8,7 +8,7 @@
   "url": "",
   "updateUrl": "",
   "authorList": ["Trentv4", "Glenn / jamieswhiteshirt"],
-  "credits": "Glenn for creating the first version of Gases (up to 1.7.10). Trent for rewriting and updating to 1.10.2. Everyone in the MMD Discord (particularly, Leviathan) for helping with the port to 1.10.2",
+  "credits": "Glenn for creating the first version of Gases (up to 1.7.10). Trent for rewriting and updating to 1.10.2. Everyone in the MMD Discord for helping with the port to 1.10.2",
   "logoFile": "",
   "screenshots": [],
   "dependencies": []
