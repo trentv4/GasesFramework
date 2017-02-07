@@ -1,5 +1,6 @@
 package net.trentv.gasesframework.init;
 
+import net.minecraft.util.ResourceLocation;
 import net.trentv.gasesframework.GasesFramework;
 import net.trentv.gfapi.Combustability;
 import net.trentv.gfapi.GFAPI;
@@ -21,9 +22,9 @@ public class GasesFrameworkObjects
 
 	public static void init()
 	{
-		GasesFramework.implementation.registerGasType(SMOKE);
+		GFAPI.registerGasType(SMOKE, new ResourceLocation(GasesFramework.MODID, "gas_smoke"));
 		
-		GasType[] allTypes = GFAPI.implementation.getGastypes();
+		GasType[] allTypes = GFAPI.getGasTypes();
 		for (GasType type : allTypes)
 		{
 			type.registerEntityReaction(new EntityReactionHrrm());

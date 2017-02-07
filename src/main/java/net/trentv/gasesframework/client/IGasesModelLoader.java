@@ -28,7 +28,7 @@ public class IGasesModelLoader implements ICustomModelLoader
 		{
 			if(path.contains(modelLocation.getResourcePath()))
 			{
-				GasType a = GFAPI.implementation.getGasTypeByName(modelLocation.getResourcePath().replaceAll("gas_", ""));
+				GasType a = GFAPI.getGasType(modelLocation);
 				return true;
 			}
 		}

@@ -11,6 +11,7 @@ import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.common.MinecraftForge;
 import net.trentv.gasesframework.CommonProxy;
 import net.trentv.gasesframework.GasesFramework;
+import net.trentv.gfapi.GFAPI;
 import net.trentv.gfapi.GasType;
 
 public class ClientProxy extends CommonProxy
@@ -18,7 +19,7 @@ public class ClientProxy extends CommonProxy
 	@Override
 	public void registerRenderers()
 	{
-		GasType[] types = GasesFramework.implementation.getGastypes();
+		GasType[] types = GFAPI.getGasTypes();
 		for (int i = 0; i < types.length; i++)
 		{
 			ItemBlock item = types[i].itemBlock;
@@ -33,7 +34,7 @@ public class ClientProxy extends CommonProxy
 	{
 		ItemColors itemColors = Minecraft.getMinecraft().getItemColors();
 		BlockColors blockColors = Minecraft.getMinecraft().getBlockColors();
-		GasType[] types = GasesFramework.implementation.getGastypes();
+		GasType[] types = GFAPI.getGasTypes();
 		for (int i = 0; i < types.length; i++)
 		{
 			ItemBlock item = types[i].itemBlock;

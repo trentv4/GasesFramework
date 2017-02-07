@@ -1,3 +1,13 @@
+This is an archived version of the implementation before I split up the 
+API into the manipulation, registration, etc bits. It's a mess, but who
+cares, it's not relevant except for history or stealing from. I'm not
+getting rid of it right now because I'd really appreciate being able to
+look at this while I develop.
+
+
+
+
+
 package net.trentv.gasesframework.common;
 
 import java.util.HashMap;
