@@ -7,6 +7,7 @@ import net.minecraft.client.renderer.color.BlockColors;
 import net.minecraft.client.renderer.color.ItemColors;
 import net.minecraft.item.ItemBlock;
 import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.common.MinecraftForge;
 import net.trentv.gasesframework.CommonProxy;
 import net.trentv.gasesframework.GasesFramework;
@@ -24,6 +25,7 @@ public class ClientProxy extends CommonProxy
 			// Register the item so it displays as a proper block in inventory
 			ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(item.getRegistryName(), "inventory"));
 		}
+		ModelLoaderRegistry.registerLoader(new IGasesModelLoader());
 	}
 
 	@Override

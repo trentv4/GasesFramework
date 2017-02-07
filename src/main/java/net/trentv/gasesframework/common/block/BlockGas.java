@@ -172,6 +172,16 @@ public class BlockGas extends Block implements ISample
 	{
 		return new BlockStateContainer(this, CAPACITY);
 	}
+	
+    public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos)
+    {
+    	if(world.getBlockState(pos.up()).getBlock() instanceof BlockGas)
+    	{
+    		
+    	}
+    	
+        return state;
+    }
 
 	@Override
 	public IBlockState getStateFromMeta(int meta)

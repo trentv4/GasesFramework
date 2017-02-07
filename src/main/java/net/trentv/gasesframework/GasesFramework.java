@@ -34,7 +34,7 @@ public class GasesFramework
 	public static Logger logger;
 
 	public static GasesFrameworkImplementation implementation = new GasesFrameworkImplementation();
-
+	
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event)
 	{

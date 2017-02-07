@@ -2,6 +2,7 @@ package net.trentv.gasesframework.init;
 
 import net.trentv.gasesframework.GasesFramework;
 import net.trentv.gasesframework.api.Combustability;
+import net.trentv.gasesframework.api.GFAPI;
 import net.trentv.gasesframework.api.GasType;
 import net.trentv.gasesframework.api.reaction.entity.EntityReactionBlindness;
 import net.trentv.gasesframework.api.reaction.entity.EntityReactionHrrm;
@@ -22,7 +23,7 @@ public class GasesFrameworkObjects
 	{
 		GasesFramework.implementation.registerGasType(SMOKE);
 		
-		GasType[] allTypes = GasesFramework.implementation.getGastypes();
+		GasType[] allTypes = GFAPI.implementation.getGastypes();
 		for (GasType type : allTypes)
 		{
 			type.registerEntityReaction(new EntityReactionHrrm());

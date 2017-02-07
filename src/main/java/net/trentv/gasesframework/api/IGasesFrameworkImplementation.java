@@ -8,6 +8,7 @@ import net.minecraft.world.World;
 
 public interface IGasesFrameworkImplementation
 {
+	
 	public GasType getGasType(BlockPos pos, World access);
 	
 	public int getGasLevel(BlockPos pos, World access);
