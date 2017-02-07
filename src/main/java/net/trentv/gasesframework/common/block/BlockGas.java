@@ -21,11 +21,11 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.trentv.gasesframework.GasesFramework;
-import net.trentv.gasesframework.api.GasType;
-import net.trentv.gasesframework.api.MaterialGas;
-import net.trentv.gasesframework.api.reaction.entity.IEntityReaction;
-import net.trentv.gasesframework.api.sample.ISample;
 import net.trentv.gasesframework.init.GasesFrameworkObjects;
+import net.trentv.gfapi.GasType;
+import net.trentv.gfapi.MaterialGas;
+import net.trentv.gfapi.reaction.entity.IEntityReaction;
+import net.trentv.gfapi.sample.ISample;
 
 public class BlockGas extends Block implements ISample
 {

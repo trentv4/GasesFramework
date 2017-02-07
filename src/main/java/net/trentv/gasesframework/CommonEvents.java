@@ -6,9 +6,9 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.trentv.gasesframework.api.capability.GasEffectsProvider;
-import net.trentv.gasesframework.api.capability.GasEffectsStorage;
-import net.trentv.gasesframework.api.capability.IGasEffects;
+import net.trentv.gfapi.capability.GasEffectsProvider;
+import net.trentv.gfapi.capability.GasEffectsStorage;
+import net.trentv.gfapi.capability.IGasEffects;
 
 public class CommonEvents
 {

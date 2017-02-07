@@ -12,11 +12,11 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.trentv.gasesframework.GasesFramework;
-import net.trentv.gasesframework.api.GFAPI;
-import net.trentv.gasesframework.api.GasType;
-import net.trentv.gasesframework.api.IGasesFrameworkImplementation;
 import net.trentv.gasesframework.common.block.BlockGas;
 import net.trentv.gasesframework.common.entity.EntityDelayedExplosion;
+import net.trentv.gfapi.GFAPI;
+import net.trentv.gfapi.GasType;
+import net.trentv.gfapi.IGasesFrameworkImplementation;
 
 public class GasesFrameworkImplementation implements IGasesFrameworkImplementation
 {

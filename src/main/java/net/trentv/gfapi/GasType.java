@@ -1,4 +1,4 @@
-package net.trentv.gasesframework.api;
+package net.trentv.gfapi;
 
 import java.util.ArrayList;
 import java.util.IdentityHashMap;
@@ -17,9 +17,9 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.trentv.gasesframework.api.reaction.block.IBlockReaction;
-import net.trentv.gasesframework.api.reaction.entity.IEntityReaction;
-import net.trentv.gasesframework.api.reaction.gas.IGasReaction;
+import net.trentv.gfapi.reaction.block.IBlockReaction;
+import net.trentv.gfapi.reaction.entity.IEntityReaction;
+import net.trentv.gfapi.reaction.gas.IGasReaction;
 
 public class GasType
 {

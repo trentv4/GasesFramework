@@ -1,4 +1,4 @@
-package net.trentv.gasesframework.api.reaction.block;
+package net.trentv.gfapi.reaction.block;
 
 import net.minecraft.block.Block;
 import net.minecraft.util.math.BlockPos;

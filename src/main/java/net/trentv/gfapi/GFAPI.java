@@ -1,6 +1,6 @@
-package net.trentv.gasesframework.api;
+package net.trentv.gfapi;
 
-import net.trentv.gasesframework.api.dummy.GasesFrameworkDummyImplementation;
+import net.trentv.gfapi.dummy.GasesFrameworkDummyImplementation;
 
 public class GFAPI
 {

@@ -1,19 +1,19 @@
-package net.trentv.gasesframework.api.reaction.entity;
+package net.trentv.gfapi.reaction.entity;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
-import net.trentv.gasesframework.api.GasType;
-import net.trentv.gasesframework.api.capability.GasEffectsProvider;
-import net.trentv.gasesframework.api.capability.IGasEffects;
+import net.trentv.gfapi.GasType;
+import net.trentv.gfapi.capability.GasEffectsProvider;
+import net.trentv.gfapi.capability.IGasEffects;
 
-public class EntityReactionSlowness implements IEntityReaction
+public class EntityReactionBlindness implements IEntityReaction
 {
-	public float slownessRate;
+	public float blindnessRate;
 
-	public EntityReactionSlowness(float slownessRate)
+	public EntityReactionBlindness(float blindnessRate)
 	{
-		this.slownessRate = slownessRate;
+		this.blindnessRate = blindnessRate;
 	}
 
 	@Override
@@ -26,12 +26,12 @@ public class EntityReactionSlowness implements IEntityReaction
 			{
 				if(!access.isAirBlock(new BlockPos(e.getPositionEyes(0))))
 				{
-					if(q.getSlowness() < 100 - slownessRate)
+					if(q.getBlindness() < 250 - blindnessRate)
 					{
-						q.setSlowness(q.getSlowness() + slownessRate);
+						q.setBlindness(q.getBlindness() + blindnessRate);
 					}
 				}
 			}
-		}		
+		}
 	}
 }

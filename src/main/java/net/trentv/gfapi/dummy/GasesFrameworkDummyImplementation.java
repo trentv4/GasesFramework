@@ -1,12 +1,12 @@
-package net.trentv.gasesframework.api.dummy;
+package net.trentv.gfapi.dummy;
 
 import javax.annotation.Nullable;
 
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.trentv.gasesframework.api.GasType;
-import net.trentv.gasesframework.api.IGasesFrameworkImplementation;
+import net.trentv.gfapi.GasType;
+import net.trentv.gfapi.IGasesFrameworkImplementation;
 
 public class GasesFrameworkDummyImplementation implements IGasesFrameworkImplementation
 {

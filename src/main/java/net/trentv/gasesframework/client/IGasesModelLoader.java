@@ -9,8 +9,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ICustomModelLoader;
 import net.minecraftforge.client.model.IModel;
 import net.trentv.gasesframework.GasesFramework;
-import net.trentv.gasesframework.api.GFAPI;
-import net.trentv.gasesframework.api.GasType;
+import net.trentv.gfapi.GFAPI;
+import net.trentv.gfapi.GasType;
 
 public class IGasesModelLoader implements ICustomModelLoader
 {

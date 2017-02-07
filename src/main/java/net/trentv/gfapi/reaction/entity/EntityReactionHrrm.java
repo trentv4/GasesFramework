@@ -1,4 +1,4 @@
-package net.trentv.gasesframework.api.reaction.entity;
+package net.trentv.gfapi.reaction.entity;
 
 import java.util.Random;
 import java.util.UUID;
@@ -8,7 +8,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
-import net.trentv.gasesframework.api.GasType;
+import net.trentv.gfapi.GasType;
 
 public class EntityReactionHrrm implements IEntityReaction
 {

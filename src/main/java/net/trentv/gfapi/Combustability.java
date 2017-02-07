@@ -1,4 +1,4 @@
-package net.trentv.gasesframework.api;
+package net.trentv.gfapi;
 
 public enum Combustability
 {

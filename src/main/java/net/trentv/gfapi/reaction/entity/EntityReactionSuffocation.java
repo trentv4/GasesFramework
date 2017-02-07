@@ -1,12 +1,12 @@
-package net.trentv.gasesframework.api.reaction.entity;
+package net.trentv.gfapi.reaction.entity;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
-import net.trentv.gasesframework.api.GFAPI;
-import net.trentv.gasesframework.api.GasType;
-import net.trentv.gasesframework.api.capability.GasEffectsProvider;
-import net.trentv.gasesframework.api.capability.IGasEffects;
+import net.trentv.gfapi.GFAPI;
+import net.trentv.gfapi.GasType;
+import net.trentv.gfapi.capability.GasEffectsProvider;
+import net.trentv.gfapi.capability.IGasEffects;
 
 public class EntityReactionSuffocation implements IEntityReaction
 {
