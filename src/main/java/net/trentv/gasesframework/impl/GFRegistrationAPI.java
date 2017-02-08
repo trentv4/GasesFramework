@@ -34,25 +34,12 @@ public class GFRegistrationAPI implements IRegistrationAPI
 
 		// Ensure the item gets sent off to the ClientProxy to be registered
 		gasTypes.put(location, type);
-
-		if (type.isIndustrial)
-		{
-			// register lanterns and pipes
-		}
 	}
 
 	@Override
 	public GasType getGasType(ResourceLocation location)
 	{
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public GasType[] getGasTypes(String modid)
-	{
-		// TODO Auto-generated method stub
-		return null;
+		return gasTypes.get(location);
 	}
 
 	@Override

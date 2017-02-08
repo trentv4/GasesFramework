@@ -16,11 +16,6 @@ public interface IRegistrationAPI
 	 * @return Registered gastype that matches location. This may be null.
 	 */
 	public @Nullable GasType getGasType(ResourceLocation location);
-	
-	/**
-	 * @return All registered gases belonging to modid
-	 */
-	public GasType[] getGasTypes(String modid);
 
 	/**
 	 * @return All registered gases

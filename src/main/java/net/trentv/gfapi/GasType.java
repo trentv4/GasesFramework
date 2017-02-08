@@ -26,7 +26,6 @@ public class GasType
 	private static int maxGasID = 0;
 
 	// Mandatory fields
-	public final boolean isIndustrial;
 	public final int gasID;
 	public final String name;
 	public final int color;
@@ -49,9 +48,8 @@ public class GasType
 	public Map<GasType, Set<IGasReaction>> gasReactions = new IdentityHashMap<GasType, Set<IGasReaction>>();
 	public Map<Block, Set<IBlockReaction>> blockReactions = new IdentityHashMap<Block, Set<IBlockReaction>>();
 
-	public GasType(boolean isIndustrial, String name, int color, int opacity, int density, Combustability combustability)
+	public GasType(String name, int color, int opacity, int density, Combustability combustability)
 	{
-		this.isIndustrial = isIndustrial;
 		this.gasID = maxGasID++;
 		this.name = name;
 		this.color = color;

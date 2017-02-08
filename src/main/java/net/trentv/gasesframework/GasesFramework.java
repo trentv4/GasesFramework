@@ -41,9 +41,9 @@ public class GasesFramework
 		logger = event.getModLog();
 
 		// Register all items, blocks, and gases
-		//registry.registerGasType(GFAPI.gasTypeAir);
 		GasesFrameworkObjects.init();
 		CapabilityManager.INSTANCE.register(IGasEffects.class, new GasEffectsStorage(), BaseGasEffects.class);
+
 		proxy.registerRenderers();
 		proxy.registerEventHandlers();
 	}

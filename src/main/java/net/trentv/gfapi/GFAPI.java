@@ -16,7 +16,7 @@ public class GFAPI
 	public static final String PROVIDES = "gasesFrameworkAPI";
 
 	public static DamageSourceAsphyxiation damageSourceAsphyxiation = INSTANCE.new DamageSourceAsphyxiation("asphyxiation");
-	public static final GasType gasTypeAir = new GasType(false, "air", 0, 0, 0, Combustability.NONE);
+	public static final GasType gasTypeAir = new GasType("air", 0, 0, 0, Combustability.NONE);
 
 	public static IManipulationAPI manipulationAPI;
 	public static IRegistrationAPI registrationAPI;
@@ -67,19 +67,6 @@ public class GFAPI
 		{
 			System.out.println("Gases Framework not installed. Try installing it!");
 			return null;
-		}
-	}
-	
-	public static GasType[] getGasTypes(String modid)
-	{
-		if(registrationAPI != null)
-		{
-			return registrationAPI.getGasTypes(modid);
-		}
-		else
-		{
-			System.out.println("Gases Framework not installed. Try installing it!");
-			return new GasType[]{};
 		}
 	}
 	
