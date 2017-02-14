@@ -9,6 +9,7 @@ import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
+import net.minecraft.item.Item;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -175,11 +176,6 @@ public class BlockGas extends Block implements ISample
 	
     public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos)
     {
-    	if(world.getBlockState(pos.up()).getBlock() instanceof BlockGas)
-    	{
-    		
-    	}
-    	
         return state;
     }
 
@@ -251,13 +247,20 @@ public class BlockGas extends Block implements ISample
 			EntityDelayedExplosion exploder = new EntityDelayedExplosion(access, 5, gasType.combustability.explosionPower, true, true);
 			exploder.setPosition(pos.getX(), pos.getY(), pos.getZ());
 			access.spawnEntityInWorld(exploder);
-			if(gasType.combustability.fireSpreadRate > 0)
-			{
-				GFAPI.setGasLevel(pos, access, GasesFrameworkObjects.gasTypeFire, access.getBlockState(pos).getValue(CAPACITY));
-			}
+			GFAPI.setGasLevel(pos, access, GFAPI.AIR, 16);
+		}
+		if(gasType.combustability.fireSpreadRate > 0)
+		{
+			GFAPI.setGasLevel(pos, access, GasesFrameworkObjects.FIRE, access.getBlockState(pos).getValue(CAPACITY));
 		}
 	}
 	
+    @Nullable
+    public Item getItemDropped(IBlockState state, Random rand, int fortune)
+    {
+        return null;
+    }
+    
 	public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity)
 	{
 		IEntityReaction[] s = gasType.getEntityReactions();

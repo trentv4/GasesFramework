@@ -26,7 +26,7 @@ public class IGasesModelLoader implements ICustomModelLoader
 		List<String> path = Arrays.asList("gas_smoke");
 		if(modelLocation.getResourceDomain().equals(GasesFramework.MODID))
 		{
-			if(path.contains(modelLocation.getResourcePath()))
+			if(modelLocation.getResourcePath().contains("gas_"))
 			{
 				GasType a = GFAPI.getGasType(modelLocation);
 				return true;
@@ -44,7 +44,14 @@ public class IGasesModelLoader implements ICustomModelLoader
 			{
 				if(modelLocation.getResourcePath().contains("gas_"))
 				{
-					return new ModelBlockGas((int) Integer.valueOf(((ModelResourceLocation) modelLocation).getVariant().replaceAll("capacity=", "")));
+					if(((ModelResourceLocation) modelLocation).getVariant().equals("inventory"))
+					{
+						return new ModelBlockGas(16);
+					}
+					else
+					{
+						return new ModelBlockGas((int) Integer.valueOf(((ModelResourceLocation) modelLocation).getVariant().replaceAll("capacity=", "")));
+					}
 				}
 			}
 		}

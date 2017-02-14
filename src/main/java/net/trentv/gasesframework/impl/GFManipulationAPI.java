@@ -24,7 +24,7 @@ public class GFManipulationAPI implements IManipulationAPI
 		}
 		else
 		{
-			return GFAPI.gasTypeAir;
+			return GFAPI.AIR;
 		}
 	}
 
@@ -45,7 +45,7 @@ public class GFManipulationAPI implements IManipulationAPI
 	@Override
 	public boolean canPlaceGas(BlockPos pos, World access, GasType currentGas)
 	{
-		if(currentGas == GFAPI.gasTypeAir)
+		if(currentGas == GFAPI.AIR)
 		{
 			return false;
 		}
@@ -60,11 +60,11 @@ public class GFManipulationAPI implements IManipulationAPI
 	@Override
 	public void setGasLevel(BlockPos pos, World access, GasType gas, int level)
 	{
-		if(gas == GFAPI.gasTypeAir)
+		if(gas == GFAPI.AIR)
 		{
 			access.setBlockToAir(pos);
 		}
-		if (level <= 16 & level > 0)
+		else if (level <= 16 & level > 0)
 		{
 			if (gas != null)
 			{
@@ -106,11 +106,11 @@ public class GFManipulationAPI implements IManipulationAPI
 	@Override
 	public int addGasLevel(BlockPos pos, World access, GasType gas, int level)
 	{
-		if(gas == GFAPI.gasTypeAir)
+		if(gas == GFAPI.AIR)
 		{
 			return 0;
 		}
-		if (level <= 16 & level > 0)
+		else if (level <= 16 & level > 0)
 		{
 			Block a = access.getBlockState(pos).getBlock();
 			if (a instanceof BlockGas && ((BlockGas) a).gasType == gas)

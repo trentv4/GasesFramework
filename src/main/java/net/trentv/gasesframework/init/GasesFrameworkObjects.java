@@ -18,11 +18,18 @@ public class GasesFrameworkObjects
 	                                    .registerEntityReaction(new EntityReactionSuffocation(3, 3))
 	                                    .registerEntityReaction(new EntityReactionBlindness(4))
 	                                    .registerEntityReaction(new EntityReactionSlowness(2));
-	public static final GasType gasTypeFire = new GasType("fire", 0x7F4F4F7F, 2, 0, Combustability.NONE);
+	public static final GasType FIRE = new GasType("fire", 0x7F4F4F7F, 2, 0, Combustability.NONE)
+										.setCreativeTab(GasesFramework.CREATIVE_TAB);
+
+	//temporarily here until I do the split to Glenn's Gases
+	public static final GasType RED_GAS = new GasType("red", 0x7F0000, 2, 0, Combustability.EXPLOSIVE)
+										.setCreativeTab(GasesFramework.CREATIVE_TAB);
 
 	public static void init()
 	{
-		GFAPI.registerGasType(SMOKE, new ResourceLocation(GasesFramework.MODID, "gas_smoke"));
+		GFAPI.registerGasType(SMOKE, new ResourceLocation(GasesFramework.MODID, "gas_" + SMOKE.name));
+		GFAPI.registerGasType(FIRE, new ResourceLocation(GasesFramework.MODID, "gas_" + FIRE.name));
+		GFAPI.registerGasType(RED_GAS, new ResourceLocation(GasesFramework.MODID, "gas_" + RED_GAS.name));
 		
 		GasType[] allTypes = GFAPI.getGasTypes();
 		for (GasType type : allTypes)
