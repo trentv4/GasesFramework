@@ -124,7 +124,7 @@ public class BlockGas extends Block implements ISample
 				}
 			}
 			else // Can't flow above or below, so time to spill out on the
-					// ground
+				// ground
 			{
 				if (thisValue > 1)
 				{
@@ -247,7 +247,7 @@ public class BlockGas extends Block implements ISample
 		}
 		if(gasType.combustability.explosionPower > 0)
 		{
-			EntityDelayedExplosion exploder = new EntityDelayedExplosion(access, 5, gasType.combustability.explosionPower, true, true);
+			EntityDelayedExplosion exploder = new EntityDelayedExplosion(access, 5, (16 / access.getBlockState(pos).getValue(CAPACITY)) * gasType.combustability.explosionPower, true, true);
 			exploder.setPosition(pos.getX(), pos.getY(), pos.getZ());
 			access.spawnEntityInWorld(exploder);
 			GFAPI.setGasLevel(pos, access, GFAPI.AIR, 16);
