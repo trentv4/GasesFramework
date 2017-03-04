@@ -2,7 +2,6 @@ package net.trentv.gasesframework.common.entity;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 
 public class EntityDelayedExplosion extends Entity

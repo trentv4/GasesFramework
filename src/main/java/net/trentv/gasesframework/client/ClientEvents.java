@@ -8,8 +8,8 @@ import net.minecraftforge.client.event.EntityViewRenderEvent.FogDensity;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.trentv.gfapi.capability.GasEffectsProvider;
-import net.trentv.gfapi.capability.IGasEffects;
+import net.trentv.gasesframework.api.capability.GasEffectsProvider;
+import net.trentv.gasesframework.api.capability.IGasEffects;
 
 public class ClientEvents
 {
@@ -18,7 +18,7 @@ public class ClientEvents
 	public void onFogDensity(FogDensity event)
 	{
 		Entity a = event.getEntity();
-		if(a.hasCapability(GasEffectsProvider.GAS_EFFECTS, null))
+		if (a.hasCapability(GasEffectsProvider.GAS_EFFECTS, null))
 		{
 			IGasEffects q = a.getCapability(GasEffectsProvider.GAS_EFFECTS, null);
 			float f = q.getBlindness() / 250.0f;
@@ -37,7 +37,7 @@ public class ClientEvents
 	public void onFogColor(FogColors event)
 	{
 		Entity a = event.getEntity();
-		if(a.hasCapability(GasEffectsProvider.GAS_EFFECTS, null))
+		if (a.hasCapability(GasEffectsProvider.GAS_EFFECTS, null))
 		{
 			IGasEffects q = a.getCapability(GasEffectsProvider.GAS_EFFECTS, null);
 

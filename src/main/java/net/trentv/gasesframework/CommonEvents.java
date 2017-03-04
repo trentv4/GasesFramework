@@ -2,20 +2,18 @@ package net.trentv.gasesframework;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.trentv.gfapi.capability.GasEffectsProvider;
-import net.trentv.gfapi.capability.GasEffectsStorage;
-import net.trentv.gfapi.capability.IGasEffects;
+import net.trentv.gasesframework.api.capability.GasEffectsProvider;
+import net.trentv.gasesframework.api.capability.IGasEffects;
 
 public class CommonEvents
 {
 	@SubscribeEvent
 	public void onLivingUpdate(LivingUpdateEvent event)
 	{
-		//if(!event.getEntity().getEntityWorld().isRemote)
+		// if(!event.getEntity().getEntityWorld().isRemote)
 		{
 			Entity b = event.getEntity();
 			if (b.hasCapability(GasEffectsProvider.GAS_EFFECTS, null))
@@ -29,7 +27,8 @@ public class CommonEvents
 				{
 					q.setSlowness(q.getSlowness() - 1);
 					float multiply = 1 - (q.getSlowness() / 100);
-					if(multiply < 0.05f) multiply = 0.05f;
+					if (multiply < 0.05f)
+						multiply = 0.05f;
 					b.motionX *= multiply;
 					b.motionZ *= multiply;
 				}

@@ -9,24 +9,24 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ICustomModelLoader;
 import net.minecraftforge.client.model.IModel;
 import net.trentv.gasesframework.GasesFramework;
-import net.trentv.gfapi.GFAPI;
-import net.trentv.gfapi.GasType;
+import net.trentv.gasesframework.api.GFAPI;
+import net.trentv.gasesframework.api.GasType;
 
 public class IGasesModelLoader implements ICustomModelLoader
 {
 	@Override
 	public void onResourceManagerReload(IResourceManager resourceManager)
 	{
-		
+
 	}
 
 	@Override
 	public boolean accepts(ResourceLocation modelLocation)
 	{
 		List<String> path = Arrays.asList("gas_smoke");
-		if(modelLocation.getResourceDomain().equals(GasesFramework.MODID))
+		if (modelLocation.getResourceDomain().equals(GasesFramework.MODID))
 		{
-			if(modelLocation.getResourcePath().contains("gas_"))
+			if (modelLocation.getResourcePath().contains("gas_"))
 			{
 				GasType a = GFAPI.getGasType(modelLocation);
 				return true;
@@ -38,13 +38,13 @@ public class IGasesModelLoader implements ICustomModelLoader
 	@Override
 	public IModel loadModel(ResourceLocation modelLocation) throws Exception
 	{
-		if(modelLocation instanceof ModelResourceLocation)
+		if (modelLocation instanceof ModelResourceLocation)
 		{
-			if(modelLocation.getResourceDomain().equals(GasesFramework.MODID))
+			if (modelLocation.getResourceDomain().equals(GasesFramework.MODID))
 			{
-				if(modelLocation.getResourcePath().contains("gas_"))
+				if (modelLocation.getResourcePath().contains("gas_"))
 				{
-					if(((ModelResourceLocation) modelLocation).getVariant().equals("inventory"))
+					if (((ModelResourceLocation) modelLocation).getVariant().equals("inventory"))
 					{
 						return new ModelBlockGas(16);
 					}

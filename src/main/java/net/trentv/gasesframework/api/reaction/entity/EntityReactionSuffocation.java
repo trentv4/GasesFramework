@@ -1,12 +1,12 @@
-package net.trentv.gfapi.reaction.entity;
+package net.trentv.gasesframework.api.reaction.entity;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
-import net.trentv.gfapi.GFAPI;
-import net.trentv.gfapi.GasType;
-import net.trentv.gfapi.capability.GasEffectsProvider;
-import net.trentv.gfapi.capability.IGasEffects;
+import net.trentv.gasesframework.api.GFAPI;
+import net.trentv.gasesframework.api.GasType;
+import net.trentv.gasesframework.api.capability.GasEffectsProvider;
+import net.trentv.gasesframework.api.capability.IGasEffects;
 
 public class EntityReactionSuffocation implements IEntityReaction
 {
@@ -25,11 +25,11 @@ public class EntityReactionSuffocation implements IEntityReaction
 		if (e.hasCapability(GasEffectsProvider.GAS_EFFECTS, null))
 		{
 			IGasEffects q = e.getCapability(GasEffectsProvider.GAS_EFFECTS, null);
-			if(new BlockPos(e.getPositionEyes(0)).toLong() == pos.toLong())
+			if (new BlockPos(e.getPositionEyes(0)).toLong() == pos.toLong())
 			{
-				if(!access.isAirBlock(new BlockPos(e.getPositionEyes(0))))
+				if (!access.isAirBlock(new BlockPos(e.getPositionEyes(0))))
 				{
-					if(q.getSuffocation() > 0 + suffocationRate)
+					if (q.getSuffocation() > 0 + suffocationRate)
 					{
 						q.setSuffocation(q.getSuffocation() - suffocationRate);
 					}
@@ -39,6 +39,6 @@ public class EntityReactionSuffocation implements IEntityReaction
 					}
 				}
 			}
-		}		
+		}
 	}
 }

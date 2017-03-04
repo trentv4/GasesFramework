@@ -32,7 +32,7 @@ public class ModelBlockGas implements IModel
 	private FaceBakery bakery = new FaceBakery();
 	private ResourceLocation texture = new ResourceLocation(GasesFramework.MODID, "block/gas_default");
 	private final int quantity;
-	
+
 	public ModelBlockGas(int valueOf)
 	{
 		this.quantity = valueOf;
@@ -55,18 +55,17 @@ public class ModelBlockGas implements IModel
 	@Override
 	public IBakedModel bake(IModelState state, VertexFormat format, Function<ResourceLocation, TextureAtlasSprite> bakedTextureGetter)
 	{
-		//facings in D-U-N-S-W-E order 
-		int ypos = 8 - quantity/2;
-		List<BakedQuad> allQuads = Arrays.asList(
-				getQuad(new Vector3f(0,ypos,0), new Vector3f(16,ypos,16), EnumFacing.DOWN, bakedTextureGetter, quantity), //DOWN
-				getQuad(new Vector3f(0,ypos,0), new Vector3f(16,ypos+quantity,16), EnumFacing.UP, bakedTextureGetter, quantity), //UP
-				getQuad(new Vector3f(0,ypos,0), new Vector3f(16,ypos+quantity,16), EnumFacing.NORTH, bakedTextureGetter, quantity), //NORTH
-				getQuad(new Vector3f(0,ypos,0), new Vector3f(16,ypos+quantity,16), EnumFacing.SOUTH, bakedTextureGetter, quantity), //SOUTH
-				getQuad(new Vector3f(0,ypos,0), new Vector3f(16,ypos+quantity,16), EnumFacing.WEST, bakedTextureGetter, quantity), //WEST
-				getQuad(new Vector3f(0,ypos,0), new Vector3f(16,ypos+quantity,16), EnumFacing.EAST, bakedTextureGetter, quantity)  //EAST
-				);
+		// facings in D-U-N-S-W-E order
+		int ypos = 8 - quantity / 2;
+		List<BakedQuad> allQuads = Arrays.asList(getQuad(new Vector3f(0, ypos, 0), new Vector3f(16, ypos, 16), EnumFacing.DOWN, bakedTextureGetter, quantity), // DOWN
+				getQuad(new Vector3f(0, ypos, 0), new Vector3f(16, ypos + quantity, 16), EnumFacing.UP, bakedTextureGetter, quantity), // UP
+				getQuad(new Vector3f(0, ypos, 0), new Vector3f(16, ypos + quantity, 16), EnumFacing.NORTH, bakedTextureGetter, quantity), // NORTH
+				getQuad(new Vector3f(0, ypos, 0), new Vector3f(16, ypos + quantity, 16), EnumFacing.SOUTH, bakedTextureGetter, quantity), // SOUTH
+				getQuad(new Vector3f(0, ypos, 0), new Vector3f(16, ypos + quantity, 16), EnumFacing.WEST, bakedTextureGetter, quantity), // WEST
+				getQuad(new Vector3f(0, ypos, 0), new Vector3f(16, ypos + quantity, 16), EnumFacing.EAST, bakedTextureGetter, quantity) // EAST
+		);
 		HashMap<EnumFacing, List<BakedQuad>> faceQuads = new HashMap<EnumFacing, List<BakedQuad>>();
-		for(int i = 0; i < EnumFacing.values().length; i++)
+		for (int i = 0; i < EnumFacing.values().length; i++)
 		{
 			faceQuads.put(EnumFacing.VALUES[i], Arrays.asList(allQuads.get(i)));
 		}
@@ -76,10 +75,9 @@ public class ModelBlockGas implements IModel
 
 	private BakedQuad getQuad(Vector3f from, Vector3f to, EnumFacing direction, Function<ResourceLocation, TextureAtlasSprite> bakedTextureGetter, int quantity)
 	{
-		return bakery.makeBakedQuad(from, to, new BlockPartFace(null, 0, texture.toString(), new BlockFaceUV(new float[]{0,0,16,quantity}, 0)),
-				bakedTextureGetter.apply(texture), direction, ModelRotation.X0_Y0, null, true, true);
+		return bakery.makeBakedQuad(from, to, new BlockPartFace(null, 0, texture.toString(), new BlockFaceUV(new float[] { 0, 0, 16, quantity }, 0)), bakedTextureGetter.apply(texture), direction, ModelRotation.X0_Y0, null, true, true);
 	}
-	
+
 	@Override
 	public IModelState getDefaultState()
 	{

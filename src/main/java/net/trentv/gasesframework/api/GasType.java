@@ -1,4 +1,4 @@
-package net.trentv.gfapi;
+package net.trentv.gasesframework.api;
 
 import java.util.ArrayList;
 import java.util.IdentityHashMap;
@@ -17,9 +17,9 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.trentv.gfapi.reaction.block.IBlockReaction;
-import net.trentv.gfapi.reaction.entity.IEntityReaction;
-import net.trentv.gfapi.reaction.gas.IGasReaction;
+import net.trentv.gasesframework.api.reaction.block.IBlockReaction;
+import net.trentv.gasesframework.api.reaction.entity.IEntityReaction;
+import net.trentv.gasesframework.api.reaction.gas.IGasReaction;
 
 public class GasType
 {
@@ -95,7 +95,7 @@ public class GasType
 			gasColor = new GasColor(this);
 		return gasColor;
 	}
-	
+
 	@SideOnly(Side.CLIENT)
 	public class GasColor implements IBlockColor, IItemColor
 	{
@@ -129,24 +129,24 @@ public class GasType
 	{
 		return entityReactions.toArray(new IEntityReaction[entityReactions.size()]);
 	}
-	
+
 	public IGasReaction[] getGasReaction(GasType in)
 	{
 		Set<IGasReaction> set = gasReactions.get(in);
 		return set.toArray(new IGasReaction[set.size()]);
 	}
-	
+
 	public IBlockReaction[] getBlockReaction(Block in)
 	{
 		Set<IBlockReaction> set = blockReactions.get(in);
 		return set.toArray(new IBlockReaction[set.size()]);
 	}
-	
+
 	public boolean tick(World world, IBlockState state, BlockPos pos)
 	{
 		return true;
 	}
-	
+
 	public boolean ignite(World world, IBlockState state, BlockPos pos)
 	{
 		return true;

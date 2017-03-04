@@ -10,9 +10,8 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.common.MinecraftForge;
 import net.trentv.gasesframework.CommonProxy;
-import net.trentv.gasesframework.GasesFramework;
-import net.trentv.gfapi.GFAPI;
-import net.trentv.gfapi.GasType;
+import net.trentv.gasesframework.api.GFAPI;
+import net.trentv.gasesframework.api.GasType;
 
 public class ClientProxy extends CommonProxy
 {

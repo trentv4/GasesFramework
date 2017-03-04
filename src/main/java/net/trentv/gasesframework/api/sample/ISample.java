@@ -1,9 +1,9 @@
-package net.trentv.gfapi.sample;
+package net.trentv.gasesframework.api.sample;
 
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
-import net.trentv.gfapi.GasType;
+import net.trentv.gasesframework.api.GasType;
 
 public interface ISample
 {

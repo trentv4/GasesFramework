@@ -1,7 +1,6 @@
 package net.trentv.gasesframework.common;
 
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.trentv.gasesframework.init.GasesFrameworkObjects;
 

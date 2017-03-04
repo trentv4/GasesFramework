@@ -1,4 +1,4 @@
-package net.trentv.gfapi;
+package net.trentv.gasesframework.api;
 
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;

@@ -1,4 +1,4 @@
-package net.trentv.gfapi.capability;
+package net.trentv.gasesframework.api.capability;
 
 public class BaseGasEffects implements IGasEffects
 {

@@ -1,4 +1,4 @@
-package net.trentv.gfapi.capability;
+package net.trentv.gasesframework.api.capability;
 
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.util.EnumFacing;

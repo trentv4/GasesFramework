@@ -22,13 +22,13 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.trentv.gasesframework.api.GFAPI;
+import net.trentv.gasesframework.api.GasType;
+import net.trentv.gasesframework.api.MaterialGas;
+import net.trentv.gasesframework.api.reaction.entity.IEntityReaction;
+import net.trentv.gasesframework.api.sample.ISample;
 import net.trentv.gasesframework.common.entity.EntityDelayedExplosion;
 import net.trentv.gasesframework.init.GasesFrameworkObjects;
-import net.trentv.gfapi.GFAPI;
-import net.trentv.gfapi.GasType;
-import net.trentv.gfapi.MaterialGas;
-import net.trentv.gfapi.reaction.entity.IEntityReaction;
-import net.trentv.gfapi.sample.ISample;
 
 public class BlockGas extends Block implements ISample
 {
@@ -66,20 +66,20 @@ public class BlockGas extends Block implements ISample
 		// Optimize to only run when the block next to it updates (after coming
 		// to rest)
 		// Look into MutableBlockPos to reduce GC overhead
-		
-		if(!gasType.tick(world, state, currentPosition))
+
+		if (!gasType.tick(world, state, currentPosition))
 		{
 			return;
 		}
-		
-		if(gasType.dissipationRate > 0)
+
+		if (gasType.dissipationRate > 0)
 		{
-			if(rand.nextInt(16) < gasType.dissipationRate)
+			if (rand.nextInt(16) < gasType.dissipationRate)
 			{
 				state = state.withProperty(CAPACITY, state.getValue(CAPACITY) - 1);
 			}
 		}
-		
+
 		// If density is 0, we're going to be spreading out in a cloud
 		if (gasType.density == 0)
 		{
@@ -124,7 +124,7 @@ public class BlockGas extends Block implements ISample
 				}
 			}
 			else // Can't flow above or below, so time to spill out on the
-				// ground
+					// ground
 			{
 				if (thisValue > 1)
 				{
@@ -176,11 +176,11 @@ public class BlockGas extends Block implements ISample
 	{
 		return new BlockStateContainer(this, CAPACITY);
 	}
-	
-    public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos)
-    {
-        return state;
-    }
+
+	public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos)
+	{
+		return state;
+	}
 
 	@Override
 	public IBlockState getStateFromMeta(int meta)
@@ -205,7 +205,7 @@ public class BlockGas extends Block implements ISample
 	{
 		return NULL_AABB;
 	}
-	
+
 	@Override
 	public void onBlockExploded(World world, BlockPos pos, Explosion explosion)
 	{
@@ -241,35 +241,35 @@ public class BlockGas extends Block implements ISample
 
 	public void ignite(BlockPos pos, World access)
 	{
-		if(!gasType.ignite(access, access.getBlockState(pos), pos))
+		if (!gasType.ignite(access, access.getBlockState(pos), pos))
 		{
 			return;
 		}
-		if(gasType.combustability.explosionPower > 0)
+		if (gasType.combustability.explosionPower > 0)
 		{
 			EntityDelayedExplosion exploder = new EntityDelayedExplosion(access, 5, (16 / access.getBlockState(pos).getValue(CAPACITY)) * gasType.combustability.explosionPower, true, true);
 			exploder.setPosition(pos.getX(), pos.getY(), pos.getZ());
 			access.spawnEntityInWorld(exploder);
 			GFAPI.setGasLevel(pos, access, GFAPI.AIR, 16);
 		}
-		if(gasType.combustability.fireSpreadRate > 0)
+		if (gasType.combustability.fireSpreadRate > 0)
 		{
 			GFAPI.setGasLevel(pos, access, GasesFrameworkObjects.FIRE, access.getBlockState(pos).getValue(CAPACITY));
 		}
 	}
-	
-    @Nullable
-    public Item getItemDropped(IBlockState state, Random rand, int fortune)
-    {
-        return null;
-    }
-    
-    public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
-    {
-        List<ItemStack> ret = new ArrayList<ItemStack>();
-        return ret;
-    }
-    
+
+	@Nullable
+	public Item getItemDropped(IBlockState state, Random rand, int fortune)
+	{
+		return null;
+	}
+
+	public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
+	{
+		List<ItemStack> ret = new ArrayList<ItemStack>();
+		return ret;
+	}
+
 	public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity)
 	{
 		IEntityReaction[] s = gasType.getEntityReactions();

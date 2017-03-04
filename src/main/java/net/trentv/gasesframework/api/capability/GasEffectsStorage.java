@@ -1,13 +1,10 @@
-package net.trentv.gfapi.capability;
+package net.trentv.gasesframework.api.capability;
 
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.Capability.IStorage;
-import net.minecraftforge.common.capabilities.CapabilityInject;
-import net.minecraftforge.common.capabilities.ICapabilityProvider;
-import net.minecraftforge.common.capabilities.ICapabilitySerializable;
 
 public class GasEffectsStorage<T extends IGasEffects> implements IStorage<IGasEffects>
 {
