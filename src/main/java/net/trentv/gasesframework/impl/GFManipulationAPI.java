@@ -6,7 +6,6 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.trentv.gasesframework.GasesFramework;
-import net.trentv.gasesframework.api.GFAPI;
 import net.trentv.gasesframework.api.GasType;
 import net.trentv.gasesframework.common.block.BlockGas;
 
@@ -21,7 +20,7 @@ public class GFManipulationAPI
 		}
 		else
 		{
-			return GFAPI.AIR;
+			return GasesFramework.AIR;
 		}
 	}
 
@@ -40,7 +39,7 @@ public class GFManipulationAPI
 
 	public static boolean canPlaceGas(BlockPos pos, World access, GasType currentGas)
 	{
-		if (currentGas == GFAPI.AIR)
+		if (currentGas == GasesFramework.AIR)
 		{
 			return false;
 		}
@@ -54,7 +53,7 @@ public class GFManipulationAPI
 
 	public static void setGasLevel(BlockPos pos, World access, GasType gas, int level)
 	{
-		if (gas == GFAPI.AIR)
+		if (gas == GasesFramework.AIR)
 		{
 			access.setBlockToAir(pos);
 		}
@@ -99,7 +98,7 @@ public class GFManipulationAPI
 
 	public static int addGasLevel(BlockPos pos, World access, GasType gas, int level)
 	{
-		if (gas == GFAPI.AIR)
+		if (gas == GasesFramework.AIR)
 		{
 			return 0;
 		}

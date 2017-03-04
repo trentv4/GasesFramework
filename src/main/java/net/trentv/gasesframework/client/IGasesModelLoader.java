@@ -9,8 +9,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ICustomModelLoader;
 import net.minecraftforge.client.model.IModel;
 import net.trentv.gasesframework.GasesFramework;
-import net.trentv.gasesframework.api.GFAPI;
 import net.trentv.gasesframework.api.GasType;
+import net.trentv.gasesframework.impl.GFRegistrationAPI;
 
 public class IGasesModelLoader implements ICustomModelLoader
 {
@@ -28,7 +28,7 @@ public class IGasesModelLoader implements ICustomModelLoader
 		{
 			if (modelLocation.getResourcePath().contains("gas_"))
 			{
-				GasType a = GFAPI.getGasType(modelLocation);
+				GasType a = GFRegistrationAPI.getGasType(modelLocation);
 				return true;
 			}
 		}

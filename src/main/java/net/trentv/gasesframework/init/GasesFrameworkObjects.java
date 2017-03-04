@@ -3,12 +3,12 @@ package net.trentv.gasesframework.init;
 import net.minecraft.util.ResourceLocation;
 import net.trentv.gasesframework.GasesFramework;
 import net.trentv.gasesframework.api.Combustibility;
-import net.trentv.gasesframework.api.GFAPI;
 import net.trentv.gasesframework.api.GasType;
 import net.trentv.gasesframework.api.reaction.entity.EntityReactionBlindness;
 import net.trentv.gasesframework.api.reaction.entity.EntityReactionHrrm;
 import net.trentv.gasesframework.api.reaction.entity.EntityReactionSlowness;
 import net.trentv.gasesframework.api.reaction.entity.EntityReactionSuffocation;
+import net.trentv.gasesframework.impl.GFRegistrationAPI;
 
 public class GasesFrameworkObjects
 {
@@ -20,11 +20,11 @@ public class GasesFrameworkObjects
 
 	public static void init()
 	{
-		GFAPI.registerGasType(SMOKE, new ResourceLocation(GasesFramework.MODID, "gas_" + SMOKE.name));
-		GFAPI.registerGasType(FIRE, new ResourceLocation(GasesFramework.MODID, "gas_" + FIRE.name));
-		GFAPI.registerGasType(RED_GAS, new ResourceLocation(GasesFramework.MODID, "gas_" + RED_GAS.name));
+		GFRegistrationAPI.registerGasType(SMOKE, new ResourceLocation(GasesFramework.MODID, "gas_" + SMOKE.name));
+		GFRegistrationAPI.registerGasType(FIRE, new ResourceLocation(GasesFramework.MODID, "gas_" + FIRE.name));
+		GFRegistrationAPI.registerGasType(RED_GAS, new ResourceLocation(GasesFramework.MODID, "gas_" + RED_GAS.name));
 
-		GasType[] allTypes = GFAPI.getGasTypes();
+		GasType[] allTypes = GFRegistrationAPI.getGasTypes();
 		for (GasType type : allTypes)
 		{
 			type.registerEntityReaction(new EntityReactionHrrm());

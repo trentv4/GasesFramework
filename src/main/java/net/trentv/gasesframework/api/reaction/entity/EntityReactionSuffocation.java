@@ -3,7 +3,7 @@ package net.trentv.gasesframework.api.reaction.entity;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
-import net.trentv.gasesframework.api.GFAPI;
+import net.trentv.gasesframework.GasesFramework;
 import net.trentv.gasesframework.api.GasType;
 import net.trentv.gasesframework.api.capability.GasEffectsProvider;
 import net.trentv.gasesframework.api.capability.IGasEffects;
@@ -35,7 +35,7 @@ public class EntityReactionSuffocation implements IEntityReaction
 					}
 					else
 					{
-						e.attackEntityFrom(GFAPI.damageSourceAsphyxiation, damage);
+						e.attackEntityFrom(GasesFramework.damageSourceAsphyxiation, damage);
 					}
 				}
 			}
