@@ -18,7 +18,7 @@ public class GFAPI
 	public static final String PROVIDES = "gasesFrameworkAPI";
 
 	public static DamageSourceAsphyxiation damageSourceAsphyxiation = INSTANCE.new DamageSourceAsphyxiation("asphyxiation");
-	public static final GasType AIR = new GasType("air", 0, 0, 0, Combustability.NONE);
+	public static final GasType AIR = new GasType("air", 0, 0, 0, Combustibility.NONE);
 
 	private class DamageSourceAsphyxiation extends DamageSource
 	{

@@ -30,7 +30,7 @@ public class GasType
 	public final String name;
 	public final int color;
 	public final int opacity;
-	public final Combustability combustability;
+	public final Combustibility combustability;
 	public int density = 0;
 
 	public Block block;
@@ -48,7 +48,7 @@ public class GasType
 	public Map<GasType, Set<IGasReaction>> gasReactions = new IdentityHashMap<GasType, Set<IGasReaction>>();
 	public Map<Block, Set<IBlockReaction>> blockReactions = new IdentityHashMap<Block, Set<IBlockReaction>>();
 
-	public GasType(String name, int color, int opacity, int density, Combustability combustability)
+	public GasType(String name, int color, int opacity, int density, Combustibility combustability)
 	{
 		this.gasID = maxGasID++;
 		this.name = name;
