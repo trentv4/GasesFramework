@@ -35,7 +35,7 @@ public class GasesFramework
 
 	public static Logger logger;
 
-	public static DamageSourceAsphyxiation damageSourceAsphyxiation = new GasesFramework().new DamageSourceAsphyxiation("asphyxiation");
+	public static DamageSourceAsphyxiation damageSourceAsphyxiation = new DamageSourceAsphyxiation("asphyxiation");
 	public static final GasType AIR = new GasType("air", 0, 0, 0, Combustibility.NONE);
 	
 	@EventHandler
@@ -60,10 +60,10 @@ public class GasesFramework
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event)
 	{
-
+		logger.info("Gases Framework initialized");
 	}
 
-	private class DamageSourceAsphyxiation extends DamageSource
+	private static class DamageSourceAsphyxiation extends DamageSource
 	{
 		public DamageSourceAsphyxiation(String damageTypeIn)
 		{
