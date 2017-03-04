@@ -35,7 +35,7 @@ public class GasesFramework
 
 	public static Logger logger;
 
-	public static DamageSourceAsphyxiation damageSourceAsphyxiation = INSTANCE.new DamageSourceAsphyxiation("asphyxiation");
+	public static DamageSourceAsphyxiation damageSourceAsphyxiation = new GasesFramework().new DamageSourceAsphyxiation("asphyxiation");
 	public static final GasType AIR = new GasType("air", 0, 0, 0, Combustibility.NONE);
 	
 	@EventHandler
@@ -46,7 +46,7 @@ public class GasesFramework
 		// Register all items, blocks, and gases
 		GasesFrameworkObjects.init();
 		CapabilityManager.INSTANCE.register(IGasEffects.class, new GasEffectsStorage(), BaseGasEffects.class);
-
+		
 		proxy.registerRenderers();
 		proxy.registerEventHandlers();
 	}
