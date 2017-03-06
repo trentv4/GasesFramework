@@ -1,6 +1,0 @@
-{
-    "variants": {
-        "normal": { "model": "gasesframework:gas_default" },
-        "inventory": { "model": "gasesframework:gas_default" }
-    }
-}
