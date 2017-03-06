@@ -5,7 +5,6 @@ import java.util.HashMap;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.trentv.gasesframework.GasesFramework;
 import net.trentv.gasesframework.api.GasType;
 import net.trentv.gasesframework.common.block.BlockGas;
 
@@ -17,7 +16,7 @@ public class GFRegistrationAPI
 	{
 		// Register the gas block
 		BlockGas newGasBlock = new BlockGas(type);
-		newGasBlock.setRegistryName(GasesFramework.MODID, "gas_" + type.name);
+		newGasBlock.setRegistryName(location);
 		GameRegistry.register(newGasBlock);
 
 		type.block = newGasBlock;
@@ -25,7 +24,7 @@ public class GFRegistrationAPI
 		// Register the gas ItemBlock
 
 		ItemBlock newGasItemBlock = new ItemBlock(newGasBlock);
-		newGasItemBlock.setRegistryName(GasesFramework.MODID, "gas_" + type.name);
+		newGasItemBlock.setRegistryName(location);
 		GameRegistry.register(newGasItemBlock);
 
 		type.itemBlock = newGasItemBlock;
@@ -36,7 +35,8 @@ public class GFRegistrationAPI
 
 	public static GasType getGasType(ResourceLocation location)
 	{
-		return gasTypes.get(location);
+		GasType r = gasTypes.get(location);
+		return r;
 	}
 
 	public static GasType[] getGasTypes()

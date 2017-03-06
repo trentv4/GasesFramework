@@ -1,14 +1,10 @@
 package net.trentv.gasesframework.client;
 
-import java.util.Arrays;
-import java.util.List;
-
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.resources.IResourceManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ICustomModelLoader;
 import net.minecraftforge.client.model.IModel;
-import net.trentv.gasesframework.GasesFramework;
 import net.trentv.gasesframework.api.GasType;
 import net.trentv.gasesframework.impl.GFRegistrationAPI;
 
@@ -23,14 +19,11 @@ public class IGasesModelLoader implements ICustomModelLoader
 	@Override
 	public boolean accepts(ResourceLocation modelLocation)
 	{
-		List<String> path = Arrays.asList("gas_smoke");
-		if (modelLocation.getResourceDomain().equals(GasesFramework.MODID))
+		if (modelLocation.getResourcePath().contains("gas_"))
 		{
-			if (modelLocation.getResourcePath().contains("gas_"))
-			{
-				GasType a = GFRegistrationAPI.getGasType(modelLocation);
-				return true;
-			}
+			if (modelLocation.getResourcePath().contains("models/item/")) return true;
+			GasType a = GFRegistrationAPI.getGasType(new ResourceLocation(modelLocation.getResourceDomain(), modelLocation.getResourcePath()));
+			if(a != null) return true;
 		}
 		return false;
 	}
@@ -38,21 +31,18 @@ public class IGasesModelLoader implements ICustomModelLoader
 	@Override
 	public IModel loadModel(ResourceLocation modelLocation) throws Exception
 	{
-		if (modelLocation instanceof ModelResourceLocation)
+		ModelResourceLocation res = (ModelResourceLocation) modelLocation;
+		if (modelLocation.getResourcePath().contains("gas_"))
 		{
-			if (modelLocation.getResourceDomain().equals(GasesFramework.MODID))
+			System.out.println(modelLocation.toString());
+			if ((res.getVariant().equals("inventory")))
 			{
-				if (modelLocation.getResourcePath().contains("gas_"))
-				{
-					if (((ModelResourceLocation) modelLocation).getVariant().equals("inventory"))
-					{
-						return new ModelBlockGas(16);
-					}
-					else
-					{
-						return new ModelBlockGas((int) Integer.valueOf(((ModelResourceLocation) modelLocation).getVariant().replaceAll("capacity=", "")));
-					}
-				}
+				return new ModelBlockGas(16);
+			}
+			else
+			{
+				int capacity = (int) Integer.valueOf(res.getVariant().replaceAll("capacity=", ""));
+				return new ModelBlockGas(capacity);
 			}
 		}
 		return null;

@@ -30,7 +30,7 @@ import net.trentv.gasesframework.GasesFramework;
 public class ModelBlockGas implements IModel
 {
 	private FaceBakery bakery = new FaceBakery();
-	private ResourceLocation texture = new ResourceLocation(GasesFramework.MODID, "block/gas_default");
+	private ResourceLocation texture = new ResourceLocation(GasesFramework.MODID, "block/gas");
 	private final int quantity;
 
 	public ModelBlockGas(int valueOf)
