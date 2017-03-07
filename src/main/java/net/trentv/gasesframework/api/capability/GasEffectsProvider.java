@@ -1,12 +1,13 @@
 package net.trentv.gasesframework.api.capability;
 
-import net.minecraft.nbt.NBTBase;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityInject;
-import net.minecraftforge.common.capabilities.ICapabilitySerializable;
+import net.minecraftforge.common.capabilities.ICapabilityProvider;
+import net.minecraftforge.common.util.INBTSerializable;
 
-public class GasEffectsProvider implements ICapabilitySerializable
+public class GasEffectsProvider implements ICapabilityProvider, INBTSerializable<NBTTagCompound>
 {
 	@CapabilityInject(IGasEffects.class)
 	public static Capability<IGasEffects> GAS_EFFECTS;
@@ -20,6 +21,7 @@ public class GasEffectsProvider implements ICapabilitySerializable
 		return capability == GAS_EFFECTS;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public <T> T getCapability(Capability<T> capability, EnumFacing facing)
 	{
@@ -31,13 +33,13 @@ public class GasEffectsProvider implements ICapabilitySerializable
 	}
 
 	@Override
-	public NBTBase serializeNBT()
+	public NBTTagCompound serializeNBT()
 	{
 		return storage.writeNBT(GAS_EFFECTS, instance, null);
 	}
 
 	@Override
-	public void deserializeNBT(NBTBase nbt)
+	public void deserializeNBT(NBTTagCompound  nbt)
 	{
 		storage.readNBT(GAS_EFFECTS, instance, null, nbt);
 	}

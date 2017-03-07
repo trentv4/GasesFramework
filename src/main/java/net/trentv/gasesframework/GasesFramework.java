@@ -45,7 +45,7 @@ public class GasesFramework
 
 		// Register all items, blocks, and gases
 		GasesFrameworkObjects.init();
-		CapabilityManager.INSTANCE.register(IGasEffects.class, new GasEffectsStorage(), BaseGasEffects.class);
+		CapabilityManager.INSTANCE.register(IGasEffects.class, new GasEffectsStorage<IGasEffects>(), BaseGasEffects.class);
 		
 		proxy.registerRenderers();
 		proxy.registerEventHandlers();

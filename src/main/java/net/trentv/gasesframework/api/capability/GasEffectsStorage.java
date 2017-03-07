@@ -9,7 +9,7 @@ import net.minecraftforge.common.capabilities.Capability.IStorage;
 public class GasEffectsStorage<T extends IGasEffects> implements IStorage<IGasEffects>
 {
 	@Override
-	public NBTBase writeNBT(Capability<IGasEffects> capability, IGasEffects instance, EnumFacing side)
+	public NBTTagCompound  writeNBT(Capability<IGasEffects> capability, IGasEffects instance, EnumFacing side)
 	{
 		NBTTagCompound nbt = new NBTTagCompound();
 		nbt.setFloat("gases-breath", instance.getSuffocation());

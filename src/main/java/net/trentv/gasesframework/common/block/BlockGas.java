@@ -155,7 +155,6 @@ public class BlockGas extends Block implements ISample
 	{
 		if (GFManipulationAPI.canPlaceGas(pos.offset(direction), world, gas.gasType))
 		{
-			BlockPos p = pos.offset(direction);
 			return pos.offset(direction);
 		}
 

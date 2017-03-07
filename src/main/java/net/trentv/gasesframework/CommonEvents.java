@@ -37,7 +37,7 @@ public class CommonEvents
 	}
 
 	@SubscribeEvent
-	public void AttachCapabilityEventEntity(AttachCapabilitiesEvent.Entity e)
+	public void AttachCapabilityEventEntity(AttachCapabilitiesEvent<Entity> e)
 	{
 		e.addCapability(new ResourceLocation(GasesFramework.MODID, "gasEffectsCapability"), new GasEffectsProvider());
 	}

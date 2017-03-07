@@ -1,6 +1,5 @@
 package net.trentv.gasesframework.api.reaction.entity;
 
-import java.util.Random;
 import java.util.UUID;
 
 import net.minecraft.entity.Entity;
@@ -12,7 +11,6 @@ import net.trentv.gasesframework.api.GasType;
 
 public class EntityReactionHrrm implements IEntityReaction
 {
-	private static final Random r = new Random();
 	private static final String[] villagers = new String[] { "b3cea104-fd35-4a5d-bb7b-00668f133e28", // Dethridgecraft
 			"1454841b-ba54-4071-80c0-5b51c2f2d25d", // Wyld
 			"af63c94d-5dbe-4a34-b779-3d44fd9edb2a", // CrustyMustard
