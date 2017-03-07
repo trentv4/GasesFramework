@@ -25,7 +25,7 @@ public class ClientProxy extends CommonProxy
 			// Register the item so it displays as a proper block in inventory
 			ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(item.getRegistryName(), "inventory"));
 		}
-		ModelLoaderRegistry.registerLoader(new IGasesModelLoader());
+		ModelLoaderRegistry.registerLoader(new GasesModelLoader());
 	}
 
 	@Override

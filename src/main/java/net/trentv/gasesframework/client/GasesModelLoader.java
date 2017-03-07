@@ -8,7 +8,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ICustomModelLoader;
 import net.minecraftforge.client.model.IModel;
 
-public class IGasesModelLoader implements ICustomModelLoader
+public class GasesModelLoader implements ICustomModelLoader
 {
 	public static HashSet<ResourceLocation> registeredLocations = new HashSet<ResourceLocation>();
 	

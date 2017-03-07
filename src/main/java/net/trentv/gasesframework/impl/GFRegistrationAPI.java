@@ -6,7 +6,7 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.trentv.gasesframework.api.GasType;
-import net.trentv.gasesframework.client.IGasesModelLoader;
+import net.trentv.gasesframework.client.GasesModelLoader;
 import net.trentv.gasesframework.common.block.BlockGas;
 
 public class GFRegistrationAPI
@@ -30,7 +30,7 @@ public class GFRegistrationAPI
 
 		type.itemBlock = newGasItemBlock;
 		
-		IGasesModelLoader.registeredLocations.add(location);
+		GasesModelLoader.registeredLocations.add(location);
 		gasTypes.put(location, type);
 	}
 
