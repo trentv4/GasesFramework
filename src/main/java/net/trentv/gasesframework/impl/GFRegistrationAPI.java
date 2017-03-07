@@ -6,6 +6,7 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.trentv.gasesframework.api.GasType;
+import net.trentv.gasesframework.client.IGasesModelLoader;
 import net.trentv.gasesframework.common.block.BlockGas;
 
 public class GFRegistrationAPI
@@ -28,8 +29,8 @@ public class GFRegistrationAPI
 		GameRegistry.register(newGasItemBlock);
 
 		type.itemBlock = newGasItemBlock;
-
-		// Ensure the item gets sent off to the ClientProxy to be registered
+		
+		IGasesModelLoader.registeredLocations.add(location);
 		gasTypes.put(location, type);
 	}
 
