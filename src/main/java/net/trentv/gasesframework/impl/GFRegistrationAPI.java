@@ -2,9 +2,13 @@ package net.trentv.gasesframework.impl;
 
 import java.util.HashMap;
 
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.trentv.gasesframework.api.GasType;
 import net.trentv.gasesframework.client.GasesModelLoader;
 import net.trentv.gasesframework.common.block.BlockGas;
@@ -30,7 +34,11 @@ public class GFRegistrationAPI
 
 		type.itemBlock = newGasItemBlock;
 		
+		// Rendering stuff - in the world, then in the inventory
 		GasesModelLoader.registeredLocations.add(location);
+		setInventoryResourceLocation(type);
+
+		// Finally, we can track it in the *right* place.
 		gasTypes.put(location, type);
 	}
 
@@ -44,4 +52,11 @@ public class GFRegistrationAPI
 	{
 		return gasTypes.values().toArray(new GasType[gasTypes.values().size()]);
 	}
+
+	@SideOnly(Side.CLIENT)
+	private static final void setInventoryResourceLocation(GasType type)
+	{
+		ModelLoader.setCustomModelResourceLocation(type.itemBlock, 0, new ModelResourceLocation(type.itemBlock.getRegistryName(), "inventory"));
+	}
+
 }
