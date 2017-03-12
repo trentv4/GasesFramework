@@ -2,6 +2,8 @@ package net.trentv.gasesframework;
 
 import org.apache.logging.log4j.Logger;
 
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
 import net.minecraft.util.DamageSource;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.fml.common.Mod;
@@ -16,7 +18,6 @@ import net.trentv.gasesframework.api.GasType;
 import net.trentv.gasesframework.api.capability.BaseGasEffects;
 import net.trentv.gasesframework.api.capability.GasEffectsStorage;
 import net.trentv.gasesframework.api.capability.IGasEffects;
-import net.trentv.gasesframework.common.GasesFrameworkCreativeTab;
 import net.trentv.gasesframework.init.GasesFrameworkObjects;
 
 @Mod(modid = GasesFramework.MODID, version = GasesFramework.VERSION, acceptedMinecraftVersions = "1.10.2")
@@ -69,6 +70,20 @@ public class GasesFramework
 		{
 			super(damageTypeIn);
 			this.setDamageBypassesArmor();
+		}
+	}
+	
+	private static class GasesFrameworkCreativeTab extends CreativeTabs
+	{
+		public GasesFrameworkCreativeTab(String label)
+		{
+			super(label);
+		}
+
+		@Override
+		public Item getTabIconItem()
+		{
+			return GasesFrameworkObjects.SMOKE.itemBlock;
 		}
 	}
 }
