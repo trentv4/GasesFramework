@@ -23,6 +23,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.trentv.gasesframework.GasesFramework;
+import net.trentv.gasesframework.api.Combustibility;
 import net.trentv.gasesframework.api.GasType;
 import net.trentv.gasesframework.api.MaterialGas;
 import net.trentv.gasesframework.api.reaction.entity.IEntityReaction;
@@ -77,7 +78,7 @@ public class BlockGas extends Block implements ISample
 		for (int i = 0; i < EnumFacing.VALUES.length; i++)
 		{
 			BlockPos scanBlock = currentPosition.offset(EnumFacing.VALUES[i]);
-			if(GFRegistrationAPI.isIgnitionBlock(world.getBlockState(scanBlock).getBlock()))
+			if(gasType.combustability != Combustibility.NONE && GFRegistrationAPI.isIgnitionBlock(world.getBlockState(scanBlock).getBlock()))
 			{
 				ignite(currentPosition, world);
 				return;
