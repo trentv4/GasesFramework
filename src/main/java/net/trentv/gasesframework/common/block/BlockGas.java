@@ -264,7 +264,9 @@ public class BlockGas extends Block implements ISample
 		}
 		if (gasType.combustability.explosionPower > 0)
 		{
-			EntityDelayedExplosion exploder = new EntityDelayedExplosion(access, 5, (16 / access.getBlockState(pos).getValue(CAPACITY)) * gasType.combustability.explosionPower, true, true);
+			float capacity = access.getBlockState(pos).getValue(CAPACITY);
+			float explosionPower = (capacity / 16) * gasType.combustability.explosionPower * 3;
+			EntityDelayedExplosion exploder = new EntityDelayedExplosion(access, 5, explosionPower, true, true);
 			exploder.setPosition(pos.getX(), pos.getY(), pos.getZ());
 			access.spawnEntityInWorld(exploder);
 			GFManipulationAPI.setGasLevel(pos, access, GasesFramework.AIR, 16);
