@@ -14,4 +14,9 @@ public enum Combustibility
 		this.fireSpreadRate = fireSpreadRate;
 		this.explosionPower = explosionPower;
 	}
+	
+	public boolean isFlammable()
+	{
+		return burnRate > 0;
+	}
 }

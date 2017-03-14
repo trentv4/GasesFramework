@@ -1,5 +1,6 @@
 package net.trentv.gasesframework.init;
 
+import net.minecraft.init.Blocks;
 import net.minecraft.util.ResourceLocation;
 import net.trentv.gasesframework.GasesFramework;
 import net.trentv.gasesframework.api.Combustibility;
@@ -25,5 +26,8 @@ public class GasesFrameworkObjects
 		{
 			type.registerEntityReaction(new EntityReactionHrrm());
 		}
+		
+		GFRegistrationAPI.registerIgnitionBlock(Blocks.FIRE);
+		GFRegistrationAPI.registerIgnitionBlock(FIRE.block);
 	}
 }

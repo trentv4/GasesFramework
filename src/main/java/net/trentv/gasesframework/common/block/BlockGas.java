@@ -29,6 +29,7 @@ import net.trentv.gasesframework.api.reaction.entity.IEntityReaction;
 import net.trentv.gasesframework.api.sample.ISample;
 import net.trentv.gasesframework.common.entity.EntityDelayedExplosion;
 import net.trentv.gasesframework.impl.GFManipulationAPI;
+import net.trentv.gasesframework.impl.GFRegistrationAPI;
 import net.trentv.gasesframework.init.GasesFrameworkObjects;
 
 public class BlockGas extends Block implements ISample
@@ -71,6 +72,16 @@ public class BlockGas extends Block implements ISample
 		if (!gasType.tick(world, state, currentPosition))
 		{
 			return;
+		}
+		
+		for (int i = 0; i < EnumFacing.VALUES.length; i++)
+		{
+			BlockPos scanBlock = currentPosition.offset(EnumFacing.VALUES[i]);
+			if(GFRegistrationAPI.isIgnitionBlock(world.getBlockState(scanBlock).getBlock()))
+			{
+				ignite(currentPosition, world);
+				return;
+			}
 		}
 
 		if (gasType.dissipationRate > 0)
@@ -211,6 +222,11 @@ public class BlockGas extends Block implements ISample
 	{
 		ignite(pos, world);
 	}
+	
+    public int getFlammability(IBlockAccess world, BlockPos pos, EnumFacing face)
+    {
+        return 0;
+    }
 
 	// Client Side
 

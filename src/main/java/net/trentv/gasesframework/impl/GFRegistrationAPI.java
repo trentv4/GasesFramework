@@ -1,7 +1,9 @@
 package net.trentv.gasesframework.impl;
 
 import java.util.HashMap;
+import java.util.HashSet;
 
+import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.util.ResourceLocation;
@@ -16,7 +18,8 @@ import net.trentv.gasesframework.common.block.BlockGas;
 public class GFRegistrationAPI
 {
 	private static HashMap<ResourceLocation, GasType> gasTypes = new HashMap<ResourceLocation, GasType>();
-
+	private static HashSet<Block> ignitionBlocks = new HashSet<Block>();
+	
 	public static void registerGasType(GasType type, ResourceLocation location)
 	{
 		// Register the gas block
@@ -52,11 +55,20 @@ public class GFRegistrationAPI
 	{
 		return gasTypes.values().toArray(new GasType[gasTypes.values().size()]);
 	}
+	
+	public static void registerIgnitionBlock(Block block)
+	{
+		ignitionBlocks.add(block);
+	}
+	
+	public static boolean isIgnitionBlock(Block block)
+	{
+		return ignitionBlocks.contains(block);
+	}
 
 	@SideOnly(Side.CLIENT)
 	private static final void setInventoryResourceLocation(GasType type)
 	{
 		ModelLoader.setCustomModelResourceLocation(type.itemBlock, 0, new ModelResourceLocation(type.itemBlock.getRegistryName(), "inventory"));
 	}
-
 }
