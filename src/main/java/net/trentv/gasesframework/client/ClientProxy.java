@@ -31,8 +31,11 @@ public class ClientProxy extends CommonProxy
 			Block block = types[i].block;
 			// Register the gastype for both the item and the block so they can
 			// be tinted at runtime
-			blockColors.registerBlockColorHandler(types[i].getGasColor(), block);
-			itemColors.registerItemColorHandler(types[i].getGasColor(), item);
+			if(types[i].tintindex)
+			{
+				blockColors.registerBlockColorHandler(types[i].getGasColor(), block);
+				itemColors.registerItemColorHandler(types[i].getGasColor(), item);
+			}
 		}
 	}
 

@@ -25,17 +25,18 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.IModel;
 import net.minecraftforge.common.model.IModelState;
-import net.trentv.gasesframework.GasesFramework;
+import net.trentv.gasesframework.api.GasType;
 
 public class ModelBlockGas implements IModel
 {
 	private FaceBakery bakery = new FaceBakery();
-	private ResourceLocation texture = new ResourceLocation(GasesFramework.MODID, "block/gas");
+	private GasType type;
 	private final int quantity;
 
-	public ModelBlockGas(int valueOf)
+	public ModelBlockGas(int valueOf, GasType gasType)
 	{
 		this.quantity = valueOf;
+		this.type = gasType;
 	}
 
 	@Override
@@ -48,7 +49,7 @@ public class ModelBlockGas implements IModel
 	public Collection<ResourceLocation> getTextures()
 	{
 		ArrayList<ResourceLocation> a = new ArrayList<ResourceLocation>();
-		a.add(texture);
+		a.add(type.texture);
 		return a;
 	}
 
@@ -69,13 +70,13 @@ public class ModelBlockGas implements IModel
 		{
 			faceQuads.put(EnumFacing.VALUES[i], Arrays.asList(allQuads.get(i)));
 		}
-		SimpleBakedModel newModel = new SimpleBakedModel(allQuads, faceQuads, true, true, bakedTextureGetter.apply(texture), ItemCameraTransforms.DEFAULT, ItemOverrideList.NONE);
+		SimpleBakedModel newModel = new SimpleBakedModel(allQuads, faceQuads, true, true, bakedTextureGetter.apply(type.texture), ItemCameraTransforms.DEFAULT, ItemOverrideList.NONE);
 		return newModel;
 	}
 
 	private BakedQuad getQuad(Vector3f from, Vector3f to, EnumFacing direction, Function<ResourceLocation, TextureAtlasSprite> bakedTextureGetter, int quantity)
 	{
-		return bakery.makeBakedQuad(from, to, new BlockPartFace(null, 0, texture.toString(), new BlockFaceUV(new float[] { 0, 0, 16, quantity }, 0)), bakedTextureGetter.apply(texture), direction, ModelRotation.X0_Y0, null, true, true);
+		return bakery.makeBakedQuad(from, to, new BlockPartFace(null, 0, type.texture.toString(), new BlockFaceUV(new float[] { 0, 0, 16, quantity }, 0)), bakedTextureGetter.apply(type.texture), direction, ModelRotation.X0_Y0, null, true, true);
 	}
 
 	@Override

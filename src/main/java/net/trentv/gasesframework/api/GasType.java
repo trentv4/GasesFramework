@@ -12,11 +12,13 @@ import net.minecraft.client.renderer.color.IItemColor;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.trentv.gasesframework.GasesFramework;
 import net.trentv.gasesframework.api.reaction.block.IBlockReaction;
 import net.trentv.gasesframework.api.reaction.entity.IEntityReaction;
 import net.trentv.gasesframework.api.reaction.gas.IGasReaction;
@@ -44,6 +46,8 @@ public class GasType
 	public int cohesion = 16;
 	public float lightLevel = 0.0F;
 	public CreativeTabs creativeTab;
+	public ResourceLocation texture = new ResourceLocation(GasesFramework.MODID, "block/gas");
+	public boolean tintindex = true;
 
 	public ArrayList<IEntityReaction> entityReactions = new ArrayList<IEntityReaction>();
 	public Map<GasType, Set<IGasReaction>> gasReactions = new IdentityHashMap<GasType, Set<IGasReaction>>();
@@ -57,6 +61,13 @@ public class GasType
 		this.opacity = opacity;
 		this.density = density;
 		this.combustability = combustability;
+	}
+	
+	public GasType setTexture(ResourceLocation texture, boolean tintindex)
+	{
+		this.texture = texture;
+		this.tintindex = tintindex;
+		return this;
 	}
 
 	public GasType setDensity(int density)
