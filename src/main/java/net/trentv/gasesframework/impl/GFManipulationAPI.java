@@ -68,13 +68,9 @@ public class GFManipulationAPI
 				GasesFramework.logger.error("Attempting to place gas with null type");
 			}
 		}
-		else if (level == 0)
-		{
-			access.setBlockToAir(pos);
-		}
 		else
 		{
-			GasesFramework.logger.error("Attempting to place an incorrect gas level of " + level);
+			access.setBlockToAir(pos);
 		}
 	}
 

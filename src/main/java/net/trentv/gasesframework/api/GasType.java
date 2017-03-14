@@ -40,6 +40,7 @@ public class GasType
 
 	// Optional or circumstantial fields.
 	public int dissipationRate = 0;
+	public int dissipationAmount = 0;
 	public int cohesion = 16;
 	public float lightLevel = 0.0F;
 	public CreativeTabs creativeTab;
@@ -64,9 +65,10 @@ public class GasType
 		return this;
 	}
 
-	public GasType setDissipationRate(int dissipationRate)
+	public GasType setDissipation(int dissipationRate, int dissipationAmount)
 	{
 		this.dissipationRate = dissipationRate;
+		this.dissipationAmount = dissipationAmount;
 		return this;
 	}
 

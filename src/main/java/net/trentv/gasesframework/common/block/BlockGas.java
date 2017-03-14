@@ -88,7 +88,9 @@ public class BlockGas extends Block implements ISample
 		{
 			if (rand.nextInt(16) < gasType.dissipationRate)
 			{
-				state = state.withProperty(CAPACITY, state.getValue(CAPACITY) - 1);
+				int newAmount = state.getValue(CAPACITY) - gasType.dissipationAmount;
+				this.gasType.dissipationAmount = 7;
+				GFManipulationAPI.setGasLevel(currentPosition, world, gasType, newAmount);
 			}
 		}
 
