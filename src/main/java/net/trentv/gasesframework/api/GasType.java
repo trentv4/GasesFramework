@@ -155,10 +155,23 @@ public class GasType
 		return set.toArray(new IBlockReaction[set.size()]);
 	}
 
-	public boolean tick(World world, IBlockState state, BlockPos pos)
+	// Return false if you want to stop the rest of the tick processing.
+	// Be sure to manually reschedule ticks 
+	public boolean preTick(World world, IBlockState state, BlockPos pos)
 	{
 		return true;
 	}
+
+	public void postTick(World world, IBlockState state, BlockPos pos)
+	{
+
+	}
+	
+	public boolean requiresNewTick(World world, IBlockState state, BlockPos pos)
+	{
+		return true;
+	}
+
 
 	public boolean ignite(World world, IBlockState state, BlockPos pos)
 	{

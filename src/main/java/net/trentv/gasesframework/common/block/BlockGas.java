@@ -45,7 +45,6 @@ public class BlockGas extends Block implements ISample
 		super(MaterialGas.INSTANCE);
 		this.gasType = type;
 		disableStats();
-		setTickRandomly(true);
 		setHardness(0.0f);
 		setLightOpacity(type.opacity);
 		setCreativeTab(type.creativeTab);
@@ -70,7 +69,7 @@ public class BlockGas extends Block implements ISample
 		// to rest)
 		// Look into MutableBlockPos to reduce GC overhead
 
-		if (!gasType.tick(world, state, currentPosition))
+		if (!gasType.preTick(world, state, currentPosition))
 		{
 			return;
 		}
@@ -161,7 +160,12 @@ public class BlockGas extends Block implements ISample
 			}
 		}
 
-		world.scheduleBlockUpdate(currentPosition, this, tickRate, 1);
+		gasType.postTick(world, state, currentPosition);
+		
+		if(gasType.requiresNewTick(world, state, currentPosition))
+		{
+			world.scheduleBlockUpdate(currentPosition, this, tickRate, 1);
+		}
 	}
 
 	public BlockPos scanForOpenBlock(World world, BlockGas gas, BlockPos pos, EnumFacing direction)
