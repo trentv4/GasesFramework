@@ -24,14 +24,14 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.trentv.gasesframework.GasesFramework;
 import net.trentv.gasesframework.api.Combustibility;
+import net.trentv.gasesframework.api.GFManipulationAPI;
+import net.trentv.gasesframework.api.GFRegistrationAPI;
 import net.trentv.gasesframework.api.GasType;
 import net.trentv.gasesframework.api.MaterialGas;
 import net.trentv.gasesframework.api.reaction.entity.IEntityReaction;
 import net.trentv.gasesframework.api.sample.ISample;
+import net.trentv.gasesframework.common.GasesFrameworkObjects;
 import net.trentv.gasesframework.common.entity.EntityDelayedExplosion;
-import net.trentv.gasesframework.impl.GFManipulationAPI;
-import net.trentv.gasesframework.impl.GFRegistrationAPI;
-import net.trentv.gasesframework.init.GasesFrameworkObjects;
 
 public class BlockGas extends Block implements ISample
 {

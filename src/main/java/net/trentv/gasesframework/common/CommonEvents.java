@@ -1,10 +1,11 @@
-package net.trentv.gasesframework;
+package net.trentv.gasesframework.common;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.trentv.gasesframework.GasesFramework;
 import net.trentv.gasesframework.api.capability.GasEffectsProvider;
 import net.trentv.gasesframework.api.capability.IGasEffects;
 

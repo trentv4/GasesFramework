@@ -18,7 +18,8 @@ import net.trentv.gasesframework.api.GasType;
 import net.trentv.gasesframework.api.capability.BaseGasEffects;
 import net.trentv.gasesframework.api.capability.GasEffectsStorage;
 import net.trentv.gasesframework.api.capability.IGasEffects;
-import net.trentv.gasesframework.init.GasesFrameworkObjects;
+import net.trentv.gasesframework.common.CommonProxy;
+import net.trentv.gasesframework.common.GasesFrameworkObjects;
 
 @Mod(modid = GasesFramework.MODID, version = GasesFramework.VERSION, acceptedMinecraftVersions = "1.10.2")
 public class GasesFramework

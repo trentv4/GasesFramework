@@ -1,4 +1,4 @@
-package net.trentv.gasesframework;
+package net.trentv.gasesframework.common;
 
 import net.minecraftforge.common.MinecraftForge;
 

@@ -1,4 +1,4 @@
-package net.trentv.gasesframework.impl;
+package net.trentv.gasesframework.api;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -11,7 +11,6 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.trentv.gasesframework.api.GasType;
 import net.trentv.gasesframework.client.GasesModelLoader;
 import net.trentv.gasesframework.common.block.BlockGas;
 

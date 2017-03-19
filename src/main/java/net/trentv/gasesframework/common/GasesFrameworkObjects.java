@@ -1,15 +1,15 @@
-package net.trentv.gasesframework.init;
+package net.trentv.gasesframework.common;
 
 import net.minecraft.init.Blocks;
 import net.minecraft.util.ResourceLocation;
 import net.trentv.gasesframework.GasesFramework;
 import net.trentv.gasesframework.api.Combustibility;
+import net.trentv.gasesframework.api.GFRegistrationAPI;
 import net.trentv.gasesframework.api.GasType;
 import net.trentv.gasesframework.api.reaction.entity.EntityReactionBlindness;
 import net.trentv.gasesframework.api.reaction.entity.EntityReactionHrrm;
 import net.trentv.gasesframework.api.reaction.entity.EntityReactionSlowness;
 import net.trentv.gasesframework.api.reaction.entity.EntityReactionSuffocation;
-import net.trentv.gasesframework.impl.GFRegistrationAPI;
 
 public class GasesFrameworkObjects
 {
