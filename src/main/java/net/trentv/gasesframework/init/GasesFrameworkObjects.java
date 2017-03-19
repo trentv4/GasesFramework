@@ -29,5 +29,9 @@ public class GasesFrameworkObjects
 		
 		GFRegistrationAPI.registerIgnitionBlock(Blocks.FIRE);
 		GFRegistrationAPI.registerIgnitionBlock(FIRE.block);
+		GFRegistrationAPI.registerIgnitionBlock(Blocks.LAVA);
+		GFRegistrationAPI.registerIgnitionBlock(Blocks.FLOWING_LAVA);
+		GFRegistrationAPI.registerIgnitionBlock(Blocks.TORCH);
+		GFRegistrationAPI.registerIgnitionBlock(Blocks.LIT_FURNACE);
 	}
 }
