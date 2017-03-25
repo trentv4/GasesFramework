@@ -13,7 +13,7 @@ import net.trentv.gasesframework.api.reaction.entity.EntityReactionSuffocation;
 
 public class GasesFrameworkObjects
 {
-	public static final GasType SMOKE = new GasType("smoke", 0xFFFFFF, 2, 1, Combustibility.NONE).setCreativeTab(GasesFramework.CREATIVE_TAB).setCohesion(10).registerEntityReaction(new EntityReactionSuffocation(3, 3)).registerEntityReaction(new EntityReactionBlindness(4)).registerEntityReaction(new EntityReactionSlowness(2));
+	public static final GasType SMOKE = new GasType("smoke", 0xAAAAAA, 2, 1, Combustibility.NONE).setCreativeTab(GasesFramework.CREATIVE_TAB).setCohesion(10).registerEntityReaction(new EntityReactionSuffocation(3, 3)).registerEntityReaction(new EntityReactionBlindness(4)).registerEntityReaction(new EntityReactionSlowness(2));
 	public static final GasType FIRE = new GasType("fire", 0x7F4F4F7F, 2, 0, Combustibility.NONE).setCreativeTab(GasesFramework.CREATIVE_TAB).setCohesion(8).setDissipation(8, 8).setTexture(new ResourceLocation(GasesFramework.MODID, "block/gas_fire"), false);
 
 	public static void init()
