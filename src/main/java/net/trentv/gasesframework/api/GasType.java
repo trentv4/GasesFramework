@@ -3,6 +3,7 @@ package net.trentv.gasesframework.api;
 import java.util.ArrayList;
 import java.util.IdentityHashMap;
 import java.util.Map;
+import java.util.Random;
 import java.util.Set;
 
 import net.minecraft.block.Block;
@@ -171,7 +172,11 @@ public class GasType
 	{
 		return true;
 	}
-
+	
+	public void randomDisplayTick(IBlockState state, World world, BlockPos pos, Random rand)
+	{
+		
+	}
 
 	public boolean ignite(World world, IBlockState state, BlockPos pos)
 	{

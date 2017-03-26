@@ -302,6 +302,12 @@ public class BlockGas extends Block implements ISample
 			a.react(entity, world, this.gasType, pos);
 		}
 	}
+	
+    @SideOnly(Side.CLIENT)
+    public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand)
+    {
+    	gasType.randomDisplayTick(stateIn, worldIn, pos, rand);
+    }
 
 	@Override
 	public GasType onSample(IBlockAccess access, BlockPos pos, GasType in, EnumFacing side)
