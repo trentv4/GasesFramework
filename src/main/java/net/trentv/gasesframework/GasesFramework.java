@@ -3,7 +3,7 @@ package net.trentv.gasesframework;
 import org.apache.logging.log4j.Logger;
 
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.fml.common.Mod;
@@ -82,9 +82,9 @@ public class GasesFramework
 		}
 
 		@Override
-		public Item getTabIconItem()
+		public ItemStack getTabIconItem()
 		{
-			return GasesFrameworkObjects.SMOKE.itemBlock;
+			return new ItemStack(GasesFrameworkObjects.SMOKE.itemBlock);
 		}
 	}
 }

@@ -32,7 +32,7 @@ public class EntityDelayedExplosion extends Entity
 		{
 			this.setDead();
 
-			if (!this.worldObj.isRemote)
+			if (!this.getEntityWorld().isRemote)
 			{
 				this.explode();
 			}
@@ -41,7 +41,7 @@ public class EntityDelayedExplosion extends Entity
 
 	protected void explode()
 	{
-		this.worldObj.newExplosion(this, this.posX, this.posY, this.posZ, this.explosionPower, this.isFlaming, this.isSmoking);
+		this.getEntityWorld().newExplosion(this, this.posX, this.posY, this.posZ, this.explosionPower, this.isFlaming, this.isSmoking);
 	}
 
 	@Override
