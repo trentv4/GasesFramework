@@ -217,11 +217,17 @@ public class BlockGas extends Block implements ISample
 		return false;
 	}
 
-	@Nullable
-	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, World worldIn, BlockPos pos)
-	{
-		return NULL_AABB;
-	}
+    @Nullable
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos)
+    {
+        return NULL_AABB;
+    }
+
+    // Necessary so you can walk through the block. Don't remove it, dumbass.
+    public boolean isFullCube(IBlockState state)
+    {
+        return false;
+    }
 
 	@Override
 	public void onBlockExploded(World world, BlockPos pos, Explosion explosion)
