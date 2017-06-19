@@ -47,7 +47,7 @@ public class GasType
 	public int cohesion = 16;
 	public float lightLevel = 0.0F;
 	public CreativeTabs creativeTab;
-	public ResourceLocation texture = new ResourceLocation(GasesFramework.MODID, "block/gas");
+	public ResourceLocation texture;
 	public boolean tintindex = true;
 
 	public ArrayList<IEntityReaction> entityReactions = new ArrayList<IEntityReaction>();
@@ -56,6 +56,11 @@ public class GasType
 
 	public GasType(String name, int color, int opacity, int density, Combustibility combustability)
 	{
+		if(!(opacity > 0 & opacity <= 16))
+		{
+			opacity = 0;
+			if(GasesFramework.logger != null) GasesFramework.logger.error("Incorrect opacity value for GasType: " + name + "! Valid values are [0-16]. Setting opacity to 0.");
+		}
 		this.gasID = maxGasID++;
 		this.name = name;
 		this.color = color;

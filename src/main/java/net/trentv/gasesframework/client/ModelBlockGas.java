@@ -25,6 +25,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.IModel;
 import net.minecraftforge.common.model.IModelState;
+import net.trentv.gasesframework.GasesFramework;
 import net.trentv.gasesframework.api.GasType;
 
 public class ModelBlockGas implements IModel
@@ -32,11 +33,21 @@ public class ModelBlockGas implements IModel
 	private FaceBakery bakery = new FaceBakery();
 	private GasType type;
 	private final int quantity;
-
+	private ResourceLocation texture;
+	
 	public ModelBlockGas(int valueOf, GasType gasType)
 	{
 		this.quantity = valueOf;
 		this.type = gasType;
+		
+		if(type.texture == null)
+		{
+			texture = new ResourceLocation(GasesFramework.MODID, "block/gas_" + type.opacity);
+		}
+		else
+		{
+			texture = type.texture;
+		}
 	}
 
 	@Override
@@ -48,9 +59,7 @@ public class ModelBlockGas implements IModel
 	@Override
 	public Collection<ResourceLocation> getTextures()
 	{
-		ArrayList<ResourceLocation> a = new ArrayList<ResourceLocation>();
-		a.add(type.texture);
-		return a;
+		return Arrays.asList(texture);
 	}
 
 	@Override
@@ -73,13 +82,13 @@ public class ModelBlockGas implements IModel
 			faceQuads.put(a.getFace(), Arrays.asList(a));
 		}
 		
-		SimpleBakedModel newModel = new SimpleBakedModel(allQuads, faceQuads, true, true, bakedTextureGetter.apply(type.texture), ItemCameraTransforms.DEFAULT, ItemOverrideList.NONE);
+		SimpleBakedModel newModel = new SimpleBakedModel(allQuads, faceQuads, true, true, bakedTextureGetter.apply(texture), ItemCameraTransforms.DEFAULT, ItemOverrideList.NONE);
 		return newModel;
 	}
 
 	private BakedQuad getQuad(Vector3f from, Vector3f to, BlockFaceUV uv, EnumFacing direction, Function<ResourceLocation, TextureAtlasSprite> bakedTextureGetter, int quantity)
 	{
-		return bakery.makeBakedQuad(from, to, new BlockPartFace(null, 0, type.texture.toString(), uv), bakedTextureGetter.apply(type.texture), direction, ModelRotation.X0_Y0, null, true, true);
+		return bakery.makeBakedQuad(from, to, new BlockPartFace(null, 0, texture.toString(), uv), bakedTextureGetter.apply(texture), direction, ModelRotation.X0_Y0, null, true, true);
 	}
 
 	@Override
