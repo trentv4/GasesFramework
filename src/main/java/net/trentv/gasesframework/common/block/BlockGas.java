@@ -249,22 +249,6 @@ public class BlockGas extends Block implements ISample
 		return BlockRenderLayer.TRANSLUCENT;
 	}
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side)
-	{
-		IBlockState nState = blockAccess.getBlockState(pos.offset(side));
-		if (nState.getBlock() == this)
-		{
-			if (blockState.getValue(CAPACITY) > nState.getValue(CAPACITY))
-			{
-				return true;
-			}
-			return true;
-		}
-		return true;
-	}
-
 	// Gases relevant
 
 	public void ignite(BlockPos pos, World access)
