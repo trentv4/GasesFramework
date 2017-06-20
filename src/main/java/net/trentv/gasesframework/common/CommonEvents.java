@@ -1,6 +1,7 @@
 package net.trentv.gasesframework.common;
 
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
@@ -14,16 +15,21 @@ public class CommonEvents
 	@SubscribeEvent
 	public void onLivingUpdate(LivingUpdateEvent event)
 	{
-		// if(!event.getEntity().getEntityWorld().isRemote)
+		if(!event.getEntity().getEntityWorld().isRemote | true)
 		{
 			Entity b = event.getEntity();
 			if (b.hasCapability(GasEffectsProvider.GAS_EFFECTS, null))
 			{
 				IGasEffects q = b.getCapability(GasEffectsProvider.GAS_EFFECTS, null);
-				if (q.getSuffocation() < 200) // This should be configurable
-					q.setSuffocation(q.getSuffocation() + 1);
-				if (q.getBlindness() > 0)
-					q.setBlindness(q.getBlindness() - 2);
+
+				if(q.getSuffocation() == 200)
+				{
+					b.attackEntityFrom(GasesFramework.damageSourceAsphyxiation, 2);
+				}
+				
+				if(q.getSuffocation() > 0) q.setSuffocation(q.getSuffocation() - 1);
+				if(q.getBlindness() > 0) q.setBlindness(q.getBlindness() - 1);
+				
 				if (q.getSlowness() > 0)
 				{
 					q.setSlowness(q.getSlowness() - 1);
@@ -40,6 +46,9 @@ public class CommonEvents
 	@SubscribeEvent
 	public void AttachCapabilityEventEntity(AttachCapabilitiesEvent<Entity> e)
 	{
-		e.addCapability(new ResourceLocation(GasesFramework.MODID, "gasEffectsCapability"), new GasEffectsProvider());
+		if(e.getObject() instanceof EntityLivingBase)
+		{
+			e.addCapability(new ResourceLocation(GasesFramework.MODID, "gasEffectsCapability"), new GasEffectsProvider());
+		}
 	}
 }
