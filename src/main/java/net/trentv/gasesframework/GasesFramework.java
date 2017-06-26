@@ -39,7 +39,7 @@ public class GasesFramework
 
 	public static DamageSourceAsphyxiation damageSourceAsphyxiation = new DamageSourceAsphyxiation("asphyxiation");
 	public static final GasType AIR = new GasType("air", 0, 0, 0, Combustibility.NONE);
-	
+
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event)
 	{
@@ -48,7 +48,7 @@ public class GasesFramework
 		// Register all items, blocks, and gases
 		GasesFrameworkObjects.init();
 		CapabilityManager.INSTANCE.register(IGasEffects.class, new GasEffectsStorage<IGasEffects>(), BaseGasEffects.class);
-		
+
 		proxy.registerRenderers();
 		proxy.registerEventHandlers();
 	}
@@ -73,7 +73,7 @@ public class GasesFramework
 			this.setDamageBypassesArmor();
 		}
 	}
-	
+
 	private static class GasesFrameworkCreativeTab extends CreativeTabs
 	{
 		public GasesFrameworkCreativeTab(String label)

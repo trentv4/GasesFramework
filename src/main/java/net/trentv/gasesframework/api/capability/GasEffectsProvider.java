@@ -39,7 +39,7 @@ public class GasEffectsProvider implements ICapabilityProvider, INBTSerializable
 	}
 
 	@Override
-	public void deserializeNBT(NBTTagCompound  nbt)
+	public void deserializeNBT(NBTTagCompound nbt)
 	{
 		storage.readNBT(GAS_EFFECTS, instance, null, nbt);
 	}

@@ -34,13 +34,13 @@ public class ModelBlockGas implements IModel
 	private GasType type;
 	private final int quantity;
 	private ResourceLocation texture;
-	
+
 	public ModelBlockGas(int valueOf, GasType gasType)
 	{
 		this.quantity = valueOf;
 		this.type = gasType;
-		
-		if(type.texture == null)
+
+		if (type.texture == null)
 		{
 			texture = new ResourceLocation(GasesFramework.MODID, "block/gas_" + type.opacity);
 		}
@@ -67,21 +67,21 @@ public class ModelBlockGas implements IModel
 	{
 		// facings in D-U-N-S-W-E order
 		int ypos = 8 - quantity / 2;
-		BakedQuad faceDown  = getQuad(new Vector3f(0, ypos, 0), new Vector3f(16, ypos, 16), new BlockFaceUV(new float[] { 0, 0, 16, 16 }, 0), EnumFacing.DOWN, bakedTextureGetter, quantity);
-		BakedQuad faceUp    = getQuad(new Vector3f(0, ypos, 0), new Vector3f(16, ypos + quantity, 16), new BlockFaceUV(new float[] { 0, 0, 16, 16 }, 0), EnumFacing.UP, bakedTextureGetter, quantity);
+		BakedQuad faceDown = getQuad(new Vector3f(0, ypos, 0), new Vector3f(16, ypos, 16), new BlockFaceUV(new float[] { 0, 0, 16, 16 }, 0), EnumFacing.DOWN, bakedTextureGetter, quantity);
+		BakedQuad faceUp = getQuad(new Vector3f(0, ypos, 0), new Vector3f(16, ypos + quantity, 16), new BlockFaceUV(new float[] { 0, 0, 16, 16 }, 0), EnumFacing.UP, bakedTextureGetter, quantity);
 		BakedQuad faceNorth = getQuad(new Vector3f(0, ypos, 0), new Vector3f(16, ypos + quantity, 16), new BlockFaceUV(new float[] { 0, 0, 16, quantity }, 0), EnumFacing.NORTH, bakedTextureGetter, quantity);
 		BakedQuad faceSouth = getQuad(new Vector3f(0, ypos, 0), new Vector3f(16, ypos + quantity, 16), new BlockFaceUV(new float[] { 0, 0, 16, quantity }, 0), EnumFacing.SOUTH, bakedTextureGetter, quantity);
-		BakedQuad faceWest  = getQuad(new Vector3f(0, ypos, 0), new Vector3f(16, ypos + quantity, 16), new BlockFaceUV(new float[] { 0, 0, 16, quantity }, 0), EnumFacing.WEST, bakedTextureGetter, quantity);
-		BakedQuad faceEast  = getQuad(new Vector3f(0, ypos, 0), new Vector3f(16, ypos + quantity, 16), new BlockFaceUV(new float[] { 0, 0, 16, quantity }, 0), EnumFacing.EAST, bakedTextureGetter, quantity);
+		BakedQuad faceWest = getQuad(new Vector3f(0, ypos, 0), new Vector3f(16, ypos + quantity, 16), new BlockFaceUV(new float[] { 0, 0, 16, quantity }, 0), EnumFacing.WEST, bakedTextureGetter, quantity);
+		BakedQuad faceEast = getQuad(new Vector3f(0, ypos, 0), new Vector3f(16, ypos + quantity, 16), new BlockFaceUV(new float[] { 0, 0, 16, quantity }, 0), EnumFacing.EAST, bakedTextureGetter, quantity);
 		List<BakedQuad> allQuads = Arrays.asList(faceDown, faceUp, faceNorth, faceSouth, faceWest, faceEast);
 
 		HashMap<EnumFacing, List<BakedQuad>> faceQuads = new HashMap<EnumFacing, List<BakedQuad>>();
-		for(int i = 0; i < allQuads.size(); i++)
+		for (int i = 0; i < allQuads.size(); i++)
 		{
 			BakedQuad a = allQuads.get(i);
 			faceQuads.put(a.getFace(), Arrays.asList(a));
 		}
-		
+
 		SimpleBakedModel newModel = new SimpleBakedModel(allQuads, faceQuads, true, true, bakedTextureGetter.apply(texture), ItemCameraTransforms.DEFAULT, ItemOverrideList.NONE);
 		return newModel;
 	}

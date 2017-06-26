@@ -56,10 +56,11 @@ public class GasType
 
 	public GasType(String name, int color, int opacity, int density, Combustibility combustability)
 	{
-		if(!(opacity > 0 & opacity <= 16))
+		if (!(opacity > 0 & opacity <= 16))
 		{
 			opacity = 0;
-			if(GasesFramework.logger != null) GasesFramework.logger.error("Incorrect opacity value for GasType: " + name + "! Valid values are [0-16]. Setting opacity to 0.");
+			if (GasesFramework.logger != null)
+				GasesFramework.logger.error("Incorrect opacity value for GasType: " + name + "! Valid values are [0-16]. Setting opacity to 0.");
 		}
 		this.gasID = maxGasID++;
 		this.name = name;
@@ -68,7 +69,7 @@ public class GasType
 		this.density = density;
 		this.combustability = combustability;
 	}
-	
+
 	public GasType setTexture(ResourceLocation texture, boolean tintindex)
 	{
 		this.texture = texture;
@@ -162,7 +163,7 @@ public class GasType
 	}
 
 	// Return false if you want to stop the rest of the tick processing.
-	// Be sure to manually reschedule ticks 
+	// Be sure to manually reschedule ticks
 	public boolean preTick(World world, IBlockState state, BlockPos pos)
 	{
 		return true;
@@ -172,15 +173,15 @@ public class GasType
 	{
 
 	}
-	
+
 	public boolean requiresNewTick(World world, IBlockState state, BlockPos pos)
 	{
 		return true;
 	}
-	
+
 	public void randomDisplayTick(IBlockState state, World world, BlockPos pos, Random rand)
 	{
-		
+
 	}
 
 	public boolean ignite(World world, IBlockState state, BlockPos pos)

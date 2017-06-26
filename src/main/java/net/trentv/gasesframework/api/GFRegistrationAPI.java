@@ -18,7 +18,7 @@ public class GFRegistrationAPI
 {
 	private static HashMap<ResourceLocation, GasType> gasTypes = new HashMap<ResourceLocation, GasType>();
 	private static HashSet<Block> ignitionBlocks = new HashSet<Block>();
-	
+
 	public static void registerGasType(GasType type, ResourceLocation location)
 	{
 		// Register the gas block
@@ -35,7 +35,7 @@ public class GFRegistrationAPI
 		GameRegistry.register(newGasItemBlock);
 
 		type.itemBlock = newGasItemBlock;
-		
+
 		// Rendering stuff - in the world, then in the inventory
 		GasesModelLoader.registeredLocations.add(location);
 		setInventoryResourceLocation(type);
@@ -54,12 +54,12 @@ public class GFRegistrationAPI
 	{
 		return gasTypes.values().toArray(new GasType[gasTypes.values().size()]);
 	}
-	
+
 	public static void registerIgnitionBlock(Block block)
 	{
 		ignitionBlocks.add(block);
 	}
-	
+
 	public static boolean isIgnitionBlock(Block block)
 	{
 		return ignitionBlocks.contains(block);

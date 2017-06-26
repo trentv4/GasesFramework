@@ -13,7 +13,7 @@ import net.trentv.gasesframework.api.GasType;
 public class GasesModelLoader implements ICustomModelLoader
 {
 	public static HashSet<ResourceLocation> registeredLocations = new HashSet<ResourceLocation>();
-	
+
 	@Override
 	public void onResourceManagerReload(IResourceManager resourceManager)
 	{
@@ -41,13 +41,13 @@ public class GasesModelLoader implements ICustomModelLoader
 		}
 		else
 		{
-			//Yeah, sure. Good code. It's only run every time the model loader reloads. 
-			//Not like that happens a minimum of two times...
+			// Yeah, sure. Good code. It's only run every time the model loader reloads.
+			// Not like that happens a minimum of two times...
 			int capacity = (int) Integer.valueOf(res.getVariant().replaceAll("capacity=", ""));
 			return new ModelBlockGas(capacity, a);
 		}
 	}
-	
+
 	private ResourceLocation convert(ResourceLocation in)
 	{
 		return new ResourceLocation(in.getResourceDomain(), in.getResourcePath());

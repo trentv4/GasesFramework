@@ -26,7 +26,7 @@ public class GasesFrameworkObjects
 		{
 			type.registerEntityReaction(new EntityReactionHrrm());
 		}
-		
+
 		GFRegistrationAPI.registerIgnitionBlock(Blocks.FIRE);
 		GFRegistrationAPI.registerIgnitionBlock(FIRE.block);
 		GFRegistrationAPI.registerIgnitionBlock(Blocks.LAVA);

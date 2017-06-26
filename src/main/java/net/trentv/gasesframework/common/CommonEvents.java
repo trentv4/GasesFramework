@@ -15,21 +15,23 @@ public class CommonEvents
 	@SubscribeEvent
 	public void onLivingUpdate(LivingUpdateEvent event)
 	{
-		if(!event.getEntity().getEntityWorld().isRemote | true)
+		if (!event.getEntity().getEntityWorld().isRemote | true)
 		{
 			Entity b = event.getEntity();
 			if (b.hasCapability(GasEffectsProvider.GAS_EFFECTS, null))
 			{
 				IGasEffects q = b.getCapability(GasEffectsProvider.GAS_EFFECTS, null);
 
-				if(q.getSuffocation() == 200)
+				if (q.getSuffocation() == 200)
 				{
 					b.attackEntityFrom(GasesFramework.damageSourceAsphyxiation, 2);
 				}
-				
-				if(q.getSuffocation() > 0) q.setSuffocation(q.getSuffocation() - 1);
-				if(q.getBlindness() > 0) q.setBlindness(q.getBlindness() - 1);
-				
+
+				if (q.getSuffocation() > 0)
+					q.setSuffocation(q.getSuffocation() - 1);
+				if (q.getBlindness() > 0)
+					q.setBlindness(q.getBlindness() - 1);
+
 				if (q.getSlowness() > 0)
 				{
 					q.setSlowness(q.getSlowness() - 1);
@@ -46,7 +48,7 @@ public class CommonEvents
 	@SubscribeEvent
 	public void AttachCapabilityEventEntity(AttachCapabilitiesEvent<Entity> e)
 	{
-		if(e.getObject() instanceof EntityLivingBase)
+		if (e.getObject() instanceof EntityLivingBase)
 		{
 			e.addCapability(new ResourceLocation(GasesFramework.MODID, "gasEffectsCapability"), new GasEffectsProvider());
 		}

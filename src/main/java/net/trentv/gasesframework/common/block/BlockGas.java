@@ -73,11 +73,11 @@ public class BlockGas extends Block implements ISample
 		{
 			return;
 		}
-		
+
 		for (int i = 0; i < EnumFacing.VALUES.length; i++)
 		{
 			BlockPos scanBlock = currentPosition.offset(EnumFacing.VALUES[i]);
-			if(gasType.combustability != Combustibility.NONE && GFRegistrationAPI.isIgnitionBlock(world.getBlockState(scanBlock).getBlock()))
+			if (gasType.combustability != Combustibility.NONE && GFRegistrationAPI.isIgnitionBlock(world.getBlockState(scanBlock).getBlock()))
 			{
 				ignite(currentPosition, world);
 				return;
@@ -161,8 +161,8 @@ public class BlockGas extends Block implements ISample
 		}
 
 		gasType.postTick(world, state, currentPosition);
-		
-		if(gasType.requiresNewTick(world, state, currentPosition))
+
+		if (gasType.requiresNewTick(world, state, currentPosition))
 		{
 			world.scheduleBlockUpdate(currentPosition, this, tickRate, 1);
 		}
@@ -217,28 +217,28 @@ public class BlockGas extends Block implements ISample
 		return false;
 	}
 
-    @Nullable
-    public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos)
-    {
-        return NULL_AABB;
-    }
+	@Nullable
+	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos)
+	{
+		return NULL_AABB;
+	}
 
-    // Necessary so you can walk through the block. Don't remove it, dumbass.
-    public boolean isFullCube(IBlockState state)
-    {
-        return false;
-    }
+	// Necessary so you can walk through the block. Don't remove it, dumbass.
+	public boolean isFullCube(IBlockState state)
+	{
+		return false;
+	}
 
 	@Override
 	public void onBlockExploded(World world, BlockPos pos, Explosion explosion)
 	{
 		ignite(pos, world);
 	}
-	
-    public int getFlammability(IBlockAccess world, BlockPos pos, EnumFacing face)
-    {
-        return 0;
-    }
+
+	public int getFlammability(IBlockAccess world, BlockPos pos, EnumFacing face)
+	{
+		return 0;
+	}
 
 	// Client Side
 
@@ -292,12 +292,12 @@ public class BlockGas extends Block implements ISample
 			a.react(entity, world, this.gasType, pos);
 		}
 	}
-	
-    @SideOnly(Side.CLIENT)
-    public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand)
-    {
-    	gasType.randomDisplayTick(stateIn, worldIn, pos, rand);
-    }
+
+	@SideOnly(Side.CLIENT)
+	public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand)
+	{
+		gasType.randomDisplayTick(stateIn, worldIn, pos, rand);
+	}
 
 	@Override
 	public GasType onSample(IBlockAccess access, BlockPos pos, GasType in, EnumFacing side)
