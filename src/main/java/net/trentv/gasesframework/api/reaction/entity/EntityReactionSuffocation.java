@@ -29,7 +29,6 @@ public class EntityReactionSuffocation implements IEntityReaction
 			{
 				if (!access.isAirBlock(new BlockPos(e.getPositionEyes(0))))
 				{
-					System.out.println(q.getSuffocation());
 					if (q.getSuffocation() < 200)
 					{
 						q.setSuffocation(q.getSuffocation() + suffocationRate);
