@@ -56,7 +56,7 @@ public class GasType
 
 	public GasType(String name, int color, int opacity, int density, Combustibility combustability)
 	{
-		if (!(opacity > 0 & opacity <= 16))
+		if (!(opacity >= 0 & opacity <= 16))
 		{
 			opacity = 0;
 			if (GasesFramework.logger != null)

@@ -11,6 +11,7 @@ import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
@@ -27,6 +28,7 @@ import net.trentv.gasesframework.api.Combustibility;
 import net.trentv.gasesframework.api.GFManipulationAPI;
 import net.trentv.gasesframework.api.GFRegistrationAPI;
 import net.trentv.gasesframework.api.GasType;
+import net.trentv.gasesframework.api.IGasEffectProtector;
 import net.trentv.gasesframework.api.MaterialGas;
 import net.trentv.gasesframework.api.reaction.entity.IEntityReaction;
 import net.trentv.gasesframework.api.sample.ISample;
@@ -289,7 +291,27 @@ public class BlockGas extends Block implements ISample
 		IEntityReaction[] s = gasType.getEntityReactions();
 		for (IEntityReaction a : s)
 		{
-			a.react(entity, world, this.gasType, pos);
+			boolean hasProtected = false;
+			if (entity instanceof EntityLivingBase)
+			{
+				Iterable<ItemStack> armor = entity.getArmorInventoryList();
+				for (ItemStack stack : armor)
+				{
+					if (stack.getItem() instanceof IGasEffectProtector)
+					{
+						IGasEffectProtector prot = (IGasEffectProtector) stack.getItem();
+						if (prot.apply((EntityLivingBase) entity, a, gasType, stack))
+						{
+							hasProtected = true;
+							break;
+						}
+					}
+				}
+			}
+			if (!hasProtected)
+			{
+				a.react(entity, world, this.gasType, pos);
+			}
 		}
 	}
 
