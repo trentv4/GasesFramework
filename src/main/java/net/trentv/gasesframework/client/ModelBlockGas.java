@@ -8,7 +8,7 @@ import java.util.List;
 
 import org.lwjgl.util.vector.Vector3f;
 
-import com.google.common.base.Function;
+import java.util.function.Function;
 
 import net.minecraft.client.renderer.block.model.BakedQuad;
 import net.minecraft.client.renderer.block.model.BlockFaceUV;
