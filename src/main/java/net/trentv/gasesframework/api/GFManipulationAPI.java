@@ -38,7 +38,7 @@ public class GFManipulationAPI
 
 	public static boolean canPlaceGas(BlockPos pos, World access, GasType currentGas)
 	{
-		if (currentGas == GasesFramework.AIR)
+		if (currentGas == GasesFramework.AIR | pos.getY() < 0)
 		{
 			return false;
 		}
