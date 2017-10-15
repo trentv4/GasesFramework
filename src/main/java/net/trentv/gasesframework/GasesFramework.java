@@ -49,8 +49,8 @@ public class GasesFramework
 		GasesFrameworkObjects.init();
 		CapabilityManager.INSTANCE.register(IGasEffects.class, new GasEffectsStorage<IGasEffects>(), BaseGasEffects.class);
 
-		proxy.registerRenderers();
 		proxy.registerEventHandlers();
+		proxy.registerRenderers();
 	}
 
 	@EventHandler
