@@ -8,11 +8,11 @@ import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.trentv.gasesframework.client.GasesModelLoader;
 import net.trentv.gasesframework.common.block.BlockGas;
+import net.trentv.registry.ModRegistry;
 
 public class GFRegistrationAPI
 {
@@ -24,7 +24,7 @@ public class GFRegistrationAPI
 		// Register the gas block
 		BlockGas newGasBlock = new BlockGas(type);
 		newGasBlock.setRegistryName(location);
-		GameRegistry.register(newGasBlock);
+		ModRegistry.registerBlock(newGasBlock);
 
 		type.block = newGasBlock;
 
@@ -32,7 +32,7 @@ public class GFRegistrationAPI
 
 		ItemBlock newGasItemBlock = new ItemBlock(newGasBlock);
 		newGasItemBlock.setRegistryName(location);
-		GameRegistry.register(newGasItemBlock);
+		ModRegistry.registerItem(newGasItemBlock);
 
 		type.itemBlock = newGasItemBlock;
 
