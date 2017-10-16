@@ -26,6 +26,7 @@ import net.trentv.gasesframework.api.reaction.gas.IGasReaction;
 
 public class GasType
 {
+	// Should be turned into a ForgeRegistry at some point.
 	private static int maxGasID = 0;
 
 	// Mandatory fields
