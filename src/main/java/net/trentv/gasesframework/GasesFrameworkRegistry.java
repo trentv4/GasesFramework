@@ -1,4 +1,4 @@
-package net.trentv.registry;
+package net.trentv.gasesframework;
 
 import java.util.ArrayList;
 
@@ -10,7 +10,7 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-public class ModRegistry
+public class GasesFrameworkRegistry
 {
 	public static ArrayList<Block> blocks = new ArrayList<Block>();
 	public static ArrayList<Item> items = new ArrayList<Item>();
