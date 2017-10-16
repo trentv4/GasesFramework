@@ -7,7 +7,6 @@ import net.minecraft.client.renderer.color.ItemColors;
 import net.minecraft.item.ItemBlock;
 import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.common.MinecraftForge;
-import net.trentv.gasesframework.GasesFrameworkRegistry;
 import net.trentv.gasesframework.api.GFRegistrationAPI;
 import net.trentv.gasesframework.api.GasType;
 import net.trentv.gasesframework.common.CommonProxy;
@@ -17,7 +16,6 @@ public class ClientProxy extends CommonProxy
 	@Override
 	public void registerRenderers()
 	{
-		GasesFrameworkRegistry.registerRenderers();
 		ModelLoaderRegistry.registerLoader(new GasesModelLoader());
 	}
 
