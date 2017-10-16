@@ -79,7 +79,7 @@ public class BlockGas extends Block implements ISample
 		for (int i = 0; i < EnumFacing.VALUES.length; i++)
 		{
 			BlockPos scanBlock = currentPosition.offset(EnumFacing.VALUES[i]);
-			if (gasType.combustability != Combustibility.NONE && GFRegistrationAPI.isIgnitionBlock(world.getBlockState(scanBlock).getBlock()))
+			if (gasType.combustability != Combustibility.NONE && GFRegistrationAPI.isIgnitionSource(world.getBlockState(scanBlock)))
 			{
 				ignite(currentPosition, world);
 				return;

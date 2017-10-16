@@ -15,11 +15,11 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.trentv.gasesframework.api.Combustibility;
 import net.trentv.gasesframework.api.GasType;
-import net.trentv.gasesframework.api.capability.BaseGasEffects;
-import net.trentv.gasesframework.api.capability.GasEffectsStorage;
 import net.trentv.gasesframework.api.capability.IGasEffects;
 import net.trentv.gasesframework.common.CommonProxy;
 import net.trentv.gasesframework.common.GasesFrameworkObjects;
+import net.trentv.gasesframework.common.capability.BaseGasEffects;
+import net.trentv.gasesframework.common.capability.GasEffectsStorage;
 
 @Mod(modid = GasesFramework.MODID, version = GasesFramework.VERSION, acceptedMinecraftVersions = "1.10.2")
 public class GasesFramework

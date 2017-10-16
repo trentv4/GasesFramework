@@ -7,8 +7,8 @@ import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.trentv.gasesframework.GasesFramework;
-import net.trentv.gasesframework.api.capability.GasEffectsProvider;
 import net.trentv.gasesframework.api.capability.IGasEffects;
+import net.trentv.gasesframework.common.capability.GasEffectsProvider;
 
 public class CommonEvents
 {
@@ -50,7 +50,7 @@ public class CommonEvents
 	{
 		if (e.getObject() instanceof EntityLivingBase)
 		{
-			e.addCapability(new ResourceLocation(GasesFramework.MODID, "gasEffectsCapability"), new GasEffectsProvider());
+			e.addCapability(new ResourceLocation(GasesFramework.MODID, "gas_effects"), new GasEffectsProvider());
 		}
 	}
 }

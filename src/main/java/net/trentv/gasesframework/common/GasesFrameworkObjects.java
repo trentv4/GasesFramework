@@ -10,6 +10,7 @@ import net.trentv.gasesframework.api.reaction.entity.EntityReactionBlindness;
 import net.trentv.gasesframework.api.reaction.entity.EntityReactionHrrm;
 import net.trentv.gasesframework.api.reaction.entity.EntityReactionSlowness;
 import net.trentv.gasesframework.api.reaction.entity.EntityReactionSuffocation;
+import net.trentv.gasesframework.common.block.BlockGas;
 
 public class GasesFrameworkObjects
 {
@@ -27,11 +28,16 @@ public class GasesFrameworkObjects
 			type.registerEntityReaction(new EntityReactionHrrm());
 		}
 
-		GFRegistrationAPI.registerIgnitionBlock(Blocks.FIRE);
-		GFRegistrationAPI.registerIgnitionBlock(FIRE.block);
-		GFRegistrationAPI.registerIgnitionBlock(Blocks.LAVA);
-		GFRegistrationAPI.registerIgnitionBlock(Blocks.FLOWING_LAVA);
-		GFRegistrationAPI.registerIgnitionBlock(Blocks.TORCH);
-		GFRegistrationAPI.registerIgnitionBlock(Blocks.LIT_FURNACE);
+		GFRegistrationAPI.registerIgnitionSource(Blocks.FIRE.getDefaultState());
+		GFRegistrationAPI.registerIgnitionSource(Blocks.LAVA.getDefaultState());
+		GFRegistrationAPI.registerIgnitionSource(Blocks.FLOWING_LAVA.getDefaultState());
+		GFRegistrationAPI.registerIgnitionSource(Blocks.TORCH.getDefaultState());
+		GFRegistrationAPI.registerIgnitionSource(Blocks.LIT_FURNACE.getDefaultState());
+		
+		for(int i = 1; i <= 16; i++)
+		{
+			// The actual ignited gas
+			GFRegistrationAPI.registerIgnitionSource(FIRE.block.getDefaultState().withProperty(BlockGas.CAPACITY, i));
+		}
 	}
 }

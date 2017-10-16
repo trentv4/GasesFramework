@@ -1,4 +1,6 @@
-package net.trentv.gasesframework.api.capability;
+package net.trentv.gasesframework.common.capability;
+
+import net.trentv.gasesframework.api.capability.IGasEffects;
 
 public class BaseGasEffects implements IGasEffects
 {

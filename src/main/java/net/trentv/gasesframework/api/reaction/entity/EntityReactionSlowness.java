@@ -4,8 +4,8 @@ import net.minecraft.entity.Entity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.trentv.gasesframework.api.GasType;
-import net.trentv.gasesframework.api.capability.GasEffectsProvider;
 import net.trentv.gasesframework.api.capability.IGasEffects;
+import net.trentv.gasesframework.common.capability.GasEffectsProvider;
 
 public class EntityReactionSlowness implements IEntityReaction
 {

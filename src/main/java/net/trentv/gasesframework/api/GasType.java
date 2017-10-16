@@ -34,7 +34,7 @@ public class GasType
 	public final int color;
 	public final int opacity;
 	public final Combustibility combustability;
-	public int density = 0;
+	public final int density;
 
 	public Block block;
 	public ItemBlock itemBlock;
@@ -74,12 +74,6 @@ public class GasType
 	{
 		this.texture = texture;
 		this.tintindex = tintindex;
-		return this;
-	}
-
-	public GasType setDensity(int density)
-	{
-		this.density = density;
 		return this;
 	}
 

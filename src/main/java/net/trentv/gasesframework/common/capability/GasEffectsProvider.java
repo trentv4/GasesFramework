@@ -1,4 +1,4 @@
-package net.trentv.gasesframework.api.capability;
+package net.trentv.gasesframework.common.capability;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
@@ -6,6 +6,7 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityInject;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.util.INBTSerializable;
+import net.trentv.gasesframework.api.capability.IGasEffects;
 
 public class GasEffectsProvider implements ICapabilityProvider, INBTSerializable<NBTTagCompound>
 {

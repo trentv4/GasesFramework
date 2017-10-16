@@ -3,7 +3,7 @@ package net.trentv.gasesframework.api;
 import java.util.HashMap;
 import java.util.HashSet;
 
-import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.util.ResourceLocation;
@@ -17,7 +17,7 @@ import net.trentv.registry.ModRegistry;
 public class GFRegistrationAPI
 {
 	private static HashMap<ResourceLocation, GasType> gasTypes = new HashMap<ResourceLocation, GasType>();
-	private static HashSet<Block> ignitionBlocks = new HashSet<Block>();
+	private static HashSet<IBlockState> ignitionSources = new HashSet<IBlockState>();
 
 	public static void registerGasType(GasType type, ResourceLocation location)
 	{
@@ -55,14 +55,14 @@ public class GFRegistrationAPI
 		return gasTypes.values().toArray(new GasType[gasTypes.values().size()]);
 	}
 
-	public static void registerIgnitionBlock(Block block)
+	public static void registerIgnitionSource(IBlockState state)
 	{
-		ignitionBlocks.add(block);
+		ignitionSources.add(state);
 	}
 
-	public static boolean isIgnitionBlock(Block block)
+	public static boolean isIgnitionSource(IBlockState state)
 	{
-		return ignitionBlocks.contains(block);
+		return ignitionSources.contains(state);
 	}
 
 	@SideOnly(Side.CLIENT)
