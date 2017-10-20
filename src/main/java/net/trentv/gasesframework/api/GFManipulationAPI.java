@@ -46,6 +46,8 @@ public class GFManipulationAPI
 			return false;
 		}
 		IBlockState a = access.getBlockState(pos);
+		if (currentGas == null || currentGas.block == null)
+			return false;
 		if (a.getBlock() == Blocks.AIR | a.getBlock() == currentGas.block)
 		{
 			return true;
