@@ -37,6 +37,8 @@ public class GasType
 	public final Combustibility combustability;
 	public final int density;
 
+	private ResourceLocation registryName;
+
 	public Block block;
 	public ItemBlock itemBlock;
 	@SideOnly(Side.CLIENT)
@@ -71,6 +73,19 @@ public class GasType
 		this.combustability = combustability;
 	}
 
+	public GasType setRegistryName(ResourceLocation location)
+	{
+		if (registryName == null)
+		{
+			registryName = location;
+		}
+		else
+		{
+			GasesFramework.logger.error("Trying to set registry name multiple times for gastype: " + registryName);
+		}
+		return this;
+	}
+
 	public GasType setTexture(ResourceLocation texture, boolean tintindex)
 	{
 		this.texture = texture;
@@ -101,6 +116,11 @@ public class GasType
 	{
 		this.creativeTab = creativeTab;
 		return this;
+	}
+
+	public ResourceLocation getRegistryName()
+	{
+		return registryName;
 	}
 
 	@SideOnly(Side.CLIENT)

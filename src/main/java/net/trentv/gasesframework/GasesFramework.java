@@ -5,6 +5,7 @@ import org.apache.logging.log4j.Logger;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -21,7 +22,7 @@ import net.trentv.gasesframework.common.GasesFrameworkObjects;
 import net.trentv.gasesframework.common.capability.BaseGasEffects;
 import net.trentv.gasesframework.common.capability.GasEffectsStorage;
 
-@Mod(modid = GasesFramework.MODID, version = GasesFramework.VERSION, acceptedMinecraftVersions = "1.10.2")
+@Mod(modid = GasesFramework.MODID, version = GasesFramework.VERSION, acceptedMinecraftVersions = "1.12.2")
 public class GasesFramework
 {
 	@Instance(GasesFramework.MODID)
@@ -38,7 +39,7 @@ public class GasesFramework
 	public static Logger logger;
 
 	public static DamageSourceAsphyxiation damageSourceAsphyxiation = new DamageSourceAsphyxiation("asphyxiation");
-	public static final GasType AIR = new GasType("air", 0, 0, 0, Combustibility.NONE);
+	public static final GasType AIR = new GasType("air", 0, 0, 0, Combustibility.NONE).setRegistryName(new ResourceLocation(MODID, "air"));
 
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event)
@@ -62,7 +63,7 @@ public class GasesFramework
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event)
 	{
-		logger.info("Gases Framework initialized");
+		logger.info("'Gases Framework' initialized");
 	}
 
 	private static class DamageSourceAsphyxiation extends DamageSource

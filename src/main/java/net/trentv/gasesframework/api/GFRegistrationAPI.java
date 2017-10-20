@@ -17,6 +17,7 @@ public class GFRegistrationAPI
 
 	public static void registerGasType(GasType type, ResourceLocation location)
 	{
+		type.setRegistryName(location);
 		// Register the gas block
 		BlockGas newGasBlock = new BlockGas(type);
 		newGasBlock.setRegistryName(location);
