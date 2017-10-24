@@ -7,6 +7,7 @@ import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.trentv.gasesframework.GasesFramework;
+import net.trentv.gasesframework.api.GasesFrameworkAPI;
 import net.trentv.gasesframework.api.capability.IGasEffects;
 import net.trentv.gasesframework.common.capability.GasEffectsProvider;
 
@@ -24,7 +25,7 @@ public class CommonEvents
 
 				if (q.getSuffocation() == 200)
 				{
-					b.attackEntityFrom(GasesFramework.damageSourceAsphyxiation, 2);
+					b.attackEntityFrom(GasesFrameworkAPI.damageSourceAsphyxiation, 2);
 				}
 
 				if (q.getSuffocation() > 0)

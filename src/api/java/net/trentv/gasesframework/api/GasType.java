@@ -19,7 +19,6 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.trentv.gasesframework.GasesFramework;
 import net.trentv.gasesframework.api.reaction.block.IBlockReaction;
 import net.trentv.gasesframework.api.reaction.entity.IEntityReaction;
 import net.trentv.gasesframework.api.reaction.gas.IGasReaction;
@@ -62,8 +61,8 @@ public class GasType
 		if (!(opacity >= 0 & opacity <= 16))
 		{
 			opacity = 0;
-			if (GasesFramework.logger != null)
-				GasesFramework.logger.error("Incorrect opacity value for GasType: " + name + "! Valid values are [0-16]. Setting opacity to 0.");
+			if (GasesFrameworkAPI.LOGGER != null)
+				GasesFrameworkAPI.LOGGER.error("Incorrect opacity value for GasType: " + name + "! Valid values are [0-16]. Setting opacity to 0.");
 		}
 		this.gasID = maxGasID++;
 		this.name = name;
@@ -81,7 +80,7 @@ public class GasType
 		}
 		else
 		{
-			GasesFramework.logger.error("Trying to set registry name multiple times for gastype: " + registryName);
+			GasesFrameworkAPI.LOGGER.error("Trying to set registry name multiple times for gastype: " + registryName);
 		}
 		return this;
 	}

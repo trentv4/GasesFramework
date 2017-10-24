@@ -23,11 +23,11 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.trentv.gasesframework.GasesFramework;
 import net.trentv.gasesframework.api.Combustibility;
 import net.trentv.gasesframework.api.GFManipulationAPI;
 import net.trentv.gasesframework.api.GFRegistrationAPI;
 import net.trentv.gasesframework.api.GasType;
+import net.trentv.gasesframework.api.GasesFrameworkAPI;
 import net.trentv.gasesframework.api.IGasEffectProtector;
 import net.trentv.gasesframework.api.MaterialGas;
 import net.trentv.gasesframework.api.reaction.entity.IEntityReaction;
@@ -57,6 +57,7 @@ public class BlockGas extends Block implements ISample
 
 	// Block & block state
 
+	@Override
 	public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state)
 	{
 		worldIn.scheduleBlockUpdate(pos, this, tickRate, 1);
@@ -196,6 +197,7 @@ public class BlockGas extends Block implements ISample
 		return new BlockStateContainer(this, CAPACITY);
 	}
 
+	@Override
 	public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos)
 	{
 		return state;
@@ -219,6 +221,7 @@ public class BlockGas extends Block implements ISample
 		return false;
 	}
 
+	@Override
 	@Nullable
 	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos)
 	{
@@ -226,6 +229,7 @@ public class BlockGas extends Block implements ISample
 	}
 
 	// Necessary so you can walk through the block. Don't remove it, dumbass.
+	@Override
 	public boolean isFullCube(IBlockState state)
 	{
 		return false;
@@ -237,6 +241,7 @@ public class BlockGas extends Block implements ISample
 		ignite(pos, world);
 	}
 
+	@Override
 	public int getFlammability(IBlockAccess world, BlockPos pos, EnumFacing face)
 	{
 		return 0;
@@ -266,7 +271,7 @@ public class BlockGas extends Block implements ISample
 			EntityDelayedExplosion exploder = new EntityDelayedExplosion(access, 5, explosionPower, true, true);
 			exploder.setPosition(pos.getX(), pos.getY(), pos.getZ());
 			access.spawnEntity(exploder);
-			GFManipulationAPI.setGasLevel(pos, access, GasesFramework.AIR, 16);
+			GFManipulationAPI.setGasLevel(pos, access, GasesFrameworkAPI.AIR, 16);
 		}
 		if (gasType.combustability.fireSpreadRate > 0)
 		{
@@ -274,18 +279,21 @@ public class BlockGas extends Block implements ISample
 		}
 	}
 
+	@Override
 	@Nullable
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
 		return null;
 	}
 
+	@Override
 	public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
 	{
 		List<ItemStack> ret = new ArrayList<ItemStack>();
 		return ret;
 	}
 
+	@Override
 	public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity)
 	{
 		IEntityReaction[] s = gasType.getEntityReactions();
@@ -315,6 +323,7 @@ public class BlockGas extends Block implements ISample
 		}
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand)
 	{

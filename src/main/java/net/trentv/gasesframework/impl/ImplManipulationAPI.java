@@ -1,4 +1,4 @@
-package net.trentv.gasesframework.api;
+package net.trentv.gasesframework.impl;
 
 import java.util.ArrayList;
 
@@ -9,11 +9,20 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.trentv.gasesframework.GasesFramework;
+import net.trentv.gasesframework.api.GFManipulationAPI;
+import net.trentv.gasesframework.api.GasType;
+import net.trentv.gasesframework.api.GasesFrameworkAPI;
 import net.trentv.gasesframework.common.block.BlockGas;
 
-public class GFManipulationAPI
+public class ImplManipulationAPI implements GFManipulationAPI.IManipulationAPI
 {
-	public static GasType getGasType(BlockPos pos, World access)
+	public ImplManipulationAPI()
+	{
+		GFManipulationAPI.instance = this;
+	}
+
+	@Override
+	public GasType getGasType(BlockPos pos, World access)
 	{
 		IBlockState a = access.getBlockState(pos);
 		if (a.getBlock() instanceof BlockGas)
@@ -22,11 +31,12 @@ public class GFManipulationAPI
 		}
 		else
 		{
-			return GasesFramework.AIR;
+			return GasesFrameworkAPI.AIR;
 		}
 	}
 
-	public static int getGasLevel(BlockPos pos, World access)
+	@Override
+	public int getGasLevel(BlockPos pos, World access)
 	{
 		IBlockState a = access.getBlockState(pos);
 		if (a.getBlock() instanceof BlockGas)
@@ -39,9 +49,10 @@ public class GFManipulationAPI
 		}
 	}
 
-	public static boolean canPlaceGas(BlockPos pos, World access, GasType currentGas)
+	@Override
+	public boolean canPlaceGas(BlockPos pos, World access, GasType currentGas)
 	{
-		if (currentGas == GasesFramework.AIR | pos.getY() < 0)
+		if (currentGas == GasesFrameworkAPI.AIR | pos.getY() < 0)
 		{
 			return false;
 		}
@@ -55,9 +66,10 @@ public class GFManipulationAPI
 		return false;
 	}
 
-	public static void setGasLevel(BlockPos pos, World access, GasType gas, int level)
+	@Override
+	public void setGasLevel(BlockPos pos, World access, GasType gas, int level)
 	{
-		if (gas == GasesFramework.AIR)
+		if (gas == GasesFrameworkAPI.AIR)
 		{
 			access.setBlockToAir(pos);
 		}
@@ -78,7 +90,8 @@ public class GFManipulationAPI
 		}
 	}
 
-	public static void removeGasLevel(BlockPos pos, World access, int level)
+	@Override
+	public void removeGasLevel(BlockPos pos, World access, int level)
 	{
 		Block a = access.getBlockState(pos).getBlock();
 		if (a instanceof BlockGas)
@@ -96,9 +109,10 @@ public class GFManipulationAPI
 		}
 	}
 
-	public static int addGasLevel(BlockPos pos, World access, GasType gas, int level)
+	@Override
+	public int addGasLevel(BlockPos pos, World access, GasType gas, int level)
 	{
-		if (gas == GasesFramework.AIR)
+		if (gas == GasesFrameworkAPI.AIR)
 		{
 			return 0;
 		}
@@ -137,9 +151,10 @@ public class GFManipulationAPI
 		return level;
 	}
 
-	public static void addGasLevelOverflow(BlockPos pos, World world, GasType gas, int level)
+	@Override
+	public void addGasLevelOverflow(BlockPos pos, World world, GasType gas, int level)
 	{
-		if (gas == GasesFramework.AIR)
+		if (gas == GasesFrameworkAPI.AIR)
 		{
 			return;
 		}
@@ -159,7 +174,7 @@ public class GFManipulationAPI
 		}
 	}
 
-	private static int placeRecursive(BlockPos pos, World world, GasType gas, int originalLevel)
+	private int placeRecursive(BlockPos pos, World world, GasType gas, int originalLevel)
 	{
 		if (originalLevel == 0)
 			return 0;
@@ -200,7 +215,7 @@ public class GFManipulationAPI
 		return remaining;
 	}
 
-	private static EnumFacing[] getValidFacings(BlockPos pos, World world, GasType gas)
+	private EnumFacing[] getValidFacings(BlockPos pos, World world, GasType gas)
 	{
 		ArrayList<EnumFacing> validList = new ArrayList<EnumFacing>();
 

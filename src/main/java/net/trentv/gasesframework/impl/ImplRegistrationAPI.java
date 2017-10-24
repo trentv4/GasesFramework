@@ -1,4 +1,4 @@
-package net.trentv.gasesframework.api;
+package net.trentv.gasesframework.impl;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -7,15 +7,23 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.util.ResourceLocation;
 import net.trentv.gasesframework.GasesFrameworkRegistry;
+import net.trentv.gasesframework.api.GFRegistrationAPI;
+import net.trentv.gasesframework.api.GasType;
 import net.trentv.gasesframework.client.GasesModelLoader;
 import net.trentv.gasesframework.common.block.BlockGas;
 
-public class GFRegistrationAPI
+public class ImplRegistrationAPI implements GFRegistrationAPI.IRegistrationAPI
 {
+	public ImplRegistrationAPI()
+	{
+		GFRegistrationAPI.instance = this;
+	}
+
 	private static HashMap<ResourceLocation, GasType> gasTypes = new HashMap<ResourceLocation, GasType>();
 	private static HashSet<IBlockState> ignitionSources = new HashSet<IBlockState>();
 
-	public static void registerGasType(GasType type, ResourceLocation location)
+	@Override
+	public void registerGasType(GasType type, ResourceLocation location)
 	{
 		type.setRegistryName(location);
 		// Register the gas block
@@ -40,23 +48,27 @@ public class GFRegistrationAPI
 		gasTypes.put(location, type);
 	}
 
-	public static GasType getGasType(ResourceLocation location)
+	@Override
+	public GasType getGasType(ResourceLocation location)
 	{
 		GasType r = gasTypes.get(location);
 		return r;
 	}
 
-	public static GasType[] getGasTypes()
+	@Override
+	public GasType[] getGasTypes()
 	{
 		return gasTypes.values().toArray(new GasType[gasTypes.values().size()]);
 	}
 
-	public static void registerIgnitionSource(IBlockState state)
+	@Override
+	public void registerIgnitionSource(IBlockState state)
 	{
 		ignitionSources.add(state);
 	}
 
-	public static boolean isIgnitionSource(IBlockState state)
+	@Override
+	public boolean isIgnitionSource(IBlockState state)
 	{
 		return ignitionSources.contains(state);
 	}

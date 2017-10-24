@@ -51,5 +51,21 @@ minecraft {
 }
 
 dependencies {
-    deobfCompile "com.github.mcjty:compatlayer:1.11.2-0.2.8"
+
+}
+
+jar {
+    from sourceSets.api.output
+    from sourceSets.main.output
+}
+
+task sourcesJar(type: Jar) {
+    from sourceSets.api.allSource
+    from sourceSets.main.allSource
+    classifier = 'sources'
+}
+
+task apiJar(type: Jar) {
+    from sourceSets.api.output
+    classifier = 'api'
 }
