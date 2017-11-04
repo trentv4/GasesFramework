@@ -17,6 +17,8 @@ import net.trentv.gasesframework.common.CommonProxy;
 import net.trentv.gasesframework.common.GasesFrameworkObjects;
 import net.trentv.gasesframework.common.capability.BaseGasEffects;
 import net.trentv.gasesframework.common.capability.GasEffectsStorage;
+import net.trentv.gasesframework.impl.ImplManipulationAPI;
+import net.trentv.gasesframework.impl.ImplRegistrationAPI;
 
 @Mod(modid = GasesFramework.MODID, version = GasesFramework.VERSION, acceptedMinecraftVersions = "1.12.2")
 public class GasesFramework
@@ -37,6 +39,9 @@ public class GasesFramework
 	public void preInit(FMLPreInitializationEvent event)
 	{
 		logger = event.getModLog();
+
+		new ImplRegistrationAPI();
+		new ImplManipulationAPI();
 
 		// Register all items, blocks, and gases
 		GasesFrameworkObjects.init();
