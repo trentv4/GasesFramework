@@ -9,7 +9,6 @@ import net.minecraft.util.ResourceLocation;
 import net.trentv.gasesframework.GasesFrameworkRegistry;
 import net.trentv.gasesframework.api.GFRegistrationAPI;
 import net.trentv.gasesframework.api.GasType;
-import net.trentv.gasesframework.client.GasesModelLoader;
 import net.trentv.gasesframework.common.block.BlockGas;
 
 public class ImplRegistrationAPI implements GFRegistrationAPI.IRegistrationAPI
@@ -21,6 +20,7 @@ public class ImplRegistrationAPI implements GFRegistrationAPI.IRegistrationAPI
 
 	private static HashMap<ResourceLocation, GasType> gasTypes = new HashMap<ResourceLocation, GasType>();
 	private static HashSet<IBlockState> ignitionSources = new HashSet<IBlockState>();
+	public static HashSet<ResourceLocation> registeredGasTypeLocations = new HashSet<ResourceLocation>();
 
 	@Override
 	public void registerGasType(GasType type, ResourceLocation location)
@@ -42,7 +42,7 @@ public class ImplRegistrationAPI implements GFRegistrationAPI.IRegistrationAPI
 		type.itemBlock = newGasItemBlock;
 
 		// Rendering stuff - in the world, then in the inventory
-		GasesModelLoader.registeredLocations.add(location);
+		registeredGasTypeLocations.add(location);
 
 		// Finally, we can track it in the *right* place.
 		gasTypes.put(location, type);
