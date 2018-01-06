@@ -228,6 +228,12 @@ public class BlockGas extends Block implements ISample
 		return NULL_AABB;
 	}
 
+	@Override
+	public boolean canCollideCheck(IBlockState state, boolean fullHit)
+	{
+		return false;
+	}
+
 	// Necessary so you can walk through the block. Don't remove it, dumbass.
 	@Override
 	public boolean isFullCube(IBlockState state)
