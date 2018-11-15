@@ -71,7 +71,7 @@ public class GasesFramework
 		}
 
 		@Override
-		public ItemStack getTabIconItem()
+		public ItemStack createIcon()
 		{
 			return new ItemStack(GasesFrameworkObjects.SMOKE.itemBlock);
 		}

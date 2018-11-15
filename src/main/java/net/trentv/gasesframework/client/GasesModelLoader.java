@@ -47,6 +47,6 @@ public class GasesModelLoader implements ICustomModelLoader
 
 	private ResourceLocation convert(ResourceLocation in)
 	{
-		return new ResourceLocation(in.getResourceDomain(), in.getResourcePath());
+		return new ResourceLocation(in.getNamespace(), in.getPath());
 	}
 }

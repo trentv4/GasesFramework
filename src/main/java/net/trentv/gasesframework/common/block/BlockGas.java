@@ -51,7 +51,7 @@ public class BlockGas extends Block implements ISample
 		setLightOpacity(type.opacity);
 		setCreativeTab(type.creativeTab);
 		setResistance(0);
-		setUnlocalizedName("gas_" + type.name);
+		setTranslationKey("gas_" + type.name);
 		this.setDefaultState(blockState.getBaseState().withProperty(CAPACITY, 16));
 	}
 
@@ -257,7 +257,7 @@ public class BlockGas extends Block implements ISample
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public BlockRenderLayer getBlockLayer()
+	public BlockRenderLayer getRenderLayer()
 	{
 		return BlockRenderLayer.TRANSLUCENT;
 	}
@@ -300,7 +300,7 @@ public class BlockGas extends Block implements ISample
 	}
 
 	@Override
-	public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity)
+	public void onEntityCollision(World world, BlockPos pos, IBlockState state, Entity entity)
 	{
 		IEntityReaction[] s = gasType.getEntityReactions();
 		for (IEntityReaction a : s)
