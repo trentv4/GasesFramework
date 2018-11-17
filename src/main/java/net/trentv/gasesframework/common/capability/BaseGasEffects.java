@@ -1,8 +1,10 @@
 package net.trentv.gasesframework.common.capability;
 
+import java.util.concurrent.Callable;
+
 import net.trentv.gasesframework.api.capability.IGasEffects;
 
-public class BaseGasEffects implements IGasEffects
+public class BaseGasEffects implements IGasEffects, Callable<IGasEffects>
 {
 	public float suffocation = 0;
 	public float blindness = 0;
@@ -45,5 +47,11 @@ public class BaseGasEffects implements IGasEffects
 	{
 		slowness = value;
 		return value;
+	}
+
+	@Override
+	public IGasEffects call() throws Exception
+	{
+		return new BaseGasEffects();
 	}
 }

@@ -25,7 +25,7 @@ public class ClientEvents
 
 			if (f > 0.0f)
 			{
-				event.setDensity(f * f + 0.01f);
+				event.setDensity(f * f);
 				GL11.glFogi(GL11.GL_FOG_MODE, GL11.GL_EXP);
 				event.setCanceled(true);
 			}
